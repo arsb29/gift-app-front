@@ -3,10 +3,7 @@ import { StrictMode } from 'react';
 import { retrieveLaunchParams } from '@telegram-apps/sdk-react';
 import { Root } from '@/components/Root.tsx';
 import { init } from '@/init.ts';
-
 import './index.css';
-
-// Mock the environment in case, we are outside Telegram.
 import './mockEnv.ts';
 
 const root = ReactDOM.createRoot(document.getElementById('root')!);
