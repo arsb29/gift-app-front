@@ -2,7 +2,8 @@ import {
   mockTelegramEnv,
   isTMA,
   parseInitData,
-  LaunchParams, retrieveLaunchParams
+  LaunchParams,
+  retrieveLaunchParams
 } from '@telegram-apps/sdk-react';
 
 // It is important, to mock the environment only for development purposes.

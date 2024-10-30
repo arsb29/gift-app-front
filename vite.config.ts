@@ -9,7 +9,6 @@ export default defineConfig({
     tsconfigPaths(),
     basicSsl(),
   ],
-  publicDir: './public',
   server: {
     host: true,
   },
