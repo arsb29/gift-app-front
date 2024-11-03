@@ -37,6 +37,7 @@
 .count {
   opacity: 50%;
   align-self: flex-end;
+  font: var(--text13);
 }
 
 .animation {
