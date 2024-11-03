@@ -6,14 +6,11 @@ import {useNavigate} from "react-router-dom";
 import {ROUTES_PATHS} from "@/navigation/routes.tsx";
 import {QUERY_KEYS} from "@/constants.ts";
 import {giftsQueryFn} from "@/queries/giftsQueryFn.ts";
-import {retrieveLaunchParams} from "@telegram-apps/sdk-react";
 import {GiftStore} from "@/components/GiftStore/GiftStore.tsx";
 import styles from './GiftsPage.module.css';
 import {Header} from "@/pages/GiftsPage/Header.tsx";
 
 export const GiftsPage: FC = () => {
-
-  console.log(retrieveLaunchParams())
   const navigate = useNavigate();
   const {isPending, isError, data: gifts} = useQuery<Gift[]>({
       queryKey: [QUERY_KEYS.gifts],
