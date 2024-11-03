@@ -11,7 +11,10 @@ interface Route {
 
 export const ROUTES_PATHS = {
   gifts: '/gifts',
+  mygifts: '/mygifts',
   gift: '/gifts/:id',
+  leaderboard: '/leaderboard',
+  profile: '/profile',
 } as const;
 
 export const routes: Route[] = [

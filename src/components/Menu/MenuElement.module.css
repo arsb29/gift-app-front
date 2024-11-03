@@ -12,6 +12,13 @@
   color: var(--tab-bar-label);
 }
 
+.active * {
+  color: var(--primary);
+  & path {
+    fill: var(--primary);
+  }
+}
+
 .icon {
   height: 26px;
 }
