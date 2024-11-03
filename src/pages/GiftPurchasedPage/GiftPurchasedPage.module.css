@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 32px;
+  height: 100vh;
+}
+
+
+.image {
+  position: relative;
+  height: 100px;
+
+  & > div {
+    height: 100px;
+  }
+}
+
+.animation {
+  height: 100%;
+}
+
+.giftPurchased {
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  transform: translate(-50%);
+  height: 200px;
+  width: 200px;
+}
+
+.title {
+  font: var(--text24b);
+  margin-top: 16px;
+}
+
+.description {
+  margin-top: 8px;
+}

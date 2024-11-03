@@ -1,7 +1,7 @@
 import type { ComponentType, JSX } from 'react';
 import { GiftsPage } from '@/pages/GiftsPage/GiftsPage.tsx';
 import {GiftPage} from "@/pages/GiftPage/GiftPage.tsx";
-import {GiftPaidPage} from "@/pages/GiftPaidPage/GiftPaidPage.tsx";
+import {GiftPurchasedPage} from "@/pages/GiftPurchasedPage/GiftPurchasedPage.tsx";
 
 interface Route {
   path: string;
@@ -22,5 +22,5 @@ export const ROUTES_PATHS = {
 export const routes: Route[] = [
   { path: ROUTES_PATHS.gifts, Component: GiftsPage },
   { path: ROUTES_PATHS.gift, Component: GiftPage },
-  { path: ROUTES_PATHS.giftPaid, Component: GiftPaidPage }
+  { path: ROUTES_PATHS.giftPaid, Component: GiftPurchasedPage }
 ];
