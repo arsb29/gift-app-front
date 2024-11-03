@@ -1,3 +1,37 @@
+@font-face {
+  font-family: SFProMedium;
+  src: url("./fonts/SF-Pro-Display-Medium.otf") format("opentype");
+}
+
+@font-face {
+  font-family: SFProRegular;
+  src: url("./fonts/SF-Pro-Display-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: SFProSemibold;
+  src: url("./fonts/SF-Pro-Display-Semibold.otf") format("opentype");
+}
+
+:root {
+  --primary: #007AFF;
+  --black: #000000;
+  --white: #FFFFFF;
+  --label-secondary: #8E8E93;
+
+  --text13: normal normal 400 normal 13px/18px SFProRegular, sans-serif;
+  --text17: normal normal 400 normal 17px/22px SFProRegular, sans-serif;
+  --text17m: normal normal 500 normal 17px/22px SFProMedium, sans-serif;
+  --text17b: normal normal 600 normal 17px/22px SFProSemibold, sans-serif;
+  --text24b: normal normal 600 normal 24px/32px SFProSemibold, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  font: var(--text17);
+  letter-spacing: -0.43px;
+}
+
 body {
   padding: 0;
   margin: 0;

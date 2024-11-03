@@ -1,6 +1,6 @@
-export const GIFT_ID = {
-  deliciousCake: 'deliciousCake'
-};
+
+
+
 
 export const LANGUAGE = {
   en: 'en',
@@ -22,4 +22,22 @@ export const CRYPTO_ASSET = {
 export const QUERY_KEYS = {
   gifts: 'gifts'
 } as const;
+
+export const GIFT_ID = {
+  deliciousCake: 'deliciousCake',
+  blueStar: 'blueStar',
+  redStar: 'redStar',
+  greenStar: 'greenStar',
+} as const;
+
+export const ICON_ANIMATION = {
+  giftPurchased: 'giftPurchased',
+  balloons: 'balloons',
+  tabGifts: 'tabGifts',
+  tabStore: 'tabStore',
+  tabLeaderboard: 'tabLeaderboard',
+  tabProfile: 'tabProfile',
+  ...GIFT_ID
+} as const;
+
 

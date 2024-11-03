@@ -1,5 +1,5 @@
 import type { ComponentType, JSX } from 'react';
-import { GiftsPage } from '@/pages/GiftsPage.tsx';
+import { GiftsPage } from '@/pages/GiftsPage/GiftsPage.tsx';
 import {GiftPage} from "@/pages/GiftPage.tsx";
 
 interface Route {

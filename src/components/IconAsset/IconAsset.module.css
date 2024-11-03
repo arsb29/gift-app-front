@@ -1,0 +1,25 @@
+.icon {
+  border-radius: 50%;
+}
+
+.color-USDT {
+  background-color: #009393;
+}
+
+.color-TON {
+  background-color: #35AFF1;
+}
+
+.color-ETH {
+  background-color: #627EEA;
+}
+
+.size-20 {
+  width: 20px;
+  height: 20px;
+}
+
+.size-24 {
+  width: 24px;
+  height: 24px;
+}
