@@ -13,7 +13,7 @@ export function MenuElement(props: Props) {
   const {icon, label} = props;
   const player = useRef();
   const handleClick = () => {
-    if (player) player.current.play();
+    player?.current?.play();
   }
   return (
     <div className={styles.element} onClick={handleClick}>
