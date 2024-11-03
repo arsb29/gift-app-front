@@ -1,0 +1,17 @@
+.element {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.title {
+  font-size: 10px;
+  letter-spacing: 0.1px;
+  line-height: 11.93px;
+  color: var(--tab-bar-label);
+}
+
+.icon {
+  height: 26px;
+}

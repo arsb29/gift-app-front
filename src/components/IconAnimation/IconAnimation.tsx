@@ -11,6 +11,7 @@ import tabProfile from '@/animations/tab-profile.json'
 import { Player } from '@lottiefiles/react-lottie-player';
 import {ValuesOf} from "@/types.ts";
 import {ICON_ANIMATION} from "@/constants.ts";
+import {forwardRef} from "react";
 
 export const ICON_ANIMATION_PATH = {
   [ICON_ANIMATION.deliciousCake]: deliciousCake,
@@ -29,9 +30,11 @@ type Props = {
   icon: ValuesOf<typeof ICON_ANIMATION>;
 } & Record<string, any>
 
-export function IconAnimation(props: Props) {
+export const IconAnimation = forwardRef((props: Props, ref) => {
   const {icon, ...propsToPass} = props;
   return (
-    <Player src={ICON_ANIMATION_PATH[icon]} {...propsToPass} />
+    <Player ref={ref} src={ICON_ANIMATION_PATH[icon]} {...propsToPass} />
   )
-}
+})
+
+IconAnimation.displayName = 'IconAnimation';

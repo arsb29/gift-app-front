@@ -1,0 +1,11 @@
+.container {
+  position: fixed;
+  width: 100%;
+  backdrop-filter: blur(100px);
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  background-color: var(--tab-bar);
+  padding-top: 8px;
+  padding-bottom: 4px;
+}

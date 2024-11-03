@@ -26,14 +26,12 @@ export const GiftsPage: FC = () => {
   if (isPending) return <div>Загрузка</div> // todo сделать спец экран для этого
   if (isError) return <div>Ошибка</div> // todo сделать спец экран для этого
   return (
-    <Page back={false}>
-      <div className={styles.container}>
-        <Header />
-        <div className={styles.list}>
-          {gifts.map(gift => (
-            <GiftStore gift={gift} key={gift._id} onClick={handleClick(gift._id)} />
-          ))}
-        </div>
+    <Page back={false} withMenu className={styles.container}>
+      <Header />
+      <div className={styles.list}>
+        {gifts.map(gift => (
+          <GiftStore gift={gift} key={gift._id} onClick={handleClick(gift._id)} />
+        ))}
       </div>
     </Page>
   );

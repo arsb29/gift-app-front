@@ -1,13 +1,16 @@
 import { useNavigate } from 'react-router-dom';
 import { backButton } from '@telegram-apps/sdk-react';
 import { PropsWithChildren, useEffect } from 'react';
+import {Menu} from "@/components/Menu/Menu.tsx";
 
-export function Page({ children, back = true }: PropsWithChildren<{
-  /**
-   * True if it is allowed to go back from this page.
-   */
+type Props = PropsWithChildren<{
+  className?: string
+  withMenu?: boolean
   back?: boolean
-}>) {
+}>;
+
+export function Page(props: Props) {
+  const {children, back = true, withMenu = false, className} = props;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,5 +23,10 @@ export function Page({ children, back = true }: PropsWithChildren<{
     backButton.hide();
   }, [back]);
 
-  return <>{children}</>;
+  return (
+    <div className={className}>
+      {children}
+      {withMenu && <Menu />}
+    </div>
+  );
 }
