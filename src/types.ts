@@ -18,3 +18,15 @@ export type Gift = {
   asset: CryptoAsset,
   amount: number
 };
+
+export type Transaction = {
+  _id: string,
+  gift: string,
+  receiver: null,
+  sender: string,
+  serialNumberOfGift: null,
+  status: string,
+  invoiceId: number,
+  expiresIn: number,
+  miniAppPayUrl: string
+}

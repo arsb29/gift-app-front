@@ -70,6 +70,7 @@
 .line {
   height: 12px;
   background-color: var(--bg-secondary);
+  margin: 0 -16px;
 }
 
 .recentlyActions {

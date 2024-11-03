@@ -1,5 +1,6 @@
 import { App } from '@/components/App.tsx';
 import { ErrorBoundary } from '@/components/ErrorBoundary.tsx';
+import {BrowserRouter} from "react-router-dom";
 
 function ErrorBoundaryError({ error }: { error: unknown }) {
   return (
@@ -21,7 +22,9 @@ function ErrorBoundaryError({ error }: { error: unknown }) {
 export function Root() {
   return (
     <ErrorBoundary fallback={ErrorBoundaryError}>
+      <BrowserRouter>
         <App/>
+      </BrowserRouter>
     </ErrorBoundary>
   );
 }
