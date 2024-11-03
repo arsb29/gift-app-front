@@ -8,10 +8,10 @@ import tabGifts from '@/animations/tab-gifts.json'
 import tabStore from '@/animations/tab-store.json'
 import tabLeaderboard from '@/animations/tab-leaderboard.json'
 import tabProfile from '@/animations/tab-profile.json'
-import { Player } from '@lottiefiles/react-lottie-player';
+import { Player, IPlayerProps } from '@lottiefiles/react-lottie-player';
 import {ValuesOf} from "@/types.ts";
 import {ICON_ANIMATION} from "@/constants.ts";
-import {forwardRef} from "react";
+import {forwardRef, LegacyRef} from "react";
 
 export const ICON_ANIMATION_PATH = {
   [ICON_ANIMATION.deliciousCake]: deliciousCake,
@@ -28,9 +28,9 @@ export const ICON_ANIMATION_PATH = {
 
 type Props = {
   icon: ValuesOf<typeof ICON_ANIMATION>;
-} & Record<string, any>
+} & Omit<IPlayerProps, 'src'>;
 
-export const IconAnimation = forwardRef((props: Props, ref) => {
+export const IconAnimation = forwardRef((props: Props, ref: LegacyRef<Player>) => {
   const {icon, ...propsToPass} = props;
   return (
     <Player ref={ref} src={ICON_ANIMATION_PATH[icon]} {...propsToPass} />

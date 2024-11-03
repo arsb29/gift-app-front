@@ -1,6 +1,5 @@
 import {Gift} from "@/types.ts";
 import styles from './GiftStore.module.css'
-import PatternLight from '@/assets/patternLight.svg?react';
 import {CRYPTO_ASSET, ICON_ANIMATION} from "@/constants.ts";
 import {IconAnimation} from "@/components/IconAnimation/IconAnimation.tsx";
 import {IconAsset} from "@/components/IconAsset/IconAsset.tsx";
@@ -15,8 +14,7 @@ type Props = {
 export function GiftStore(props: Props) {
   const {gift, onClick} = props;
   return (
-    <div className={cc(styles.container, styles[`background-${gift.giftId}`])} onClick={onClick}>
-      <PatternLight className={styles.image} />
+    <div className={cc(styles.container, `background-${gift.giftId}`)} onClick={onClick}>
       <div className={styles.count}>{formatNumber(gift.numberOfPurchased + gift.numberOfBooked)} of {formatNumber(gift.totalNumberOf)}</div>
       <IconAnimation
         autoplay

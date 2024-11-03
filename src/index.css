@@ -20,6 +20,8 @@
   --label-secondary: #8E8E93;
   --tab-bar-label: #545458A6;
   --tab-bar: #F1F1F2BF;
+  --bg-secondary: #EFEFF3;
+  --label-date: #6D6D71;
 
   --text13: normal normal 400 normal 13px/18px SFProRegular, sans-serif;
   --text17: normal normal 400 normal 17px/22px SFProRegular, sans-serif;
@@ -37,4 +39,20 @@
 body {
   padding: 0;
   margin: 0;
+}
+
+.background-deliciousCake {
+  background: linear-gradient(#FE9F4133, #FE9F411A);
+}
+
+.background-blueStar {
+  background: linear-gradient(#007AFF33, #007AFF0D);
+}
+
+.background-redStar {
+  background: linear-gradient(#FF474733, #FF47470D);
+}
+
+.background-greenStar {
+  background: linear-gradient(#46D10033, #46D1000F);
 }

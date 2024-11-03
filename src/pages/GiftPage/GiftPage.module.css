@@ -1,0 +1,84 @@
+.container {
+  padding: 16px;
+}
+
+.image {
+  position: relative;
+  height: 361px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 57px;
+  border-radius: 16px;
+
+  &:before {
+    background: url("/src/assets/patternLight.svg") repeat center center;
+    opacity: 0.05;
+    bottom: 0;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1000;
+  }
+
+  & > div {
+    height: 100%;
+  }
+}
+
+.animation {
+  height: 100%;
+}
+
+.info {
+  display: flex;
+  gap: 8px;
+  padding: 12px 0;
+  flex-direction: column;
+}
+
+.titleWithCount {
+  display: flex;
+  gap: 12px;
+}
+
+.title {
+  font: var(--text24b);
+}
+
+.count {
+  background-color: #007AFF1F;
+  color: var(--primary);
+  padding: 0 8px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.description {
+  color: var(--label-secondary);
+}
+
+.buy {
+  display: flex;
+  gap: 8px;
+}
+
+.line {
+  height: 12px;
+  background-color: var(--bg-secondary);
+}
+
+.recentlyActions {
+  padding: 24px 16px 12px;
+  text-transform: uppercase;
+  color: var(--label-date);
+  font: var(--text13);
+  letter-spacing: -0.08px;
+}
+
+
+

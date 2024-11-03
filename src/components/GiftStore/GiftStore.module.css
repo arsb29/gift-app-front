@@ -1,11 +1,3 @@
-.image {
-  position: absolute;
-  width: 100%;
-  top: -50%;
-  opacity: 5%;
-  z-index: -1000;
-}
-
 .container {
   height: 246px;
   column-count: 2;
@@ -18,20 +10,16 @@
   overflow: hidden;
 }
 
-.background-deliciousCake {
-  background: linear-gradient(#FE9F4133, #FE9F411A);
-}
-
-.background-blueStar {
-  background: linear-gradient(#007AFF33, #007AFF0D);
-}
-
-.background-redStar {
-  background: linear-gradient(#FF474733, #FF47470D);
-}
-
-.background-greenStar {
-  background: linear-gradient(#46D10033, #46D1000F);
+.container:before {
+  background: url("/src/assets/patternLight.svg") repeat center center;
+  opacity: 0.05;
+  bottom: 0;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1000;
 }
 
 .count {
