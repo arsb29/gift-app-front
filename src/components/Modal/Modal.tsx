@@ -1,5 +1,6 @@
+import {ReactNode, useEffect, useRef} from "react";
+import {IconClose} from "@/components/IconClose/IconClose.tsx";
 import styles from './Modal.module.css';
-import {ReactNode} from "react";
 
 type Props = {
   open: boolean;
@@ -9,9 +10,20 @@ type Props = {
 
 export function Modal(props: Props) {
   const {open, children, onClose} = props;
+  const ref = useRef<HTMLDialogElement>(null);
+  useEffect(() => {
+    if (ref.current) ref.current.addEventListener('click', function({currentTarget, target}) {
+      const isClickedOnBackDrop = target === currentTarget;
+      if (isClickedOnBackDrop) onClose();
+    })
+  }, [ref.current]);
+  useEffect(() => {
+    if (open) ref.current?.showModal();
+    else ref.current?.close();
+  }, [open]);
   return (
-    <dialog open={open} className={styles.dialog} onClose={onClose} cli>
-      <div className={styles.close} onClick={onClose}>Закрыть</div>
+    <dialog ref={ref} className={styles.dialog} onClose={onClose}>
+      <IconClose className={styles.close} onClick={onClose} />
       {children}
     </dialog>
   )

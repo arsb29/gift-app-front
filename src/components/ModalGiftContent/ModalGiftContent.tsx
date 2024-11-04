@@ -6,6 +6,8 @@ import {IconAsset} from "@/components/IconAsset/IconAsset.tsx";
 import {formatTime} from "@/helpers/formatTime.ts";
 import {IconAnimation} from "@/components/IconAnimation/IconAnimation.tsx";
 import {ICON_ANIMATION} from "@/constants.ts";
+import {useCallback, useEffect} from "react";
+import {mountMainButton, setMainButtonParams, unmountMainButton, onMainButtonClick, switchInlineQuery} from "@telegram-apps/sdk-react";
 
 type Props = {
   sender: User,
@@ -16,6 +18,27 @@ type Props = {
 
 export function ModalGiftContent(props: Props) {
   const {gift, time, serialNumberOfGift} = props;
+  const {giftId} = gift;
+  const handleSendGift = useCallback(() => {
+    if (switchInlineQuery.isSupported()) switchInlineQuery(
+      giftId,
+      ['users']
+    );
+  }, [giftId]);
+  useEffect(() => {
+    mountMainButton();
+    setMainButtonParams({
+      text: 'Send Gift to Contact',
+      isVisible: true
+    });
+    onMainButtonClick(handleSendGift);
+    return () => {
+      setMainButtonParams({
+        isVisible: false
+      });
+      unmountMainButton();
+    }
+  }, []);
   return (
     <div className={styles.container}>
       <IconAnimation icon={ICON_ANIMATION[gift.giftId]} />

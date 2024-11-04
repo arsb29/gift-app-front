@@ -30,14 +30,16 @@ export function GiftPurchased(props: Props) {
         keepLastFrame
       />
       <div className={styles.send} onClick={handleClickOpenModal}>Send</div>
-      <Modal open={openModal} onClose={handleClickCloseModal}>
-        <ModalGiftContent
-          gift={gift}
-          sender={sender}
-          serialNumberOfGift={serialNumberOfGift}
-          time={0}
-        />
-      </Modal>
+      {openModal && (
+        <Modal open={openModal} onClose={handleClickCloseModal}>
+          <ModalGiftContent
+            gift={gift}
+            sender={sender}
+            serialNumberOfGift={serialNumberOfGift}
+            time={0}
+          />
+        </Modal>
+      )}
     </div>
   )
 }
