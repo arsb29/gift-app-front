@@ -1,0 +1,10 @@
+.image {
+  position: relative;
+  & > div {
+    height: 100%;
+  }
+}
+
+.animation {
+  height: 100%;
+}

@@ -11,6 +11,7 @@ import tabProfile from '@/animations/tab-profile.json'
 import { Player, IPlayerProps } from '@lottiefiles/react-lottie-player';
 import {ValuesOf} from "@/types.ts";
 import {ICON_ANIMATION} from "@/constants.ts";
+import styles from "./IconAnimation.module.css";
 import {forwardRef, LegacyRef} from "react";
 
 export const ICON_ANIMATION_PATH = {
@@ -28,12 +29,20 @@ export const ICON_ANIMATION_PATH = {
 
 type Props = {
   icon: ValuesOf<typeof ICON_ANIMATION>;
+  size?: number
 } & Omit<IPlayerProps, 'src'>;
 
 export const IconAnimation = forwardRef((props: Props, ref: LegacyRef<Player>) => {
-  const {icon, ...propsToPass} = props;
+  const {icon, size = 100, ...propsToPass} = props;
   return (
-    <Player ref={ref} src={ICON_ANIMATION_PATH[icon]} {...propsToPass} />
+    <div className={styles.image} style={{height: `${size}px`}}>
+      <Player
+        ref={ref}
+        src={ICON_ANIMATION_PATH[icon]}
+        className={styles.animation}
+        {...propsToPass}
+      />
+    </div>
   )
 })
 

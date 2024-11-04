@@ -26,6 +26,7 @@ export function MenuElement(props: Props) {
     <div className={cc(styles.element, isActive && styles.active)} onClick={handleClick}>
       <IconAnimation
         icon={icon}
+        size={26}
         ref={player}
         className={styles.icon}
         playOnHover

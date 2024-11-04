@@ -1,0 +1,16 @@
+.table {
+  background-color: var(--white);
+  border-radius: 12px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  width: 100%;
+  & > * {
+    padding: 10px 16px;
+  }
+  & > *:nth-child(n + 3) {
+    border-top: 0.33px solid #3C3C435C;
+  }
+  & > *:nth-child(2n) {
+    border-left: 0.33px solid #3C3C435C;
+  }
+}

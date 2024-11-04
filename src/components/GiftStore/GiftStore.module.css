@@ -28,13 +28,6 @@
   font: var(--text13);
 }
 
-.animation {
-  margin-top: 8px;
-  z-index: 1000;
-  flex: 1 0;
-  height: 128px;
-}
-
 .title {
   margin-top: 4px;
 }

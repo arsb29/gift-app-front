@@ -68,10 +68,10 @@ export const GiftPage: FC = () => {
     <Page className={cc(styles.container)}>
       <div className={cc(styles.image, `background-${gift.giftId}`)}>
         <IconAnimation
+          size={260}
           loop
           autoplay
           icon={ICON_ANIMATION[gift.giftId]}
-          className={styles.animation}
           keepLastFrame
         />
       </div>

@@ -17,9 +17,9 @@ export function GiftStore(props: Props) {
     <div className={cc(styles.container, `background-${gift.giftId}`)} onClick={onClick}>
       <div className={styles.count}>{formatNumber(gift.numberOfPurchased + gift.numberOfBooked)} of {formatNumber(gift.totalNumberOf)}</div>
       <IconAnimation
+        size={128}
         autoplay
         icon={ICON_ANIMATION[gift.giftId]}
-        className={styles.animation}
         keepLastFrame
       />
       <div className={styles.title}>{gift.title['en']}</div>

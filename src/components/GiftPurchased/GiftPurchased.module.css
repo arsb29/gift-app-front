@@ -16,20 +16,6 @@
   letter-spacing: -0.08px;
 }
 
-
-.image {
-  position: relative;
-  max-height: 80px;
-
-  & > div {
-    height: 100%;
-  }
-}
-
-.animation {
-  height: 100%;
-}
-
 .send {
   padding: 6px 25px;
   background-color: var(--primary);

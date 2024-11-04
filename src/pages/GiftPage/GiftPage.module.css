@@ -22,14 +22,6 @@
     top: 0;
     z-index: -1000;
   }
-
-  & > div {
-    height: 100%;
-  }
-}
-
-.animation {
-  height: 100%;
 }
 
 .info {
