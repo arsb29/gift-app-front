@@ -1,6 +1,14 @@
 .container {
   border-radius: 50%;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #A5FBED;
+  color: var(--white);
+  & > * {
+    font: var(--text17b);
+  }
 }
 
 .image {

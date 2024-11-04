@@ -3,6 +3,7 @@ import styles from './LeaderboardItem.module.css';
 import {formatRank} from "@/helpers/formatRank.ts";
 import IconGift from '@/assets/gift.svg?react';
 import {forwardRef, LegacyRef} from "react";
+import {Avatar} from "@/components/Avatar/Avatar.tsx";
 
 type Props = {
   user: User;
@@ -12,7 +13,7 @@ export const LeaderboardItem = forwardRef(function (props: Props, ref: LegacyRef
   const {user} = props;
   return (
     <div className={styles.container} ref={ref}>
-      <div className={styles.photo}></div>
+      <Avatar user={user} size={40} className={styles.photo} />
       <div className={styles.content}>
         <div className={styles.info}>
           <div>{user.firstName}</div>

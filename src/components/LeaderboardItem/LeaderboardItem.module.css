@@ -5,10 +5,6 @@
 
 .photo {
   margin: 8px 12px 8px 16px;
-  width: 40px;
-  height: 40px;
-  background-color: black;
-  border-radius: 50%;
 }
 
 .content {
