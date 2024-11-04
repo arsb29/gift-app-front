@@ -3,6 +3,7 @@ import {Action} from "@/types.ts";
 import styles from "./GiftRecentlyAction.module.css";
 import {ACTION_TYPE} from "@/constants.ts";
 import {formatName} from "@/helpers/formatName.ts";
+import {Avatar} from "@/components/Avatar/Avatar.tsx";
 
 type Props = {
   action: Action
@@ -17,7 +18,10 @@ export const GiftRecentlyAction = forwardRef((props: Props, ref: LegacyRef<HTMLD
     : `${formatName(sender)} bought a gift`;
   return (
     <div ref={ref} className={styles.container}>
-      <div>photo</div>
+      <Avatar
+        user={type === ACTION_TYPE.buy ? sender : receiver}
+        size={40}
+      />
       <div className={styles.info}>
         <div className={styles.title}>{title}</div>
         <div>{description}</div>

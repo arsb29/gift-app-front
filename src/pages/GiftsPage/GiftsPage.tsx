@@ -18,8 +18,7 @@ export const GiftsPage: FC = () => {
   });
   const handleClick = useCallback((_id: Gift['_id']) => () => {
     navigate(`${ROUTES_PATHS.gifts}/${_id}`)
-  }, [navigate])
-
+  }, [navigate]);
   if (isPending) return <div>Загрузка</div> // todo сделать спец экран для этого
   if (isError) return <div>Ошибка</div> // todo сделать спец экран для этого
   return (

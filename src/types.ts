@@ -18,7 +18,7 @@ export type User = {
   lastName: string,
   username: string,
   registerTime: number,
-  photo: string
+  imageId: string
 };
 
 export type LeaderboardResponse = {
