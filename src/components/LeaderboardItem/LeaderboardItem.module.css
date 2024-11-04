@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.photo {
+  margin: 8px 12px 8px 16px;
+  width: 40px;
+  height: 40px;
+  background-color: black;
+  border-radius: 50%;
+}
+
+.content {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  margin: 8px 16px 0 0;
+  padding-bottom: 8px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+}
+
+.icon {
+  height: 12px;
+  width: 11px;
+}
+
+.gifts {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.giftsReceived {
+  font: var(--text13);
+  color: var(--primary);
+}

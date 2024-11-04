@@ -21,6 +21,12 @@ export type User = {
   photo: string
 };
 
+export type LeaderboardResponse = {
+  users: User[],
+  currentPage: number,
+  hasMore: boolean,
+}
+
 export type Gift = {
   _id: string,
   giftId: GiftId,

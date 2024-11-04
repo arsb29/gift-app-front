@@ -22,6 +22,7 @@ export const CRYPTO_ASSET = {
 export const QUERY_KEYS = {
   gifts: 'gifts',
   myGifts: 'myGifts',
+  leaderboard: 'leaderboard',
 } as const;
 
 export const GIFT_ID = {

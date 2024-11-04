@@ -1,0 +1,5 @@
+.leaderboard {
+  & > *:not(:last-child) > *:last-child {
+    border-bottom: 0.33px solid var(--separator);
+  }
+}
