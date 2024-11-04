@@ -13,6 +13,7 @@ import {IconAnimation} from "@/components/IconAnimation/IconAnimation.tsx";
 import {cc} from "@/helpers/classConcat.ts";
 import {IconAsset} from "@/components/IconAsset/IconAsset.tsx";
 import {mainButton, on, openTelegramLink} from "@telegram-apps/sdk-react";
+import {GiftRecentlyActions} from "@/components/GiftRecentlyActions/GiftRecentlyActions.tsx";
 
 const DEFAULT_MAIN_BUTTON_PARAMS = {
   hasShineEffect: true,
@@ -89,6 +90,7 @@ export const GiftPage: FC = () => {
       </div>
       <div className={styles.line}></div>
       <div className={styles.recentlyActions}>Recently Actions</div>
+      <GiftRecentlyActions />
     </Page>
 
   )

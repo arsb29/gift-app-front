@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  padding: 12px 0;
+}
+
+.title {
+  color: var(--label-secondary);
+  font: var(--text13);
+}

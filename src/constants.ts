@@ -22,7 +22,7 @@ export const CRYPTO_ASSET = {
 export const QUERY_KEYS = {
   gifts: 'gifts',
   myGifts: 'myGifts',
-  leaderboard: 'leaderboard',
+  leaderboard: 'leaderboard'
 } as const;
 
 export const GIFT_ID = {
@@ -40,6 +40,12 @@ export const ICON_ANIMATION = {
   tabLeaderboard: 'tabLeaderboard',
   tabProfile: 'tabProfile',
   ...GIFT_ID
+} as const;
+
+export const ACTION_TYPE = {
+  buy: 'buy',
+  send: 'send',
+  receive: 'receive'
 } as const;
 
 

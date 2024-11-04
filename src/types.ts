@@ -1,4 +1,4 @@
-import {CRYPTO_ASSET, GIFT_ID, LANGUAGE} from "@/constants.ts";
+import {ACTION_TYPE, CRYPTO_ASSET, GIFT_ID, LANGUAGE} from "@/constants.ts";
 
 export type ValuesOf<T> = T[keyof T];
 
@@ -23,6 +23,24 @@ export type User = {
 
 export type LeaderboardResponse = {
   users: User[],
+  currentPage: number,
+  hasMore: boolean,
+}
+
+type ActionType = ValuesOf<typeof ACTION_TYPE>;
+
+export type Action = {
+  _id: string,
+  gift: Gift,
+  sender: User,
+  transaction: Transaction,
+  receiver: User,
+  time: number,
+  type: ActionType
+}
+
+export type ActionsResponse = {
+  actions: Action[],
   currentPage: number,
   hasMore: boolean,
 }
