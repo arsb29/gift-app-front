@@ -1,0 +1,39 @@
+.container {
+  height: 160px;
+  background-color: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 8px 16px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.title {
+  color: var(--label-secondary);
+  font: var(--text12);
+  letter-spacing: -0.08px;
+}
+
+
+.image {
+  position: relative;
+  max-height: 80px;
+
+  & > div {
+    height: 100%;
+  }
+}
+
+.animation {
+  height: 100%;
+}
+
+.send {
+  padding: 6px 25px;
+  background-color: var(--primary);
+  border-radius: 100px;
+  color: var(--white);
+  font: var(--text13);
+}

@@ -1,14 +1,21 @@
 import IconGift from '@/assets/gift.svg?react';
 import styles from './Header.module.css';
 
-export function Header() {
+type Props = {
+  title: string,
+  description: string,
+  withIcon?: boolean,
+}
+
+export function Header(props: Props) {
+  const {title, withIcon = false, description} = props;
   return (
     <div className={styles.container}>
       <div className={styles.iconWithText}>
-        <IconGift />
-        <div className={styles.bold}>Buy and Send Gifts</div>
+        {withIcon && <IconGift />}
+        <div className={styles.bold}>{title}</div>
       </div>
-      <div className={styles.description}>Unique gifts for everyone by Crypto Pay.</div>
+      <div className={styles.description}>{description}</div>
     </div>
   );
 }

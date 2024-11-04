@@ -5,8 +5,11 @@ import {useQuery} from "@tanstack/react-query";
 import {FullTransaction} from "@/types.ts";
 import {ICON_ANIMATION, QUERY_KEYS} from "@/constants.ts";
 import {checkTransactionQueryFn} from "@/queries/checkTransactionQueryFn.ts";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {IconAnimation} from "@/components/IconAnimation/IconAnimation.tsx";
+import {mountMainButton, setMainButtonParams, unmountMainButton, onMainButtonClick} from "@telegram-apps/sdk-react";
+import {useEffect} from "react";
+import {ROUTES_PATHS} from "@/navigation/routes.tsx";
 
 export function GiftPurchasedPage()  {
   const {id} = useParams();
@@ -14,6 +17,17 @@ export function GiftPurchasedPage()  {
     queryKey: [QUERY_KEYS.gifts],
     queryFn: checkTransactionQueryFn(id),
   });
+  const navigate = useNavigate();
+  useEffect(() => {
+    mountMainButton();
+    setMainButtonParams({
+      text: 'Send Gift'
+    })
+    onMainButtonClick(() => navigate(ROUTES_PATHS.mygifts));
+    return () => {
+      unmountMainButton();
+    }
+  }, []);
   if (isPending) return <div>Загрузка</div> // todo сделать спец экран для этого
   if (isError || !transaction) return <div>Ошибка</div> // todo сделать спец экран для этого
   return (

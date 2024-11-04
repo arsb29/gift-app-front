@@ -5,7 +5,6 @@ import {ValuesOf} from "@/types.ts";
 import {useCallback, useRef} from "react";
 import {useMatch, useNavigate} from "react-router-dom";
 import {cc} from "@/helpers/classConcat.ts";
-import {ROUTES_PATHS} from "@/navigation/routes.tsx";
 
 type Props = {
   icon: ValuesOf<typeof ICON_ANIMATION>;
@@ -20,8 +19,8 @@ export function MenuElement(props: Props) {
   const navigate = useNavigate();
   const player = useRef();
   const handleClick = useCallback(() => {
-    navigate(ROUTES_PATHS.gifts);
     player?.current?.play();
+    navigate(route);
   }, [navigate]);
   return (
     <div className={cc(styles.element, isActive && styles.active)} onClick={handleClick}>

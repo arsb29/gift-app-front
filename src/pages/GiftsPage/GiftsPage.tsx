@@ -24,7 +24,10 @@ export const GiftsPage: FC = () => {
   if (isError) return <div>Ошибка</div> // todo сделать спец экран для этого
   return (
     <Page back={false} withMenu className={styles.container}>
-      <Header />
+      <Header
+        title="Buy and Send Gifts"
+        description="Unique gifts for everyone by Crypto Pay."
+      />
       <div className={styles.list}>
         {gifts.map(gift => (
           <GiftStore gift={gift} key={gift._id} onClick={handleClick(gift._id)} />
