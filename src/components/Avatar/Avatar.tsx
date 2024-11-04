@@ -16,16 +16,18 @@ export function Avatar(props: Props) {
   const {imageId} = user;
   const [image, setImage] = useState<string | null>(null);
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_ENDPOINT}image/${imageId}`, {
-      headers: {'authorization': getAuthorizationHeader()}
-    })
-      .then(res => {
-        if (res.ok) return res.text();
-        throw new Error(res.statusText);
+    if (imageId) {
+      fetch(`${import.meta.env.VITE_ENDPOINT}image/${imageId}`, {
+        headers: {'authorization': getAuthorizationHeader()}
       })
-      .then(setImage)
-      .catch()
-  }, []);
+        .then(res => {
+          if (res.ok) return res.text();
+          throw new Error(res.statusText);
+        })
+        .then(setImage)
+        .catch()
+    }
+  }, [imageId]);
   const content = image ? <img className={styles.image} src={image} alt=""/> : <div>{formatNameShort(user)}</div>
   return (
     <div className={cc(styles.container, className)} style={{width: `${size}px`, height: `${size}px`}}>
