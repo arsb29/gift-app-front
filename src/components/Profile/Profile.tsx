@@ -5,6 +5,7 @@ import {ProfileInfo} from "@/components/ProfileInfo/ProfileInfo.tsx";
 import {generatePath, useNavigate} from "react-router-dom";
 import {useCallback} from "react";
 import {ROUTES_PATHS} from "@/navigation/routes.tsx";
+import {UserReceiveActions} from "@/components/UserReceiveActions/UserReceiveActions.tsx";
 
 type Props = {
   user: User
@@ -23,6 +24,7 @@ export function Profile(props: Props) {
         <Time />
         <div>Recent Actions ›</div>
       </div>
+      <UserReceiveActions userId={user._id} />
     </div>
   )
 }

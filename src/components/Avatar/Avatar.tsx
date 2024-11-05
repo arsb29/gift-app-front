@@ -30,7 +30,14 @@ export function Avatar(props: Props) {
   }, [imageId]);
   const content = image ? <img className={styles.image} src={image} alt=""/> : <div>{formatNameShort(user)}</div>
   return (
-    <div className={cc(styles.container, className)} style={{width: `${size}px`, height: `${size}px`}}>
+    <div
+      className={cc(styles.container, className)}
+      style={{
+        width: `${size}px`,
+        minWidth: `${size}px`,
+        height: `${size}px`
+    }}
+    >
       {content}
     </div>
   );
