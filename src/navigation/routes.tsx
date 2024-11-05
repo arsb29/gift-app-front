@@ -5,6 +5,7 @@ import {GiftPurchasedPage} from "@/pages/GiftPurchasedPage/GiftPurchasedPage.tsx
 import {MyGifts} from "@/pages/MyGifts/MyGifts.tsx";
 import {Leaderboard} from "@/pages/Leaderboard/Leaderboard.tsx";
 import {ProfilePage} from "@/pages/ProfilePage/ProfilePage.tsx";
+import {ProfileRecentActions} from "@/pages/ProfileRecentActions/ProfileRecentActions.tsx";
 
 interface Route {
   path: string;
@@ -20,6 +21,7 @@ export const ROUTES_PATHS = {
   giftPaid: '/gifts/paid/:id',
   leaderboard: '/leaderboard',
   profile: '/profile',
+  profileRecentActions: '/profile/:id/recentActions',
 } as const;
 
 export const routes: Route[] = [
@@ -28,5 +30,6 @@ export const routes: Route[] = [
   { path: ROUTES_PATHS.giftPaid, Component: GiftPurchasedPage },
   { path: ROUTES_PATHS.mygifts, Component: MyGifts },
   { path: ROUTES_PATHS.leaderboard, Component: Leaderboard },
-  { path: ROUTES_PATHS.profile, Component: ProfilePage }
+  { path: ROUTES_PATHS.profile, Component: ProfilePage },
+  { path: ROUTES_PATHS.profileRecentActions, Component: ProfileRecentActions }
 ];

@@ -2,11 +2,12 @@ import {useCallback, useMemo, useRef} from "react";
 import {useInfiniteQuery} from "@tanstack/react-query";
 
 type Options = {
-  queryFn: any
+  queryKey: string[];
+  queryFn: any;
 }
 
 export function useInfinite<T>(options: Options) {
-  const {queryFn} = options;
+  const {queryFn, queryKey} = options;
   const {
     data,
     fetchNextPage,
@@ -15,6 +16,7 @@ export function useInfinite<T>(options: Options) {
     isPending,
     isError
   } = useInfiniteQuery({
+    queryKey,
     queryFn,
     initialPageParam: 1,
     getNextPageParam: (lastPage) => lastPage.hasMore ? lastPage.currentPage + 1 : null

@@ -24,10 +24,14 @@
   --label-date: #6D6D71;
   --separator: #3C3C435C;
   --accent-gold: #F1AA05;
+  --accent-purple: #AF51DE;
+  --accent-blue: #007AFF;
+  --accent-green: #35C759;
 
   --text12: normal normal 400 normal 12px/18px SFProRegular, sans-serif;
   --text13: normal normal 400 normal 13px/18px SFProRegular, sans-serif;
   --text14: normal normal 500 normal 14px/22px SFProRegular, sans-serif;
+  --text15: normal normal 400 normal 15px/22px SFProRegular, sans-serif;
   --text17: normal normal 400 normal 17px/22px SFProRegular, sans-serif;
   --text17m: normal normal 500 normal 17px/22px SFProMedium, sans-serif;
   --text17b: normal normal 600 normal 17px/22px SFProSemibold, sans-serif;

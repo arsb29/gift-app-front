@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 0 16px 16px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+
+  & > *:nth-child(n + 3) > *:last-child {
+    border-top: 0.33px solid var(--separator);
+  }
+}
+
+.date {
+  color: var(--label-date);
+  padding: 24px 0 12px;
+  text-transform: uppercase;
+  font: var(--text13);
+}

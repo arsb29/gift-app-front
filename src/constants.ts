@@ -1,11 +1,14 @@
 
-
-
-
 export const LANGUAGE = {
   en: 'en',
   ru: 'ru',
 };
+
+export const ACTION_TYPE_ICON = {
+  paperPlane: 'paperPlane',
+  market: 'market',
+  boxArchive: 'boxArchive'
+} as const;
 
 export const CRYPTO_ASSET = {
   USDT: 'USDT',
@@ -46,6 +49,11 @@ export const ACTION_TYPE = {
   buy: 'buy',
   send: 'send',
   receive: 'receive'
+} as const;
+
+export const LANGUAGE_CODE = {
+  en: 'en',
+  ru: 'ru'
 } as const;
 
 
