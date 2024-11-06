@@ -1,6 +1,6 @@
 import {getAuthorizationHeader} from "@/helpers/getAthorizationHeader.ts";
 
-export const leaderboardQueryFn = async ({pageParam}: {pageParam: number}) => {
+export const leaderboardQueryFn = async ({pageParam}) => {
   const response = await fetch(`${import.meta.env.VITE_ENDPOINT}user/leaderboard`, {
     method: 'POST',
     headers: {

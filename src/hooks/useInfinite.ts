@@ -19,15 +19,15 @@ export function useInfinite<T>(options: Options) {
     queryKey,
     queryFn,
     initialPageParam: 1,
-    getNextPageParam: (lastPage) => lastPage.hasMore ? lastPage.currentPage + 1 : null
+    getNextPageParam: (lastPage: any) => lastPage.hasMore ? lastPage.currentPage + 1 : null
   })
 
   const list = useMemo(() => {
     if (!data?.pages) return [];
-    return data?.pages?.reduce((result, group) => ([...result, ...group.actions]), [])
+    return data?.pages?.reduce((result, group) => ([...result, ...group.items]), [])
   }, [data]) as T;
 
-  const observer = useRef<IntersectionObserver>(null);
+  const observer = useRef<IntersectionObserver | null>(null);
   const lastElementRef = useCallback((node: HTMLDivElement) => {
     if (isFetchingNextPage) return;
     if (observer.current) observer.current.disconnect();

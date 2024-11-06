@@ -9,6 +9,7 @@ import {useParams} from "react-router-dom";
 export const GiftRecentlyActions: FC = () => {
   const {id = ''} = useParams();
   const {isPending, list, isError, lastElementRef} = useInfinite<Action[]>({
+    queryKey: [`GiftRecentlyActions-${id}`],
     queryFn: giftActionsQueryFn(id)
   })
   if (isPending) return <div>Загрузка</div> // todo сделать спец экран для этого
