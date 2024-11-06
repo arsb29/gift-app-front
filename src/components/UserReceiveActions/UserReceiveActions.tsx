@@ -1,15 +1,15 @@
-import {FC} from 'react';
 import {Action} from "@/types.ts";
 import {useInfinite} from "@/hooks/useInfinite.ts";
 import {Empty} from "@/components/Empty/Empty.tsx";
 import {userReceiveActionsQueryFn} from "@/queries/userRecieveActionsQueryFn.ts";
+import {GiftInProfile} from "@/components/GiftInProfile/GiftInProfile.tsx";
 
 
 type Props = {
   userId: string;
 }
 
-export const UserReceiveActions: FC = (props: Props) => {
+export function UserReceiveActions(props: Props) {
   const {userId} = props;
   const {isPending, list: actions, isError, lastElementRef} = useInfinite<Action[]>({
     queryKey: [`userReceiveActions-${userId}`],
@@ -28,9 +28,10 @@ export const UserReceiveActions: FC = (props: Props) => {
 
   return (
     <div>
-      {actions.map(action => (
-        <div>{action._id}</div>
-      ))}
+      {actions.map((action, index) => {
+        if (actions.length === index + 1) return <GiftInProfile ref={lastElementRef} key={action._id} action={action} />;
+          return <GiftInProfile key={action._id} action={action} />
+      })}
     </div>
   )
 }

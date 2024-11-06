@@ -1,0 +1,25 @@
+.container {
+  background-color: var(--bg-secondary);
+  padding: 8px 12px 12px;
+  border-radius: 12px;
+  gap: 4px;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.count {
+  color: var(--label-secondary);
+  font: var(--text12);
+}
+
+.title {
+  font: var(--text14);
+}

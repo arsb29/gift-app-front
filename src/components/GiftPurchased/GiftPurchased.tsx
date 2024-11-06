@@ -4,7 +4,7 @@ import {ICON_ANIMATION} from "@/constants.ts";
 import {IconAnimation} from "@/components/IconAnimation/IconAnimation.tsx";
 import {useCallback, useState} from "react";
 import {Modal} from "@/components/Modal/Modal.tsx";
-import {ModalGiftContent} from "@/components/ModalGiftContent/ModalGiftContent.tsx";
+import {ModalSendGiftContent} from "@/components/ModalSendGiftContent/ModalSendGiftContent.tsx";
 
 type Props = {
   transaction: FullTransaction;
@@ -32,7 +32,7 @@ export function GiftPurchased(props: Props) {
       <div className={styles.send} onClick={handleClickOpenModal}>Send</div>
       {openModal && (
         <Modal open={openModal} onClose={handleClickCloseModal}>
-          <ModalGiftContent
+          <ModalSendGiftContent
             gift={gift}
             sender={sender}
             serialNumberOfGift={serialNumberOfGift}

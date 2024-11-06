@@ -9,12 +9,6 @@
   font: var(--text24b);
 }
 
-.from {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-
 .price {
   display: flex;
   gap: 8px;
