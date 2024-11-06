@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #A5FBED;
+  background-color: #a5fbed;
   color: var(--white);
   & > * {
     font: var(--text17b);

@@ -14,19 +14,19 @@
 }
 
 :root {
-  --primary: #007AFF;
+  --primary: #007aff;
   --black: #000000;
-  --white: #FFFFFF;
-  --label-secondary: #8E8E93;
-  --tab-bar-label: #545458A6;
-  --tab-bar: #F1F1F2BF;
-  --bg-secondary: #EFEFF3;
-  --label-date: #6D6D71;
-  --separator: #3C3C435C;
-  --accent-gold: #F1AA05;
-  --accent-purple: #AF51DE;
-  --accent-blue: #007AFF;
-  --accent-green: #35C759;
+  --white: #ffffff;
+  --label-secondary: #8e8e93;
+  --tab-bar-label: #545458a6;
+  --tab-bar: #f1f1f2bf;
+  --bg-secondary: #efeff3;
+  --label-date: #6d6d71;
+  --separator: #3c3c435c;
+  --accent-gold: #f1aa05;
+  --accent-purple: #af51de;
+  --accent-blue: #007aff;
+  --accent-green: #35c759;
 
   --text12: normal normal 400 normal 12px/18px SFProRegular, sans-serif;
   --text13: normal normal 400 normal 13px/18px SFProRegular, sans-serif;
@@ -50,19 +50,19 @@ body {
 }
 
 .background-deliciousCake {
-  background: linear-gradient(#FE9F4133, #FE9F411A);
+  background: linear-gradient(#fe9f4133, #fe9f411a);
 }
 
 .background-blueStar {
-  background: linear-gradient(#007AFF33, #007AFF0D);
+  background: linear-gradient(#007aff33, #007aff0d);
 }
 
 .background-redStar {
-  background: linear-gradient(#FF474733, #FF47470D);
+  background: linear-gradient(#ff474733, #ff47470d);
 }
 
 .background-greenStar {
-  background: linear-gradient(#46D10033, #46D1000F);
+  background: linear-gradient(#46d10033, #46d1000f);
 }
 
 dialog::backdrop {

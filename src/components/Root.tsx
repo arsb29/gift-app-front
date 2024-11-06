@@ -1,6 +1,6 @@
-import { App } from '@/components/App.tsx';
-import { ErrorBoundary } from '@/components/ErrorBoundary.tsx';
-import {BrowserRouter} from "react-router-dom";
+import { App } from "@/components/App.tsx";
+import { ErrorBoundary } from "@/components/ErrorBoundary.tsx";
+import { BrowserRouter } from "react-router-dom";
 
 function ErrorBoundaryError({ error }: { error: unknown }) {
   return (
@@ -10,7 +10,7 @@ function ErrorBoundaryError({ error }: { error: unknown }) {
         <code>
           {error instanceof Error
             ? error.message
-            : typeof error === 'string'
+            : typeof error === "string"
               ? error
               : JSON.stringify(error)}
         </code>
@@ -23,7 +23,7 @@ export function Root() {
   return (
     <ErrorBoundary fallback={ErrorBoundaryError}>
       <BrowserRouter>
-        <App/>
+        <App />
       </BrowserRouter>
     </ErrorBoundary>
   );

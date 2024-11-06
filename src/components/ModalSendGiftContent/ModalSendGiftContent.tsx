@@ -1,43 +1,46 @@
-import styles from './ModalSendGiftContent.module.css';
-import {Gift, User} from "@/types.ts";
-import {Table} from "@/components/Table/Table.tsx";
-import {TableRow} from "@/components/Table/TableRow.tsx";
-import {IconAsset} from "@/components/IconAsset/IconAsset.tsx";
-import {formatTime} from "@/helpers/formatTime.ts";
-import {IconAnimation} from "@/components/IconAnimation/IconAnimation.tsx";
-import {ICON_ANIMATION} from "@/constants.ts";
-import {useCallback, useEffect} from "react";
-import {mountMainButton, setMainButtonParams, unmountMainButton, onMainButtonClick, switchInlineQuery} from "@telegram-apps/sdk-react";
+import styles from "./ModalSendGiftContent.module.css";
+import { Gift, User } from "@/types.ts";
+import { Table } from "@/components/Table/Table.tsx";
+import { TableRow } from "@/components/Table/TableRow.tsx";
+import { IconAsset } from "@/components/IconAsset/IconAsset.tsx";
+import { formatTime } from "@/helpers/formatTime.ts";
+import { IconAnimation } from "@/components/IconAnimation/IconAnimation.tsx";
+import { ICON_ANIMATION } from "@/constants.ts";
+import { useCallback, useEffect } from "react";
+import {
+  mountMainButton,
+  setMainButtonParams,
+  unmountMainButton,
+  onMainButtonClick,
+  switchInlineQuery,
+} from "@telegram-apps/sdk-react";
 
 type Props = {
-  sender: User,
-  gift: Gift,
-  time: number,
-  serialNumberOfGift: number
-}
+  sender: User;
+  gift: Gift;
+  time: number;
+  serialNumberOfGift: number;
+};
 
 export function ModalSendGiftContent(props: Props) {
-  const {gift, time, serialNumberOfGift} = props;
-  const {giftId} = gift;
+  const { gift, time, serialNumberOfGift } = props;
+  const { giftId } = gift;
   const handleSendGift = useCallback(() => {
-    if (switchInlineQuery.isSupported()) switchInlineQuery(
-      giftId,
-      ['users']
-    );
+    if (switchInlineQuery.isSupported()) switchInlineQuery(giftId, ["users"]);
   }, [giftId]);
   useEffect(() => {
     mountMainButton();
     setMainButtonParams({
-      text: 'Send Gift to Contact',
-      isVisible: true
+      text: "Send Gift to Contact",
+      isVisible: true,
     });
     onMainButtonClick(handleSendGift);
     return () => {
       setMainButtonParams({
-        isVisible: false
+        isVisible: false,
       });
       unmountMainButton();
-    }
+    };
   }, []);
   return (
     <div className={styles.container}>
@@ -52,14 +55,18 @@ export function ModalSendGiftContent(props: Props) {
         </TableRow>
         <TableRow label="Price">
           <div className={styles.price}>
-            <IconAsset asset={gift.asset} withColor/>
-            <div className={styles.amount}>{gift.amount} {gift.asset}</div>
+            <IconAsset asset={gift.asset} withColor />
+            <div className={styles.amount}>
+              {gift.amount} {gift.asset}
+            </div>
           </div>
         </TableRow>
         <TableRow label="Availability">
-          <div>{serialNumberOfGift} of {gift.totalNumberOf}</div>
+          <div>
+            {serialNumberOfGift} of {gift.totalNumberOf}
+          </div>
         </TableRow>
       </Table>
     </div>
-  )
+  );
 }

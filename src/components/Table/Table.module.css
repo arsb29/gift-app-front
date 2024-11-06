@@ -8,9 +8,9 @@
     padding: 10px 16px;
   }
   & > *:nth-child(n + 3) {
-    border-top: 0.33px solid #3C3C435C;
+    border-top: 0.33px solid #3c3c435c;
   }
   & > *:nth-child(2n) {
-    border-left: 0.33px solid #3C3C435C;
+    border-left: 0.33px solid #3c3c435c;
   }
 }

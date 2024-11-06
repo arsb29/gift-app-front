@@ -1,16 +1,16 @@
-import deliciousCake from '@/assets/deliciousCake.png';
-import redStar from '@/assets/redStar.png';
-import greenStar from '@/assets/greenStar.png';
-import blueStar from '@/assets/blueStar.png';
-import {GiftId} from "@/types.ts";
-import {GIFT_ID} from "@/constants.ts";
+import deliciousCake from "@/assets/deliciousCake.png";
+import redStar from "@/assets/redStar.png";
+import greenStar from "@/assets/greenStar.png";
+import blueStar from "@/assets/blueStar.png";
+import { GiftId } from "@/types.ts";
+import { GIFT_ID } from "@/constants.ts";
 
 type Props = {
   giftId: GiftId;
-}
+};
 
 export function IconGift(props: Props) {
-  const {giftId} = props;
+  const { giftId } = props;
   let src = null;
   switch (giftId) {
     case GIFT_ID.deliciousCake:
@@ -29,5 +29,5 @@ export function IconGift(props: Props) {
       break;
   }
   if (!src) return null;
-  return <img src={src} alt={giftId}/>;
+  return <img src={src} alt={giftId} />;
 }

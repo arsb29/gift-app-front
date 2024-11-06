@@ -41,7 +41,7 @@
 }
 
 .count {
-  background-color: #007AFF1F;
+  background-color: #007aff1f;
   color: var(--primary);
   padding: 0 8px;
   border-radius: 100px;
@@ -72,6 +72,3 @@
   font: var(--text13);
   letter-spacing: -0.08px;
 }
-
-
-

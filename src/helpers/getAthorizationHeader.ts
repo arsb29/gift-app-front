@@ -1,6 +1,6 @@
-import {retrieveLaunchParams} from "@telegram-apps/sdk-react";
+import { retrieveLaunchParams } from "@telegram-apps/sdk-react";
 
 export function getAuthorizationHeader() {
-  const {initDataRaw} = retrieveLaunchParams();
+  const { initDataRaw } = retrieveLaunchParams();
   return `tma ${initDataRaw}`;
 }
