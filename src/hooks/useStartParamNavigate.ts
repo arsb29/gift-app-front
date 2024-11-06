@@ -1,6 +1,6 @@
+import {useEffect} from "react";
 import {retrieveLaunchParams} from "@telegram-apps/sdk-react";
 import {generatePath, useNavigate} from "react-router-dom";
-import {useEffect} from "react";
 import {ROUTES_PATHS} from "@/navigation/routes.tsx";
 
 export function useStartParamNavigate() {
@@ -12,6 +12,9 @@ export function useStartParamNavigate() {
       switch (type) {
         case 'giftPurchased':
           navigate(generatePath(ROUTES_PATHS.giftPaid, {id: transactionId}));
+          break;
+        case 'giftReceive':
+          navigate(generatePath(ROUTES_PATHS.giftReceive, {transactionId}));
           break;
         default:
           break;
