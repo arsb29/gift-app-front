@@ -7,6 +7,7 @@ import styles from "./Leaderboard.module.css";
 import {cc} from "@/helpers/classConcat.ts";
 import {leaderboardQueryFn} from "@/queries/leaderboardQueryFn.ts";
 import {LeaderboardItem} from "@/components/LeaderboardItem/LeaderboardItem.tsx";
+import {Input} from "@/components/Input/Input.tsx";
 
 export const Leaderboard: FC = () => {
   const {
@@ -43,6 +44,8 @@ export const Leaderboard: FC = () => {
   if (isError) return <div>Ошибка</div> // todo сделать спец экран для этого
   return (
     <Page withMenu className={cc(styles.container)}>
+      <Input className={styles.input} />
+      <div className={styles.separator} />
       <div className={styles.leaderboard}>
         {users.map((user, index) => {
           if (users.length === index + 1) {

@@ -1,0 +1,36 @@
+.container {
+  position: relative;
+}
+
+.labelWithIcon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #3C3C4399;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s ease-in-out;
+
+  &.withValue,
+  &.focused {
+    left: 0;
+    transform: translate(8px, -50%);
+  }
+}
+
+.label {
+  &.withValue {
+    display: none;
+  }
+}
+
+.input {
+  background-color: var(--bg-secondary);
+  border: none;
+  width: 100%;
+  padding: 7px 8px 7px 30px;
+  border-radius: 10px;
+  outline: none;
+}
