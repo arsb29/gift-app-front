@@ -1,9 +1,4 @@
 
-export const LANGUAGE = {
-  en: 'en',
-  ru: 'ru',
-};
-
 export const ACTION_TYPE_ICON = {
   paperPlane: 'paperPlane',
   market: 'market',
@@ -54,6 +49,11 @@ export const ACTION_TYPE = {
 export const LANGUAGE_CODE = {
   en: 'en',
   ru: 'ru'
+} as const;
+
+export const THEME = {
+  light: 'light',
+  dark: 'dark'
 } as const;
 
 

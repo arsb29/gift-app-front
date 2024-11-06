@@ -1,13 +1,20 @@
-import {ACTION_TYPE, ACTION_TYPE_ICON, CRYPTO_ASSET, GIFT_ID, LANGUAGE, LANGUAGE_CODE} from "@/constants.ts";
+import {
+  ACTION_TYPE,
+  ACTION_TYPE_ICON,
+  CRYPTO_ASSET,
+  GIFT_ID,
+  LANGUAGE_CODE,
+  THEME
+} from "@/constants.ts";
 
 export type ValuesOf<T> = T[keyof T];
 
 export type GiftId = ValuesOf<typeof GIFT_ID>;
-type Language = ValuesOf<typeof LANGUAGE>;
 export type CryptoAsset = ValuesOf<typeof CRYPTO_ASSET>;
 export type LanguageCode = ValuesOf<typeof LANGUAGE_CODE>;
+export type Theme = ValuesOf<typeof THEME>;
 
-type TitleWithLanguage = Record<Language, string>
+type TitleWithLanguage = Record<LanguageCode, string>
 
 export type User = {
   _id: string,
