@@ -4,7 +4,7 @@ import { Action } from "@/types.ts";
 import { userRecentActionsQueryFn } from "@/queries/userRecentActionsQueryFn.ts";
 import { useParams } from "react-router-dom";
 import { useInfinite } from "@/hooks/useInfinite.ts";
-import { Header } from "@/pages/GiftsPage/Header.tsx";
+import { Header } from "@/components/Header/Header.tsx";
 import { Empty } from "@/components/Empty/Empty.tsx";
 import styles from "./ProfileRecentActions.module.css";
 import { RecentAction } from "@/components/RecentAction/RecentAction.tsx";

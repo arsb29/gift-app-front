@@ -3,7 +3,7 @@ import { Page } from "@/components/Page.tsx";
 import { FullTransaction } from "@/types.ts";
 import { QUERY_KEYS } from "@/constants.ts";
 import styles from "./MyGifts.module.css";
-import { Header } from "@/pages/GiftsPage/Header.tsx";
+import { Header } from "@/components/Header/Header.tsx";
 import { checkTransactionQueryFn } from "@/queries/needToSendGiftsQueryFn.ts";
 import { GiftPurchased } from "@/components/GiftPurchased/GiftPurchased.tsx";
 

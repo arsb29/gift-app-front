@@ -5,18 +5,24 @@ import { IconAnimation } from "@/components/IconAnimation/IconAnimation.tsx";
 import { IconAsset } from "@/components/IconAsset/IconAsset.tsx";
 import { formatNumber } from "@/helpers/formatNumber.ts";
 import { cc } from "@/helpers/classConcat.ts";
+import { useCallback } from "react";
+import { ROUTES_PATHS } from "@/navigation/routes.tsx";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   gift: Gift;
-  onClick: () => void;
 };
 
 export function GiftStore(props: Props) {
-  const { gift, onClick } = props;
+  const navigate = useNavigate();
+  const { gift } = props;
+  const handleClick = useCallback(() => {
+    navigate(`${ROUTES_PATHS.gifts}/${gift._id}`);
+  }, [navigate, gift._id]);
   return (
     <div
       className={cc(styles.container, `background-${gift.giftId}`)}
-      onClick={onClick}
+      onClick={handleClick}
     >
       <div className={styles.count}>
         {formatNumber(gift.numberOfPurchased + gift.numberOfBooked)} of{" "}
