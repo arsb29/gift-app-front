@@ -12,9 +12,14 @@ import {
   setMainButtonParams,
   unmountMainButton,
   onMainButtonClick,
+  mountSecondaryButton,
+  unmountSecondaryButton,
+  setSecondaryButtonParams,
+  onSecondaryButtonClick,
 } from "@telegram-apps/sdk-react";
 import { useEffect } from "react";
 import { ROUTES_PATHS } from "@/navigation/routes.tsx";
+import { useMenuContext } from "@/contexts/menu/MenuContext.tsx";
 
 export function GiftPurchasedPage() {
   const { id } = useParams();
@@ -27,14 +32,31 @@ export function GiftPurchasedPage() {
     queryFn: checkTransactionQueryFn(id),
   });
   const navigate = useNavigate();
+  const { onShowMenu, onHideMenu } = useMenuContext();
+  useEffect(() => {
+    onHideMenu();
+    return () => {
+      onShowMenu();
+    };
+  }, []);
   useEffect(() => {
     mountMainButton();
     setMainButtonParams({
+      isVisible: true,
       text: "Send Gift",
     });
+    mountSecondaryButton();
+    setSecondaryButtonParams({
+      isVisible: true,
+      text: "Open Store",
+    });
     onMainButtonClick(() => navigate(ROUTES_PATHS.mygifts));
+    onSecondaryButtonClick(() => navigate(ROUTES_PATHS.gifts));
     return () => {
+      setMainButtonParams({ isVisible: false });
       unmountMainButton();
+      setSecondaryButtonParams({ isVisible: false });
+      unmountSecondaryButton();
     };
   }, []);
   if (isPending) return <div>Загрузка</div>; // todo сделать спец экран для этого

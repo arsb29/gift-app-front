@@ -12,9 +12,15 @@ import { formatNumber } from "@/helpers/formatNumber.ts";
 import { IconAnimation } from "@/components/IconAnimation/IconAnimation.tsx";
 import { cc } from "@/helpers/classConcat.ts";
 import { IconAsset } from "@/components/IconAsset/IconAsset.tsx";
-import { mainButton, on, openTelegramLink } from "@telegram-apps/sdk-react";
+import {
+  mainButton,
+  on,
+  openTelegramLink,
+  setMainButtonParams,
+} from "@telegram-apps/sdk-react";
 import { GiftRecentlyActions } from "@/components/GiftRecentlyActions/GiftRecentlyActions.tsx";
 import { ROUTES_PATHS } from "@/navigation/routes.tsx";
+import { useMenuContext } from "@/contexts/menu/MenuContext.tsx";
 
 const DEFAULT_MAIN_BUTTON_PARAMS = {
   hasShineEffect: true,
@@ -26,14 +32,23 @@ const DEFAULT_MAIN_BUTTON_PARAMS = {
 export const GiftPage: FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { onHideMenu, onShowMenu } = useMenuContext();
   const handleBack = useCallback(() => {
     navigate(ROUTES_PATHS.gifts);
   }, [navigate]);
 
   useEffect(() => {
+    onHideMenu();
+    return () => {
+      onShowMenu();
+    };
+  }, [onHideMenu, onShowMenu]);
+
+  useEffect(() => {
     mainButton.mount();
     mainButton.setParams(DEFAULT_MAIN_BUTTON_PARAMS);
     return () => {
+      setMainButtonParams({ isVisible: false });
       mainButton.unmount();
     };
   }, []);

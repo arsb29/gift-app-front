@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { backButton } from "@telegram-apps/sdk-react";
 import { PropsWithChildren, useCallback, useEffect } from "react";
-import { Menu } from "@/components/Menu/Menu.tsx";
 
 type Props = PropsWithChildren<{
   className?: string;
@@ -11,7 +10,7 @@ type Props = PropsWithChildren<{
 }>;
 
 export function Page(props: Props) {
-  const { children, back = true, withMenu = false, className, onBack } = props;
+  const { children, back = true, className, onBack } = props;
   const navigate = useNavigate();
 
   const handleBack = useCallback(() => {
@@ -26,12 +25,7 @@ export function Page(props: Props) {
     return () => {
       backButton.hide();
     };
-  }, [back, onBack]);
+  }, [back]);
 
-  return (
-    <div className={className}>
-      {children}
-      {withMenu && <Menu />}
-    </div>
-  );
+  return <div className={className}>{children}</div>;
 }

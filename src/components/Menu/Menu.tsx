@@ -2,8 +2,11 @@ import { ICON_ANIMATION } from "@/constants.ts";
 import styles from "./Menu.module.css";
 import { MenuElement } from "@/components/Menu/MenuElement.tsx";
 import { ROUTES_PATHS } from "@/navigation/routes.tsx";
+import { useMenuContext } from "@/contexts/menu/MenuContext.tsx";
 
 export function Menu() {
+  const { value } = useMenuContext();
+  if (!value) return null;
   return (
     <div className={styles.container}>
       <MenuElement

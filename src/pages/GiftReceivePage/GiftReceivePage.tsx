@@ -15,6 +15,7 @@ import {
 } from "@telegram-apps/sdk-react";
 import { ROUTES_PATHS } from "@/navigation/routes.tsx";
 import { receiveGiftTransactionQueryFn } from "@/queries/receiveGiftTransactionQueryFn.ts";
+import { useMenuContext } from "@/contexts/menu/MenuContext.tsx";
 
 export function GiftReceivePage() {
   const { transactionId } = useParams();
@@ -27,9 +28,17 @@ export function GiftReceivePage() {
     queryFn: receiveGiftTransactionQueryFn(transactionId),
   });
   const navigate = useNavigate();
+  const { onShowMenu, onHideMenu } = useMenuContext();
+  useEffect(() => {
+    onHideMenu();
+    return () => {
+      onShowMenu();
+    };
+  }, []);
   useEffect(() => {
     mountMainButton();
     setMainButtonParams({
+      isVisible: true,
       text: "Open Profile",
     });
     onMainButtonClick(() => navigate(ROUTES_PATHS.profile));

@@ -33,6 +33,7 @@ export const GiftRecentlyAction = forwardRef(
           <ClickableUserName user={sender} /> sent gift {receiverText}
         </span>
       );
+    console.log(sender.lastName, sender.imageId, description);
     return (
       <div ref={ref} className={styles.container}>
         <div className={styles.image}>

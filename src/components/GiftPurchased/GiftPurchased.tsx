@@ -18,6 +18,7 @@ export function GiftPurchased(props: Props) {
     setOpenModal(true);
   }, []);
   const handleClickCloseModal = useCallback(() => {
+    console.log(openModal);
     setOpenModal(false);
   }, []);
   return (

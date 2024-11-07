@@ -19,9 +19,10 @@ export function MenuElement(props: Props) {
   const navigate = useNavigate();
   const player = useRef<any>(null);
   const handleClick = useCallback(() => {
+    player?.current?.setSeeker(0);
     player?.current?.play();
     navigate(route);
-  }, [navigate]);
+  }, [navigate, player?.current]);
   return (
     <div
       className={cc(styles.element, isActive && styles.active)}

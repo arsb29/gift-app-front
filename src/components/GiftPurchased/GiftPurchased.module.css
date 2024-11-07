@@ -22,4 +22,5 @@
   border-radius: 100px;
   color: var(--white);
   font: var(--text13);
+  cursor: pointer;
 }
