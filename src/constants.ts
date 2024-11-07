@@ -56,3 +56,4 @@ export const THEME = {
 } as const;
 
 export const LOCAL_STORAGE_LANGUAGE_KEY = "telegram_gift_app_language_code";
+export const LOCAL_STORAGE_THEME_KEY = "telegram_gift_app_theme_code";
