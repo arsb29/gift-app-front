@@ -2,9 +2,9 @@ import { cc } from "@/helpers/classConcat.ts";
 import styles from "./RecentAction.module.css";
 import { Action } from "@/types.ts";
 import { ACTION_TYPE, ACTION_TYPE_ICON } from "@/constants.ts";
-import { formatName } from "@/helpers/formatName.ts";
 import { IconGift } from "@/components/IconGift/IconGift.tsx";
 import { IconSmallActionType } from "@/components/IconSmallActionType/IconSmallActionType.tsx";
+import { ClickableUserName } from "@/components/ClickableUserName/ClickableUserName.tsx";
 
 type Props = {
   action: Action;
@@ -26,14 +26,14 @@ export function RecentAction(props: Props) {
       if (receiver)
         description = (
           <div>
-            to <span>{formatName(receiver)}</span>
+            to <ClickableUserName user={receiver} />
           </div>
         );
       break;
     case ACTION_TYPE.receive:
       description = (
         <div>
-          from <span>{formatName(sender)}</span>
+          from <ClickableUserName user={sender} />
         </div>
       );
       break;
