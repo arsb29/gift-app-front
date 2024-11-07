@@ -46,7 +46,7 @@ export const GiftInProfile = forwardRef(
               gift={gift}
               sender={sender}
               serialNumberOfGift={serialNumberOfGift}
-              time={0}
+              time={action.time}
               onClick={handleClickCloseModal}
             />
           </Modal>

@@ -22,4 +22,5 @@
 
 .title {
   font: var(--text14);
+  text-align: center;
 }

@@ -3,6 +3,7 @@ import { useInfinite } from "@/hooks/useInfinite.ts";
 import { Empty } from "@/components/Empty/Empty.tsx";
 import { userReceiveActionsQueryFn } from "@/queries/userRecieveActionsQueryFn.ts";
 import { GiftInProfile } from "@/components/GiftInProfile/GiftInProfile.tsx";
+import styles from "./UserReceiveActions.module.css";
 
 type Props = {
   userId: string;
@@ -32,7 +33,7 @@ export function UserReceiveActions(props: Props) {
     );
 
   return (
-    <div>
+    <div className={styles.container}>
       {actions.map((action, index) => {
         if (actions.length === index + 1)
           return (
