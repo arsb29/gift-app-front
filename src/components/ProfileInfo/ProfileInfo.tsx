@@ -4,6 +4,9 @@ import styles from "./ProfileInfo.module.css";
 import { formatName } from "@/helpers/formatName.ts";
 import Premium from "@/assets/premium.svg?react";
 import { cc } from "@/helpers/classConcat.ts";
+import { getFormatText } from "@/helpers/getFormatText.ts";
+import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
+import { TEXTS } from "@/texts.ts";
 
 type Props = {
   user: User;
@@ -11,6 +14,7 @@ type Props = {
 
 export function ProfileInfo(props: Props) {
   const { user } = props;
+  const { languageCode } = useLanguageContext();
   return (
     <div className={styles.container}>
       <div className={styles.avatarWithRank}>
@@ -24,7 +28,10 @@ export function ProfileInfo(props: Props) {
         {user.isPremium && <Premium />}
       </div>
       <div className={styles.giftsReceived}>
-        {user.giftsReceived} gifts received
+        {getFormatText({
+          text: TEXTS.profileGiftsReceived[languageCode],
+          params: { count: user.giftsReceived },
+        })}
       </div>
     </div>
   );

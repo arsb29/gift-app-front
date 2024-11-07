@@ -4,13 +4,18 @@ import { Empty } from "@/components/Empty/Empty.tsx";
 import { userReceiveActionsQueryFn } from "@/queries/userRecieveActionsQueryFn.ts";
 import { GiftInProfile } from "@/components/GiftInProfile/GiftInProfile.tsx";
 import styles from "./UserReceiveActions.module.css";
+import { TEXTS } from "@/texts.ts";
+import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
+import { getFormatText } from "@/helpers/getFormatText.ts";
 
 type Props = {
   userId: string;
+  isOwnProfile?: boolean;
 };
 
 export function UserReceiveActions(props: Props) {
-  const { userId } = props;
+  const { userId, isOwnProfile } = props;
+  const { languageCode } = useLanguageContext();
   const {
     isPending,
     list: actions,
@@ -24,13 +29,14 @@ export function UserReceiveActions(props: Props) {
   if (isPending) return <div>Загрузка</div>; // todo сделать спец экран для этого
   if (isError) return <div>Ошибка</div>; // todo сделать спец экран для этого
   const isEmpty = actions.length === 0;
-  if (isEmpty)
-    return (
-      <Empty
-        description="You can buy a gift to receive a gift in return."
-        withBackground
-      />
-    );
+  const description = isOwnProfile
+    ? getFormatText({
+        text: TEXTS.leaderboardIdEmptyGiftsDescriptions[languageCode],
+      })
+    : getFormatText({
+        text: TEXTS.profileEmptyGiftsDescriptions[languageCode],
+      });
+  if (isEmpty) return <Empty description={description} withBackground />;
 
   return (
     <div className={styles.container}>

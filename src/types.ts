@@ -15,7 +15,10 @@ export type CryptoAsset = ValuesOf<typeof CRYPTO_ASSET>;
 export type LanguageCode = ValuesOf<typeof LANGUAGE_CODE>;
 export type Theme = ValuesOf<typeof THEME>;
 
-type TitleWithLanguage = Record<LanguageCode, string>;
+export type TitleWithLanguage = Record<
+  LanguageCode,
+  ((params: any) => string) | string
+>;
 
 export type User = {
   _id: string;
@@ -98,3 +101,5 @@ export type NotificationType = {
   onClick: () => void;
   id: number;
 };
+
+export type ToggleValue = { title: ReactNode; value: string };

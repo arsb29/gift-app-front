@@ -54,3 +54,5 @@ export const THEME = {
   light: "light",
   dark: "dark",
 } as const;
+
+export const LOCAL_STORAGE_LANGUAGE_KEY = "telegram_gift_app_language_code";

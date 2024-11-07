@@ -1,11 +1,12 @@
-import { ChangeEvent, ReactNode, useCallback } from "react";
+import { ChangeEvent, useCallback } from "react";
 import { cc } from "@/helpers/classConcat.ts";
 import styles from "./Toggle.module.css";
+import { ToggleValue } from "@/types.ts";
 
 type Props = {
-  onChange: (value: string) => void;
+  onChange: (value: any) => void;
   value: string;
-  values: { title: ReactNode; value: string }[];
+  values: ToggleValue[];
 };
 
 export function Toggle(props: Props) {

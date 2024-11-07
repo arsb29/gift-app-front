@@ -22,7 +22,7 @@ export const ProfilePage: FC = () => {
   if (isError) return <div>Ошибка</div>; // todo сделать спец экран для этого
   return (
     <Page withMenu className={styles.container}>
-      <Profile user={user} />
+      <Profile user={user} isOwnProfile />
     </Page>
   );
 };
