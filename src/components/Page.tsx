@@ -1,27 +1,32 @@
 import { useNavigate } from "react-router-dom";
 import { backButton } from "@telegram-apps/sdk-react";
-import { PropsWithChildren, useEffect } from "react";
+import { PropsWithChildren, useCallback, useEffect } from "react";
 import { Menu } from "@/components/Menu/Menu.tsx";
 
 type Props = PropsWithChildren<{
   className?: string;
   withMenu?: boolean;
   back?: boolean;
+  onBack?: () => void;
 }>;
 
 export function Page(props: Props) {
-  const { children, back = true, withMenu = false, className } = props;
+  const { children, back = true, withMenu = false, className, onBack } = props;
   const navigate = useNavigate();
+
+  const handleBack = useCallback(() => {
+    navigate(-1);
+  }, [navigate]);
 
   useEffect(() => {
     if (back) {
       backButton.show();
-      return backButton.onClick(() => {
-        navigate(-1);
-      });
+      backButton.onClick(onBack ? onBack : handleBack);
     }
-    backButton.hide();
-  }, [back]);
+    return () => {
+      backButton.hide();
+    };
+  }, [back, onBack]);
 
   return (
     <div className={className}>

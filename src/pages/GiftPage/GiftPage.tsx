@@ -1,8 +1,8 @@
-import { FC, useEffect } from "react";
+import { FC, useCallback, useEffect } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Gift } from "@/types.ts";
 import { toMilliseconds } from "@/helpers/toMilliseconds.ts";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ICON_ANIMATION, QUERY_KEYS } from "@/constants.ts";
 import { createTransactionQueryFn } from "@/queries/createTransactionQueryFn.ts";
 import { giftsQueryFn } from "@/queries/giftsQueryFn.ts";
@@ -14,6 +14,7 @@ import { cc } from "@/helpers/classConcat.ts";
 import { IconAsset } from "@/components/IconAsset/IconAsset.tsx";
 import { mainButton, on, openTelegramLink } from "@telegram-apps/sdk-react";
 import { GiftRecentlyActions } from "@/components/GiftRecentlyActions/GiftRecentlyActions.tsx";
+import { ROUTES_PATHS } from "@/navigation/routes.tsx";
 
 const DEFAULT_MAIN_BUTTON_PARAMS = {
   hasShineEffect: true,
@@ -24,6 +25,10 @@ const DEFAULT_MAIN_BUTTON_PARAMS = {
 
 export const GiftPage: FC = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const handleBack = useCallback(() => {
+    navigate(ROUTES_PATHS.gifts);
+  }, [navigate]);
 
   useEffect(() => {
     mainButton.mount();
@@ -75,7 +80,7 @@ export const GiftPage: FC = () => {
   if (isPending) return <div>Загрузка</div>; // todo сделать спец экран для этого
   if (isError || !gift) return <div>Ошибка</div>; // todo сделать спец экран для этого
   return (
-    <Page className={cc(styles.container)}>
+    <Page className={cc(styles.container)} onBack={handleBack}>
       <div className={cc(styles.image, `background-${gift.giftId}`)}>
         <IconAnimation
           size={260}
