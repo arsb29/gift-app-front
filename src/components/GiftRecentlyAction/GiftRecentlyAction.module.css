@@ -15,3 +15,27 @@
   color: var(--label-secondary);
   font: var(--text13);
 }
+
+.image {
+  position: relative;
+}
+
+.market {
+  background-color: var(--accent-green);
+}
+
+.paperPlane {
+  background-color: var(--accent-blue);
+}
+
+.actionTypeIcon {
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 0;
+  right: -2px;
+}

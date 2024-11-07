@@ -14,7 +14,7 @@ import {
   onMainButtonClick,
 } from "@telegram-apps/sdk-react";
 import { Avatar } from "@/components/Avatar/Avatar.tsx";
-import { formatName } from "@/helpers/formatName.ts";
+import { ClickableUserName } from "@/components/ClickableUserName/ClickableUserName.tsx";
 
 type Props = {
   sender: User;
@@ -49,7 +49,7 @@ export function ModalGiftContent(props: Props) {
         <TableRow label="From">
           <div className={styles.from}>
             <Avatar user={sender} size={20} />
-            <div>{formatName(sender)}</div>
+            <ClickableUserName user={sender} />
           </div>
         </TableRow>
         <TableRow label="Date">

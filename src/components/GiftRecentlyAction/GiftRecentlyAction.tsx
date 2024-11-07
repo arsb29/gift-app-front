@@ -1,9 +1,11 @@
 import { forwardRef, LegacyRef } from "react";
 import { Action } from "@/types.ts";
 import styles from "./GiftRecentlyAction.module.css";
-import { ACTION_TYPE } from "@/constants.ts";
+import { ACTION_TYPE, ACTION_TYPE_ICON } from "@/constants.ts";
 import { Avatar } from "@/components/Avatar/Avatar.tsx";
 import { ClickableUserName } from "@/components/ClickableUserName/ClickableUserName.tsx";
+import { IconSmallActionType } from "@/components/IconSmallActionType/IconSmallActionType.tsx";
+import { cc } from "@/helpers/classConcat.ts";
 
 type Props = {
   action: Action;
@@ -33,7 +35,23 @@ export const GiftRecentlyAction = forwardRef(
       );
     return (
       <div ref={ref} className={styles.container}>
-        <Avatar user={type === ACTION_TYPE.buy ? sender : receiver} size={40} />
+        <div className={styles.image}>
+          <Avatar
+            user={type === ACTION_TYPE.buy ? sender : receiver}
+            size={40}
+          />
+          <IconSmallActionType
+            actionTypeIcon={
+              type === ACTION_TYPE.buy
+                ? ACTION_TYPE_ICON.market
+                : ACTION_TYPE_ICON.paperPlane
+            }
+            className={cc(
+              styles.actionTypeIcon,
+              type === ACTION_TYPE.buy ? styles.market : styles.paperPlane,
+            )}
+          />
+        </div>
         <div className={styles.info}>
           <div className={styles.title}>{title}</div>
           <div>{description}</div>
