@@ -16,8 +16,8 @@ export const GiftRecentlyAction = forwardRef(
     const title = type === ACTION_TYPE.buy ? "Buy gift" : "Send gift";
     const description =
       type === ACTION_TYPE.buy
-        ? `${formatName(sender)} sent gift to ${formatName(receiver)}`
-        : `${formatName(sender)} bought a gift`;
+        ? `${formatName(sender)} bought a gift`
+        : `${formatName(sender)} sent gift${receiver ? `to ${formatName(receiver)}` : ""}`;
     return (
       <div ref={ref} className={styles.container}>
         <Avatar user={type === ACTION_TYPE.buy ? sender : receiver} size={40} />
