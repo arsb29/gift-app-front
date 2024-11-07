@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 import { User } from "@/types.ts";
 import { QUERY_KEYS } from "@/constants.ts";
 import { Page } from "@/components/Page.tsx";
@@ -8,8 +8,18 @@ import { leaderboardQueryFn } from "@/queries/leaderboardQueryFn.ts";
 import { LeaderboardItem } from "@/components/LeaderboardItem/LeaderboardItem.tsx";
 import { Input } from "@/components/Input/Input.tsx";
 import { useInfinite } from "@/hooks/useInfinite.ts";
+import { filterUsers } from "@/helpers/filterUsers.ts";
+import { useLocation, useNavigate } from "react-router-dom";
+
+const SEARCH_NAME = "searchFilter";
 
 export const Leaderboard: FC = () => {
+  const { search } = useLocation();
+  const navigate = useNavigate();
+  const searchParams = new URLSearchParams(search);
+  const [searchValue, setSearchValue] = useState<string>(
+    searchParams.get(SEARCH_NAME) || "",
+  );
   const {
     isPending,
     list: users,
@@ -20,15 +30,30 @@ export const Leaderboard: FC = () => {
     queryFn: leaderboardQueryFn,
   });
 
+  useEffect(() => {
+    const newSearchParams = new URLSearchParams(search);
+    newSearchParams.set(SEARCH_NAME, searchValue);
+    navigate({ search: newSearchParams.toString() });
+  }, [searchValue, search]);
+
+  const filteredUsers = useMemo(
+    () => users.filter((user) => filterUsers(user, searchValue)),
+    [users, searchValue],
+  );
+
   if (isPending) return <div>Загрузка</div>; // todo сделать спец экран для этого
   if (isError) return <div>Ошибка</div>; // todo сделать спец экран для этого
   return (
     <Page withMenu className={cc(styles.container)}>
-      <Input className={styles.input} />
+      <Input
+        className={styles.input}
+        value={searchValue}
+        onChange={setSearchValue}
+      />
       <div className={styles.separator} />
       <div className={styles.leaderboard}>
-        {users.map((user, index) => {
-          if (users.length === index + 1) {
+        {filteredUsers.map((user, index) => {
+          if (filteredUsers.length === index + 1) {
             return (
               <LeaderboardItem
                 key={user._id}

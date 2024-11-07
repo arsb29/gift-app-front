@@ -4,17 +4,21 @@ import { cc } from "@/helpers/classConcat.ts";
 import styles from "./Input.module.css";
 
 type Props = {
+  value: string;
+  onChange: (value: string) => void;
   className?: string;
 };
 
 export function Input(props: Props) {
-  const { className } = props;
-  const [value, setValue] = useState<string>("");
+  const { className, onChange, value } = props;
   const [focused, setFocused] = useState<boolean>(false);
   const ref = useRef<HTMLInputElement>(null);
-  const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
-  }, []);
+  const handleChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      onChange(event.target.value);
+    },
+    [onChange],
+  );
   const handleBlur = useCallback(() => {
     setFocused(false);
   }, []);
