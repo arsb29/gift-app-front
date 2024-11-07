@@ -38,6 +38,28 @@
   --text17m: normal normal 500 normal 17px/22px SFProMedium, sans-serif;
   --text17b: normal normal 600 normal 17px/22px SFProSemibold, sans-serif;
   --text24b: normal normal 600 normal 24px/32px SFProSemibold, sans-serif;
+
+  --text-color: var(--black);
+  --bg-color: var(--white);
+  --toggle-bg-color: var(--bg-secondary);
+  --toggle-active-bg-color: var(--white);
+  --table-bg-color: var(--white);
+  --modal-bg-color: var(--bg-secondary);
+  --modal--close-color: #9e9ea1;
+  --modal--close-bg-color: #e3e3e8;
+}
+
+[data-theme="dark"] {
+  --text-color: var(--white);
+  --bg-color: #1c1c1e;
+  --tab-bar: #1e1e1ebf;
+  --bg-secondary: #2c2c2e;
+  --toggle-bg-color: var(--black);
+  --toggle-active-bg-color: #2c2c2e;
+  --table-bg-color: #2c2c2e;
+  --modal-bg-color: #1c1c1e;
+  --modal--close-color: var(--label-secondary);
+  --modal--close-bg-color: #2c2c2e;
 }
 
 * {
@@ -49,6 +71,8 @@ body {
   padding: 0;
   margin: 0;
   font: var(--text17);
+  color: var(--text-color);
+  background-color: var(--bg-color);
 }
 
 .background-deliciousCake {
@@ -65,6 +89,10 @@ body {
 
 .background-greenStar {
   background: linear-gradient(#46d10033, #46d1000f);
+}
+
+dialog {
+  color: inherit;
 }
 
 dialog::backdrop {

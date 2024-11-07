@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Page } from "@/components/Page.tsx";
+import { Page } from "@/components/Page/Page.tsx";
 import { useQuery } from "@tanstack/react-query";
 import { User } from "@/types.ts";
 import { toMilliseconds } from "@/helpers/toMilliseconds.ts";

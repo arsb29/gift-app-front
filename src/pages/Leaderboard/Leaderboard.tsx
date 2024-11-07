@@ -1,7 +1,7 @@
 import { FC, useEffect, useMemo, useState } from "react";
 import { User } from "@/types.ts";
 import { QUERY_KEYS } from "@/constants.ts";
-import { Page } from "@/components/Page.tsx";
+import { Page } from "@/components/Page/Page.tsx";
 import styles from "./Leaderboard.module.css";
 import { cc } from "@/helpers/classConcat.ts";
 import { leaderboardQueryFn } from "@/queries/leaderboardQueryFn.ts";

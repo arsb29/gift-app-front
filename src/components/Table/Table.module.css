@@ -1,5 +1,5 @@
 .table {
-  background-color: var(--white);
+  background-color: var(--table-bg-color);
   border-radius: 12px;
   display: grid;
   grid-template-columns: auto 1fr;

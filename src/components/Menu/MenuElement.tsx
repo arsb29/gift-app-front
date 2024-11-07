@@ -2,13 +2,13 @@ import styles from "./MenuElement.module.css";
 import { IconAnimation } from "@/components/IconAnimation/IconAnimation.tsx";
 import { ICON_ANIMATION } from "@/constants.ts";
 import { ValuesOf } from "@/types.ts";
-import { useCallback, useRef } from "react";
+import { ReactNode, useCallback, useRef } from "react";
 import { useMatch, useNavigate } from "react-router-dom";
 import { cc } from "@/helpers/classConcat.ts";
 
 type Props = {
   icon: ValuesOf<typeof ICON_ANIMATION>;
-  label: string;
+  label: ReactNode;
   isActive?: boolean;
   route: string;
 };

@@ -6,7 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ICON_ANIMATION, QUERY_KEYS } from "@/constants.ts";
 import { createTransactionQueryFn } from "@/queries/createTransactionQueryFn.ts";
 import { giftsQueryFn } from "@/queries/giftsQueryFn.ts";
-import { Page } from "@/components/Page.tsx";
+import { Page } from "@/components/Page/Page.tsx";
 import styles from "./GiftPage.module.css";
 import { formatNumber } from "@/helpers/formatNumber.ts";
 import { IconAnimation } from "@/components/IconAnimation/IconAnimation.tsx";

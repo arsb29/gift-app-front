@@ -1,5 +1,5 @@
 import { FC, useMemo } from "react";
-import { Page } from "@/components/Page.tsx";
+import { Page } from "@/components/Page/Page.tsx";
 import { Action } from "@/types.ts";
 import { userRecentActionsQueryFn } from "@/queries/userRecentActionsQueryFn.ts";
 import { useParams } from "react-router-dom";

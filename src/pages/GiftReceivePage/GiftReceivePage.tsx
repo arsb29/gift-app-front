@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from "react";
-import { Page } from "@/components/Page.tsx";
+import { Page } from "@/components/Page/Page.tsx";
 import styles from "./GiftReceivePage.module.css";
 import { cc } from "@/helpers/classConcat.ts";
 import { useQuery } from "@tanstack/react-query";

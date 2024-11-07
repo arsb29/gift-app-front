@@ -13,7 +13,7 @@
   height: 32px;
   width: fit-content;
   border-radius: 99px;
-  background-color: var(--bg-secondary);
+  background-color: var(--toggle-bg-color);
   display: flex;
   padding: 2px;
   cursor: pointer;
@@ -36,7 +36,7 @@
     0 3px 1px 0 #0000000a,
     0 3px 8px 0 #0000001f;
   transition: 0.35s cubic-bezier(0.54, 1.6, 0.5, 1);
-  background: var(--white);
+  background: var(--toggle-active-bg-color);
   width: 50%;
   height: calc(100% - 5px);
   top: 2px;

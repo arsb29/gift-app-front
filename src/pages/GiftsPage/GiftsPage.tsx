@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Page } from "@/components/Page.tsx";
+import { Page } from "@/components/Page/Page.tsx";
 import { Gift } from "@/types.ts";
 import { QUERY_KEYS } from "@/constants.ts";
 import { giftsQueryFn } from "@/queries/giftsQueryFn.ts";
