@@ -16,13 +16,17 @@ import {
   unmountSecondaryButton,
   setSecondaryButtonParams,
   onSecondaryButtonClick,
+  switchInlineQuery,
 } from "@telegram-apps/sdk-react";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { ROUTES_PATHS } from "@/navigation/routes.tsx";
 import { useMenuContext } from "@/contexts/menu/MenuContext.tsx";
+import { IconGift } from "@/components/IconGift/IconGift.tsx";
+import { useNotificationsContext } from "@/contexts/notifications/NotificationsContext.tsx";
 
 export function GiftPurchasedPage() {
   const { id } = useParams();
+  const { onAddNotification } = useNotificationsContext();
   const {
     isPending,
     isError,
@@ -33,6 +37,23 @@ export function GiftPurchasedPage() {
   });
   const navigate = useNavigate();
   const { onShowMenu, onHideMenu } = useMenuContext();
+  const handleSendGift = useCallback(() => {
+    if (transaction?.gift?.giftId) {
+      if (switchInlineQuery.isSupported())
+        switchInlineQuery(transaction?.gift?.giftId, ["users"]);
+    }
+  }, [transaction?.gift?.giftId]);
+  useEffect(() => {
+    if (transaction?._id) {
+      onAddNotification({
+        description: "Now send it to your friend.",
+        icon: <IconGift giftId={transaction?.gift?.giftId} />,
+        title: "You Bought a Gift",
+        buttonText: "Send",
+        onClick: handleSendGift,
+      });
+    }
+  }, [transaction?._id, transaction?.gift?.giftId]);
   useEffect(() => {
     onHideMenu();
     return () => {
@@ -50,7 +71,7 @@ export function GiftPurchasedPage() {
       isVisible: true,
       text: "Open Store",
     });
-    onMainButtonClick(() => navigate(ROUTES_PATHS.mygifts));
+    onMainButtonClick(handleSendGift);
     onSecondaryButtonClick(() => navigate(ROUTES_PATHS.gifts));
     return () => {
       setMainButtonParams({ isVisible: false });

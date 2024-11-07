@@ -27,6 +27,8 @@
   --accent-purple: #af51de;
   --accent-blue: #007aff;
   --accent-green: #35c759;
+  --accent-cyan: #5ac8fa;
+  --bg-notification: #2d2d2dcc;
 
   --text12: normal normal 400 normal 12px/18px SFProRegular, sans-serif;
   --text13: normal normal 400 normal 13px/18px SFProRegular, sans-serif;
@@ -40,13 +42,13 @@
 
 * {
   box-sizing: border-box;
-  font: var(--text17);
   letter-spacing: -0.43px;
 }
 
 body {
   padding: 0;
   margin: 0;
+  font: var(--text17);
 }
 
 .background-deliciousCake {

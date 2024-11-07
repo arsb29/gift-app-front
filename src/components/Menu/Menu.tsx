@@ -1,8 +1,8 @@
 import { ICON_ANIMATION } from "@/constants.ts";
-import styles from "./Menu.module.css";
 import { MenuElement } from "@/components/Menu/MenuElement.tsx";
 import { ROUTES_PATHS } from "@/navigation/routes.tsx";
 import { useMenuContext } from "@/contexts/menu/MenuContext.tsx";
+import styles from "./Menu.module.css";
 
 export function Menu() {
   const { value } = useMenuContext();

@@ -1,0 +1,37 @@
+.container {
+  backdrop-filter: blur(20px);
+  background-color: var(--bg-notification);
+  border-radius: 14px;
+  display: flex;
+  padding: 9px 16px;
+  gap: 12px;
+  align-items: center;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  font: var(--text14);
+  width: 100%;
+}
+
+.icon {
+  height: 28px;
+  & > img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  color: var(--white);
+  flex: 1;
+  letter-spacing: -0.15px;
+}
+
+.button {
+  color: var(--accent-cyan);
+  cursor: pointer;
+}

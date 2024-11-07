@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { Page } from "@/components/Page.tsx";
 import styles from "./GiftReceivePage.module.css";
 import { cc } from "@/helpers/classConcat.ts";
@@ -16,9 +16,12 @@ import {
 import { ROUTES_PATHS } from "@/navigation/routes.tsx";
 import { receiveGiftTransactionQueryFn } from "@/queries/receiveGiftTransactionQueryFn.ts";
 import { useMenuContext } from "@/contexts/menu/MenuContext.tsx";
+import { useNotificationsContext } from "@/contexts/notifications/NotificationsContext.tsx";
+import { IconGift } from "@/components/IconGift/IconGift.tsx";
 
 export function GiftReceivePage() {
   const { transactionId } = useParams();
+  const { onAddNotification } = useNotificationsContext();
   const {
     isPending,
     isError,
@@ -29,6 +32,20 @@ export function GiftReceivePage() {
   });
   const navigate = useNavigate();
   const { onShowMenu, onHideMenu } = useMenuContext();
+  const handleNotificationClick = useCallback(() => {
+    navigate(ROUTES_PATHS.profile);
+  }, [navigate]);
+  useEffect(() => {
+    if (transaction?._id) {
+      onAddNotification({
+        description: `${transaction.gift.title.en} from Mark.`,
+        icon: <IconGift giftId={transaction.gift.giftId} />,
+        title: "Gift Received",
+        buttonText: "View",
+        onClick: handleNotificationClick,
+      });
+    }
+  }, [transaction?._id]);
   useEffect(() => {
     onHideMenu();
     return () => {
@@ -43,6 +60,7 @@ export function GiftReceivePage() {
     });
     onMainButtonClick(() => navigate(ROUTES_PATHS.profile));
     return () => {
+      setMainButtonParams({ isVisible: false });
       unmountMainButton();
     };
   }, []);

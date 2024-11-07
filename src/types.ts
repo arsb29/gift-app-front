@@ -6,6 +6,7 @@ import {
   LANGUAGE_CODE,
   THEME,
 } from "@/constants.ts";
+import { ReactNode } from "react";
 
 export type ValuesOf<T> = T[keyof T];
 
@@ -87,4 +88,13 @@ export type FullTransaction = {
   invoiceId: number;
   expiresIn: number;
   miniAppPayUrl: string;
+};
+
+export type NotificationType = {
+  icon: ReactNode;
+  title: string;
+  description: string;
+  buttonText: string;
+  onClick: () => void;
+  id: number;
 };

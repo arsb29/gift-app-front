@@ -1,0 +1,11 @@
+.notifications {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 2000;
+}
