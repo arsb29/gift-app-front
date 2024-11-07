@@ -7,6 +7,8 @@ import { forwardRef, LegacyRef, useCallback, useState } from "react";
 import { Modal } from "@/components/Modal/Modal.tsx";
 import { ModalGiftContent } from "@/components/ModalGiftContent/ModalGiftContent.tsx";
 import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
+import { getFormatText } from "@/helpers/getFormatText.ts";
+import { TEXTS } from "@/texts.tsx";
 
 type Props = {
   action: Action;
@@ -36,7 +38,13 @@ export const GiftInProfile = forwardRef(
           <div className={styles.info}>
             <Avatar user={sender} size={16} />
             <div className={styles.count}>
-              1 of {formatNumber(gift.totalNumberOf)}
+              {getFormatText({
+                text: TEXTS.currentOfTotal[languageCode],
+                params: {
+                  current: 1,
+                  total: formatNumber(gift.totalNumberOf),
+                },
+              })}
             </div>
           </div>
           <IconAnimation icon={gift.giftId} size={80} autoplay />

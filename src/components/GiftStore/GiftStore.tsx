@@ -9,6 +9,8 @@ import { useCallback } from "react";
 import { ROUTES_PATHS } from "@/navigation/routes.tsx";
 import { useNavigate } from "react-router-dom";
 import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
+import { getFormatText } from "@/helpers/getFormatText.ts";
+import { TEXTS } from "@/texts.tsx";
 
 type Props = {
   gift: Gift;
@@ -27,8 +29,13 @@ export function GiftStore(props: Props) {
       onClick={handleClick}
     >
       <div className={styles.count}>
-        {formatNumber(gift.numberOfPurchased + gift.numberOfBooked)} of{" "}
-        {formatNumber(gift.totalNumberOf)}
+        {getFormatText({
+          text: TEXTS.currentOfTotal[languageCode],
+          params: {
+            current: formatNumber(gift.numberOfPurchased + gift.numberOfBooked),
+            total: formatNumber(gift.totalNumberOf),
+          },
+        })}
       </div>
       <IconAnimation
         size={128}

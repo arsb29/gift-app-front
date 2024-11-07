@@ -86,7 +86,7 @@ export function ModalGiftContent(props: Props) {
         >
           <div>
             {getFormatText({
-              text: TEXTS.giftModalTableLabelAvailabilityValue[languageCode],
+              text: TEXTS.currentOfTotal[languageCode],
               params: {
                 current: serialNumberOfGift,
                 total: gift.totalNumberOf,

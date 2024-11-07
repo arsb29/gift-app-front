@@ -18,10 +18,14 @@ import { receiveGiftTransactionQueryFn } from "@/queries/receiveGiftTransactionQ
 import { useMenuContext } from "@/contexts/menu/MenuContext.tsx";
 import { useNotificationsContext } from "@/contexts/notifications/NotificationsContext.tsx";
 import { IconGift } from "@/components/IconGift/IconGift.tsx";
+import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
+import { getFormatText } from "@/helpers/getFormatText.ts";
+import { TEXTS } from "@/texts.tsx";
 
 export function GiftReceivePage() {
   const { transactionId } = useParams();
   const { onAddNotification } = useNotificationsContext();
+  const { languageCode } = useLanguageContext();
   const {
     isPending,
     isError,
@@ -38,10 +42,20 @@ export function GiftReceivePage() {
   useEffect(() => {
     if (transaction?._id) {
       onAddNotification({
-        description: `${transaction.gift.title.en} from Mark.`,
+        description: getFormatText({
+          text: TEXTS.giftReceivedPageNotificationDescription[languageCode],
+          params: {
+            giftTitle: transaction.gift.title[languageCode],
+            sender: transaction.sender,
+          },
+        }),
         icon: <IconGift giftId={transaction.gift.giftId} />,
-        title: "Gift Received",
-        buttonText: "View",
+        title: getFormatText({
+          text: TEXTS.giftReceivedPageNotificationTitle[languageCode],
+        }),
+        buttonText: getFormatText({
+          text: TEXTS.giftReceivedPageNotificationButtonText[languageCode],
+        }),
         onClick: handleNotificationClick,
       });
     }
@@ -56,7 +70,9 @@ export function GiftReceivePage() {
     mountMainButton();
     setMainButtonParams({
       isVisible: true,
-      text: "Open Profile",
+      text: getFormatText({
+        text: TEXTS.giftReceivedPageTelegramMainButton[languageCode],
+      }) as string,
     });
     onMainButtonClick(() => navigate(ROUTES_PATHS.profile));
     return () => {
@@ -80,9 +96,14 @@ export function GiftReceivePage() {
           className={styles.giftPurchased}
         />
       </div>
-      <div className={styles.title}>Gift Received</div>
+      <div className={styles.title}>
+        {getFormatText({ text: TEXTS.giftReceivedPageTitle[languageCode] })}
+      </div>
       <div className={styles.description}>
-        You have received the gift {transaction.gift.title.en}.
+        {getFormatText({
+          text: TEXTS.giftReceivedPageDescription[languageCode],
+          params: { giftTitle: transaction.gift.title[languageCode] },
+        })}
       </div>
     </Page>
   );

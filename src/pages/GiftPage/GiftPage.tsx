@@ -92,8 +92,15 @@ export const GiftPage: FC = () => {
         <div className={styles.titleWithCount}>
           <div className={styles.title}>{gift.title[languageCode]}</div>
           <div className={styles.count}>
-            {formatNumber(gift.numberOfPurchased + gift.numberOfBooked)} of{" "}
-            {formatNumber(gift.totalNumberOf)}
+            {getFormatText({
+              text: TEXTS.currentOfTotal[languageCode],
+              params: {
+                current: formatNumber(
+                  gift.numberOfPurchased + gift.numberOfBooked,
+                ),
+                total: formatNumber(gift.totalNumberOf),
+              },
+            })}
           </div>
         </div>
         <div className={styles.description}>

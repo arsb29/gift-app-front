@@ -2,6 +2,7 @@ import { LANGUAGE_CODE } from "@/constants.ts";
 import { TitleWithLanguage } from "@/types.ts";
 import { plural, pluralize } from "@/helpers/plural.ts";
 import { ClickableUserName } from "@/components/ClickableUserName/ClickableUserName.tsx";
+import { formatName } from "@/helpers/formatName.ts";
 
 export const TEXTS: Record<string, TitleWithLanguage> = {
   leaderboardIdEmptyGiftsDescriptions: {
@@ -57,11 +58,11 @@ export const TEXTS: Record<string, TitleWithLanguage> = {
   },
   giftPageRecentlyActionTypeBuy: {
     [LANGUAGE_CODE.en]: "Buy gift",
-    [LANGUAGE_CODE.ru]: "Покупка подарок",
+    [LANGUAGE_CODE.ru]: "Покупка подарка",
   },
   giftPageRecentlyActionTypeSend: {
     [LANGUAGE_CODE.en]: "Send gift",
-    [LANGUAGE_CODE.ru]: "Отправка подарок",
+    [LANGUAGE_CODE.ru]: "Отправка подарка",
   },
   giftPageRecentlyActionTypeBuyDescription: {
     [LANGUAGE_CODE.en]: ({ sender }) => (
@@ -131,7 +132,7 @@ export const TEXTS: Record<string, TitleWithLanguage> = {
     [LANGUAGE_CODE.en]: "Availability",
     [LANGUAGE_CODE.ru]: "Номер",
   },
-  giftModalTableLabelAvailabilityValue: {
+  currentOfTotal: {
     [LANGUAGE_CODE.en]: ({ current, total }) => `${current} of ${total}`,
     [LANGUAGE_CODE.ru]: ({ current, total }) => `${current} из ${total}`,
   },
@@ -177,5 +178,32 @@ export const TEXTS: Record<string, TitleWithLanguage> = {
   giftPurchasedPageTelegramSecondaryButton: {
     [LANGUAGE_CODE.en]: "Open Store",
     [LANGUAGE_CODE.ru]: "Открыть магазин",
+  },
+  giftReceivedPageTitle: {
+    [LANGUAGE_CODE.en]: "Gift Received",
+    [LANGUAGE_CODE.ru]: "Получен подарок",
+  },
+  giftReceivedPageDescription: {
+    [LANGUAGE_CODE.en]: ({ giftTitle }) =>
+      `You have received the gift ${giftTitle}.`,
+    [LANGUAGE_CODE.ru]: ({ giftTitle }) => `Вы получили подарок ${giftTitle}.`,
+  },
+  giftReceivedPageNotificationTitle: {
+    [LANGUAGE_CODE.en]: "Gift Received",
+    [LANGUAGE_CODE.ru]: "Получен подарок",
+  },
+  giftReceivedPageNotificationButtonText: {
+    [LANGUAGE_CODE.en]: "View",
+    [LANGUAGE_CODE.ru]: "Посмотреть",
+  },
+  giftReceivedPageNotificationDescription: {
+    [LANGUAGE_CODE.en]: ({ giftTitle, sender }) =>
+      `${giftTitle} from ${formatName(sender)}`,
+    [LANGUAGE_CODE.ru]: ({ giftTitle, sender }) =>
+      `${giftTitle} от ${formatName(sender)}`,
+  },
+  giftReceivedPageTelegramMainButton: {
+    [LANGUAGE_CODE.en]: "Open Profile",
+    [LANGUAGE_CODE.ru]: "Открыть профиль",
   },
 };
