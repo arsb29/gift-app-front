@@ -33,12 +33,6 @@ export type User = {
   imageId: string;
 };
 
-export type LeaderboardResponse = {
-  users: User[];
-  currentPage: number;
-  hasMore: boolean;
-};
-
 export type ActionType = ValuesOf<typeof ACTION_TYPE>;
 export type ActionTypeIcon = ValuesOf<typeof ACTION_TYPE_ICON>;
 
@@ -50,12 +44,6 @@ export type Action = {
   receiver?: User;
   time: number;
   type: ActionType;
-};
-
-export type ActionsResponse = {
-  actions: Action[];
-  currentPage: number;
-  hasMore: boolean;
 };
 
 export type Gift = {
