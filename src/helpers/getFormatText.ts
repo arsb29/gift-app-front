@@ -1,5 +1,7 @@
+import { ReactNode } from "react";
+
 type Options = {
-  text: ((params: any) => string) | string;
+  text: ((params: any) => ReactNode) | string;
   params?: Record<string, any>;
 };
 

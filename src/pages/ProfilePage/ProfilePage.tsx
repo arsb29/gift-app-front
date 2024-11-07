@@ -21,7 +21,7 @@ export const ProfilePage: FC = () => {
   if (isPending) return <div>Загрузка</div>; // todo сделать спец экран для этого
   if (isError) return <div>Ошибка</div>; // todo сделать спец экран для этого
   return (
-    <Page withMenu className={styles.container}>
+    <Page withMenu className={styles.container} back={false}>
       <Profile user={user} isOwnProfile />
     </Page>
   );

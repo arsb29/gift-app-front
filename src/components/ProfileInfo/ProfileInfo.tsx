@@ -6,7 +6,7 @@ import Premium from "@/assets/premium.svg?react";
 import { cc } from "@/helpers/classConcat.ts";
 import { getFormatText } from "@/helpers/getFormatText.ts";
 import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
-import { TEXTS } from "@/texts.ts";
+import { TEXTS } from "@/texts.tsx";
 
 type Props = {
   user: User;

@@ -15,6 +15,9 @@ import {
 } from "@telegram-apps/sdk-react";
 import { Avatar } from "@/components/Avatar/Avatar.tsx";
 import { ClickableUserName } from "@/components/ClickableUserName/ClickableUserName.tsx";
+import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
+import { getFormatText } from "@/helpers/getFormatText.ts";
+import { TEXTS } from "@/texts.tsx";
 
 type Props = {
   sender: User;
@@ -26,6 +29,7 @@ type Props = {
 
 export function ModalGiftContent(props: Props) {
   const { gift, time, serialNumberOfGift, onClick, sender } = props;
+  const { languageCode } = useLanguageContext();
   const { giftId } = gift;
   useEffect(() => {
     mountMainButton();
@@ -44,18 +48,30 @@ export function ModalGiftContent(props: Props) {
   return (
     <div className={styles.container}>
       <IconAnimation icon={ICON_ANIMATION[giftId]} />
-      <div className={styles.title}>{gift.title.en}</div>
+      <div className={styles.title}>{gift.title[languageCode]}</div>
       <Table>
-        <TableRow label="From">
+        <TableRow
+          label={getFormatText({
+            text: TEXTS.giftModalTableLabelFrom[languageCode],
+          })}
+        >
           <div className={styles.from}>
             <Avatar user={sender} size={20} />
             <ClickableUserName user={sender} />
           </div>
         </TableRow>
-        <TableRow label="Date">
-          <div>{formatTime(time)}</div>
+        <TableRow
+          label={getFormatText({
+            text: TEXTS.giftModalTableLabelDate[languageCode],
+          })}
+        >
+          <div>{formatTime(time, languageCode)}</div>
         </TableRow>
-        <TableRow label="Price">
+        <TableRow
+          label={getFormatText({
+            text: TEXTS.giftModalTableLabelPrice[languageCode],
+          })}
+        >
           <div className={styles.price}>
             <IconAsset asset={gift.asset} withColor />
             <div className={styles.amount}>
@@ -63,9 +79,19 @@ export function ModalGiftContent(props: Props) {
             </div>
           </div>
         </TableRow>
-        <TableRow label="Availability">
+        <TableRow
+          label={getFormatText({
+            text: TEXTS.giftModalTableLabelAvailability[languageCode],
+          })}
+        >
           <div>
-            {serialNumberOfGift} of {gift.totalNumberOf}
+            {getFormatText({
+              text: TEXTS.giftModalTableLabelAvailabilityValue[languageCode],
+              params: {
+                current: serialNumberOfGift,
+                total: gift.totalNumberOf,
+              },
+            })}
           </div>
         </TableRow>
       </Table>

@@ -1,10 +1,11 @@
 import { cc } from "@/helpers/classConcat.ts";
 import styles from "./Empty.module.css";
+import { ReactNode } from "react";
 
 type Props = {
   withBackground?: boolean;
-  title?: string;
-  description: string;
+  title?: ReactNode;
+  description: ReactNode;
   onClickText?: string;
   onClick?: () => void;
 };

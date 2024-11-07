@@ -5,7 +5,7 @@ import { useMenuContext } from "@/contexts/menu/MenuContext.tsx";
 import styles from "./Menu.module.css";
 import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 import { getFormatText } from "@/helpers/getFormatText.ts";
-import { TEXTS } from "@/texts.ts";
+import { TEXTS } from "@/texts.tsx";
 
 export function Menu() {
   const { value } = useMenuContext();

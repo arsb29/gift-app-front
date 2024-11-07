@@ -8,7 +8,7 @@ import { GiftStore } from "@/components/GiftStore/GiftStore.tsx";
 import styles from "./GiftsPage.module.css";
 import { Header } from "@/components/Header/Header.tsx";
 import { getFormatText } from "@/helpers/getFormatText.ts";
-import { TEXTS } from "@/texts.ts";
+import { TEXTS } from "@/texts.tsx";
 import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 
 export const GiftsPage: FC = () => {

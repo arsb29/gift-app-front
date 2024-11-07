@@ -4,7 +4,7 @@ import { Empty } from "@/components/Empty/Empty.tsx";
 import { userReceiveActionsQueryFn } from "@/queries/userRecieveActionsQueryFn.ts";
 import { GiftInProfile } from "@/components/GiftInProfile/GiftInProfile.tsx";
 import styles from "./UserReceiveActions.module.css";
-import { TEXTS } from "@/texts.ts";
+import { TEXTS } from "@/texts.tsx";
 import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 import { getFormatText } from "@/helpers/getFormatText.ts";
 

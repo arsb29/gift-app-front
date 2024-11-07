@@ -2,6 +2,9 @@ import { ChangeEvent, useCallback, useRef, useState } from "react";
 import SearchIcon from "@/assets/search.svg?react";
 import { cc } from "@/helpers/classConcat.ts";
 import styles from "./Input.module.css";
+import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
+import { getFormatText } from "@/helpers/getFormatText.ts";
+import { TEXTS } from "@/texts.tsx";
 
 type Props = {
   value: string;
@@ -11,6 +14,7 @@ type Props = {
 
 export function Input(props: Props) {
   const { className, onChange, value } = props;
+  const { languageCode } = useLanguageContext();
   const [focused, setFocused] = useState<boolean>(false);
   const ref = useRef<HTMLInputElement>(null);
   const handleChange = useCallback(
@@ -39,7 +43,9 @@ export function Input(props: Props) {
       >
         <SearchIcon />
         <div className={cc(styles.label, value && styles.withValue)}>
-          Search
+          {getFormatText({
+            text: TEXTS.leaderboardPageSearchPlaceholder[languageCode],
+          })}
         </div>
       </div>
       <input

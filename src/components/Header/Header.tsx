@@ -1,9 +1,10 @@
 import IconGift from "@/assets/gift.svg?react";
 import styles from "./Header.module.css";
+import { ReactNode } from "react";
 
 type Props = {
-  title: string;
-  description: string;
+  title: ReactNode;
+  description: ReactNode;
   withIcon?: boolean;
 };
 

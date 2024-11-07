@@ -9,6 +9,9 @@ import { Empty } from "@/components/Empty/Empty.tsx";
 import styles from "./ProfileRecentActions.module.css";
 import { RecentAction } from "@/components/RecentAction/RecentAction.tsx";
 import { formatDate } from "@/helpers/formatDate.ts";
+import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
+import { getFormatText } from "@/helpers/getFormatText.ts";
+import { TEXTS } from "@/texts.tsx";
 
 const groupActionsByDate = (actions: Action[]) => {
   return actions.reduce((grouped: Record<string, Action[]>, action) => {
@@ -32,7 +35,7 @@ export const ProfileRecentActions: FC = () => {
     queryKey: [`ProfileRecentActions-${id}`],
     queryFn: userRecentActionsQueryFn(id),
   });
-
+  const { languageCode } = useLanguageContext();
   const groupedActionsByDate = useMemo(
     () => groupActionsByDate(actions),
     [actions],
@@ -44,8 +47,12 @@ export const ProfileRecentActions: FC = () => {
     return (
       <Page className={styles.container}>
         <Empty
-          title="History is Empty"
-          description="Give and receive gifts so there's something here."
+          title={getFormatText({
+            text: TEXTS.profileRecentActionsHeader[languageCode],
+          })}
+          description={getFormatText({
+            text: TEXTS.profileRecentActionsDescription[languageCode],
+          })}
         />
       </Page>
     );

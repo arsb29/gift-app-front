@@ -6,6 +6,7 @@ import { formatNumber } from "@/helpers/formatNumber.ts";
 import { forwardRef, LegacyRef, useCallback, useState } from "react";
 import { Modal } from "@/components/Modal/Modal.tsx";
 import { ModalGiftContent } from "@/components/ModalGiftContent/ModalGiftContent.tsx";
+import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 
 type Props = {
   action: Action;
@@ -14,6 +15,7 @@ type Props = {
 export const GiftInProfile = forwardRef(
   (props: Props, ref: LegacyRef<HTMLDivElement>) => {
     const { action } = props;
+    const { languageCode } = useLanguageContext();
     const { transaction } = action;
     const { serialNumberOfGift } = transaction;
     const [openModal, setOpenModal] = useState<boolean>(false);
@@ -38,7 +40,7 @@ export const GiftInProfile = forwardRef(
             </div>
           </div>
           <IconAnimation icon={gift.giftId} size={80} autoplay />
-          <div className={styles.title}>{gift.title.en}</div>
+          <div className={styles.title}>{gift.title[languageCode]}</div>
         </div>
         {openModal && (
           <Modal open={openModal} onClose={handleClickCloseModal}>

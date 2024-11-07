@@ -14,10 +14,10 @@ export type GiftId = ValuesOf<typeof GIFT_ID>;
 export type CryptoAsset = ValuesOf<typeof CRYPTO_ASSET>;
 export type LanguageCode = ValuesOf<typeof LANGUAGE_CODE>;
 export type Theme = ValuesOf<typeof THEME>;
-
+export type TitleGiftWithLanguage = Record<LanguageCode, string>;
 export type TitleWithLanguage = Record<
   LanguageCode,
-  ((params: any) => string) | string
+  ((params: any) => ReactNode) | string
 >;
 
 export type User = {
@@ -63,7 +63,7 @@ export type Gift = {
   giftId: GiftId;
   numberOfPurchased: number;
   totalNumberOf: number;
-  title: TitleWithLanguage;
+  title: TitleGiftWithLanguage;
   numberOfBooked: number;
   asset: CryptoAsset;
   amount: number;
@@ -95,9 +95,9 @@ export type FullTransaction = {
 
 export type NotificationType = {
   icon: ReactNode;
-  title: string;
-  description: string;
-  buttonText: string;
+  title: ReactNode;
+  description: ReactNode;
+  buttonText: ReactNode;
   onClick: () => void;
   id: number;
 };

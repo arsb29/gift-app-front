@@ -1,5 +1,5 @@
 import { FC, useCallback, useEffect } from "react";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { Gift } from "@/types.ts";
 import { toMilliseconds } from "@/helpers/toMilliseconds.ts";
 import { useNavigate, useParams } from "react-router-dom";
@@ -13,26 +13,29 @@ import { IconAnimation } from "@/components/IconAnimation/IconAnimation.tsx";
 import { cc } from "@/helpers/classConcat.ts";
 import { IconAsset } from "@/components/IconAsset/IconAsset.tsx";
 import {
-  mainButton,
-  on,
-  openTelegramLink,
   setMainButtonParams,
+  onMainButtonClick,
+  mountMainButton,
+  unmountMainButton,
+  offMainButtonClick,
 } from "@telegram-apps/sdk-react";
 import { GiftRecentlyActions } from "@/components/GiftRecentlyActions/GiftRecentlyActions.tsx";
 import { ROUTES_PATHS } from "@/navigation/routes.tsx";
 import { useMenuContext } from "@/contexts/menu/MenuContext.tsx";
-
-const DEFAULT_MAIN_BUTTON_PARAMS = {
-  hasShineEffect: true,
-  isEnabled: true,
-  isVisible: true,
-  text: "Buy a Gift",
-};
+import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
+import { getFormatText } from "@/helpers/getFormatText.ts";
+import { TEXTS } from "@/texts.tsx";
 
 export const GiftPage: FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { onHideMenu, onShowMenu } = useMenuContext();
+  const { languageCode } = useLanguageContext();
+  const { refetch } = useQuery({
+    queryKey: ["createTransactionQueryFn"],
+    queryFn: createTransactionQueryFn(id),
+    enabled: false,
+  });
   const handleBack = useCallback(() => {
     navigate(ROUTES_PATHS.gifts);
   }, [navigate]);
@@ -45,41 +48,21 @@ export const GiftPage: FC = () => {
   }, [onHideMenu, onShowMenu]);
 
   useEffect(() => {
-    mainButton.mount();
-    mainButton.setParams(DEFAULT_MAIN_BUTTON_PARAMS);
+    mountMainButton();
+    setMainButtonParams({
+      hasShineEffect: true,
+      isVisible: true,
+      text: getFormatText({
+        text: TEXTS.giftPageTelegramMainButton[languageCode],
+      }) as string,
+    });
+    onMainButtonClick(refetch);
     return () => {
+      offMainButtonClick(refetch);
       setMainButtonParams({ isVisible: false });
-      mainButton.unmount();
+      unmountMainButton();
     };
-  }, []);
-
-  const mutation = useMutation({
-    mutationFn: async () => {
-      if (id) {
-        mainButton.setParams({
-          ...DEFAULT_MAIN_BUTTON_PARAMS,
-          isLoaderVisible: true,
-        });
-        try {
-          const transaction = await createTransactionQueryFn(id);
-          openTelegramLink(transaction.miniAppPayUrl);
-        } finally {
-          mainButton.setParams({
-            ...DEFAULT_MAIN_BUTTON_PARAMS,
-            isLoaderVisible: false,
-          });
-        }
-      }
-      return Promise.resolve();
-    },
-  });
-
-  useEffect(() => {
-    const removeListener = on("main_button_pressed", () => mutation.mutate());
-    return () => {
-      removeListener();
-    };
-  }, []);
+  }, [languageCode, id]);
 
   const {
     isPending,
@@ -107,14 +90,14 @@ export const GiftPage: FC = () => {
       </div>
       <div className={styles.info}>
         <div className={styles.titleWithCount}>
-          <div className={styles.title}>{gift.title["en"]}</div>
+          <div className={styles.title}>{gift.title[languageCode]}</div>
           <div className={styles.count}>
             {formatNumber(gift.numberOfPurchased + gift.numberOfBooked)} of{" "}
             {formatNumber(gift.totalNumberOf)}
           </div>
         </div>
         <div className={styles.description}>
-          Purchase this gift for the opportunity to give it to another user.
+          {getFormatText({ text: TEXTS.giftPageDescription[languageCode] })}
         </div>
         <div className={styles.buy}>
           <IconAsset asset={gift.asset} withColor />
@@ -124,7 +107,9 @@ export const GiftPage: FC = () => {
         </div>
       </div>
       <div className={styles.line}></div>
-      <div className={styles.recentlyActions}>Recently Actions</div>
+      <div className={styles.recentlyActions}>
+        {getFormatText({ text: TEXTS.giftPageRecentlyActions[languageCode] })}
+      </div>
       <GiftRecentlyActions />
     </Page>
   );

@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import styles from "./TableRow.module.css";
 
 type Props = {
-  label: string;
+  label: ReactNode;
   children: ReactNode;
 };
 

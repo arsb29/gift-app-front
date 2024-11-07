@@ -17,16 +17,22 @@ import {
   setSecondaryButtonParams,
   onSecondaryButtonClick,
   switchInlineQuery,
+  offMainButtonClick,
+  offSecondaryButtonClick,
 } from "@telegram-apps/sdk-react";
 import { useCallback, useEffect } from "react";
 import { ROUTES_PATHS } from "@/navigation/routes.tsx";
 import { useMenuContext } from "@/contexts/menu/MenuContext.tsx";
 import { IconGift } from "@/components/IconGift/IconGift.tsx";
 import { useNotificationsContext } from "@/contexts/notifications/NotificationsContext.tsx";
+import { getFormatText } from "@/helpers/getFormatText.ts";
+import { TEXTS } from "@/texts.tsx";
+import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 
 export function GiftPurchasedPage() {
   const { id } = useParams();
   const { onAddNotification } = useNotificationsContext();
+  const { languageCode } = useLanguageContext();
   const {
     isPending,
     isError,
@@ -43,13 +49,22 @@ export function GiftPurchasedPage() {
         switchInlineQuery(transaction?.gift?.giftId, ["users"]);
     }
   }, [transaction?.gift?.giftId]);
+  const handleSecondaryButtonClick = useCallback(() => {
+    navigate(ROUTES_PATHS.gifts);
+  }, [navigate]);
   useEffect(() => {
     if (transaction?._id) {
       onAddNotification({
-        description: "Now send it to your friend.",
+        description: getFormatText({
+          text: TEXTS.giftPurchasedPageNotificationDescription[languageCode],
+        }),
         icon: <IconGift giftId={transaction?.gift?.giftId} />,
-        title: "You Bought a Gift",
-        buttonText: "Send",
+        title: getFormatText({
+          text: TEXTS.giftPurchasedPageNotificationTitle[languageCode],
+        }),
+        buttonText: getFormatText({
+          text: TEXTS.giftPurchasedPageNotificationButtonText[languageCode],
+        }),
         onClick: handleSendGift,
       });
     }
@@ -64,18 +79,24 @@ export function GiftPurchasedPage() {
     mountMainButton();
     setMainButtonParams({
       isVisible: true,
-      text: "Send Gift",
+      text: getFormatText({
+        text: TEXTS.giftPurchasedPageTelegramMainButton[languageCode],
+      }) as string,
     });
     mountSecondaryButton();
     setSecondaryButtonParams({
       isVisible: true,
-      text: "Open Store",
+      text: getFormatText({
+        text: TEXTS.giftPurchasedPageTelegramSecondaryButton[languageCode],
+      }) as string,
     });
     onMainButtonClick(handleSendGift);
-    onSecondaryButtonClick(() => navigate(ROUTES_PATHS.gifts));
+    onSecondaryButtonClick(handleSecondaryButtonClick);
     return () => {
+      offMainButtonClick(handleSendGift);
       setMainButtonParams({ isVisible: false });
       unmountMainButton();
+      offSecondaryButtonClick(handleSecondaryButtonClick);
       setSecondaryButtonParams({ isVisible: false });
       unmountSecondaryButton();
     };
@@ -96,10 +117,18 @@ export function GiftPurchasedPage() {
           className={styles.giftPurchased}
         />
       </div>
-      <div className={styles.title}>Gift Purchased</div>
+      <div className={styles.title}>
+        {getFormatText({ text: TEXTS.giftPurchasedPageTitle[languageCode] })}
+      </div>
       <div className={styles.description}>
-        The {transaction.gift.title.en} gift was purchased for{" "}
-        {transaction.gift.amount} {transaction.gift.asset}.
+        {getFormatText({
+          text: TEXTS.giftPurchasedPageTitle[languageCode],
+          params: {
+            gift: transaction.gift.title[languageCode],
+            amount: transaction.gift.amount,
+            asset: transaction.gift.asset,
+          },
+        })}
       </div>
     </Page>
   );

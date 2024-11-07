@@ -8,6 +8,7 @@ import { cc } from "@/helpers/classConcat.ts";
 import { useCallback } from "react";
 import { ROUTES_PATHS } from "@/navigation/routes.tsx";
 import { useNavigate } from "react-router-dom";
+import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 
 type Props = {
   gift: Gift;
@@ -15,6 +16,7 @@ type Props = {
 
 export function GiftStore(props: Props) {
   const navigate = useNavigate();
+  const { languageCode } = useLanguageContext();
   const { gift } = props;
   const handleClick = useCallback(() => {
     navigate(`${ROUTES_PATHS.gifts}/${gift._id}`);
@@ -34,7 +36,7 @@ export function GiftStore(props: Props) {
         icon={ICON_ANIMATION[gift.giftId]}
         keepLastFrame
       />
-      <div className={styles.title}>{gift.title["en"]}</div>
+      <div className={styles.title}>{gift.title[languageCode]}</div>
       <div className={styles.buyButton}>
         <IconAsset asset={CRYPTO_ASSET[gift.asset]} size={24} />
         <div className={styles.amount}>

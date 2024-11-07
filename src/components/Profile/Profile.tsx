@@ -7,7 +7,7 @@ import { useCallback } from "react";
 import { ROUTES_PATHS } from "@/navigation/routes.tsx";
 import { UserReceiveActions } from "@/components/UserReceiveActions/UserReceiveActions.tsx";
 import { ProfileSettings } from "@/components/ProfileSettings/ProfileSettings.tsx";
-import { TEXTS } from "@/texts.ts";
+import { TEXTS } from "@/texts.tsx";
 import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 import { getFormatText } from "@/helpers/getFormatText.ts";
 

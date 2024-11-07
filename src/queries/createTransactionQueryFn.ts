@@ -1,9 +1,8 @@
 import { getAuthorizationHeader } from "@/helpers/getAthorizationHeader.ts";
-import { Transaction } from "@/types.ts";
+import { openTelegramLink } from "@telegram-apps/sdk-react";
 
-export const createTransactionQueryFn = async (
-  _id: string,
-): Promise<Transaction> => {
+export const createTransactionQueryFn = (_id?: string) => async () => {
+  if (!_id) return null;
   const response = await fetch(
     `${import.meta.env.VITE_ENDPOINT}transaction/createInvoice`,
     {
@@ -15,5 +14,6 @@ export const createTransactionQueryFn = async (
       body: JSON.stringify({ _id }),
     },
   );
-  return await response.json();
+  const transaction = await response.json();
+  openTelegramLink(transaction.miniAppPayUrl);
 };
