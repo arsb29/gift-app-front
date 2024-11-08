@@ -22,7 +22,7 @@ import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 import { getFormatText } from "@/helpers/getFormatText.ts";
 import { TEXTS } from "@/texts.tsx";
 import { Loader } from "@/components/Loader/Loader.tsx";
-import { Empty } from "@/components/Empty/Empty.tsx";
+import { Error } from "@/components/Error/Error.tsx";
 
 export function GiftReceivePage() {
   const { transactionId } = useParams();
@@ -83,17 +83,7 @@ export function GiftReceivePage() {
     };
   }, []);
   if (isPending) return <Loader />;
-  if (isError)
-    return (
-      <Empty
-        title={getFormatText({ text: TEXTS.errorTitle[languageCode] })}
-        description={getFormatText({
-          text: TEXTS.errorDescription[languageCode],
-        })}
-        withBackground
-        withMargin
-      />
-    );
+  if (isError) return <Error />;
   return (
     <Page className={cc(styles.container)}>
       <div className={styles.image}>

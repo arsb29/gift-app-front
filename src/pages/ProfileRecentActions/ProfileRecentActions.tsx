@@ -13,6 +13,7 @@ import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 import { getFormatText } from "@/helpers/getFormatText.ts";
 import { TEXTS } from "@/texts.tsx";
 import { Loader } from "@/components/Loader/Loader.tsx";
+import { Error } from "@/components/Error/Error.tsx";
 
 const groupActionsByDate = (actions: Action[]) => {
   return actions.reduce((grouped: Record<string, Action[]>, action) => {
@@ -42,17 +43,7 @@ export const ProfileRecentActions: FC = () => {
     [actions],
   );
   if (isPending) return <Loader />;
-  if (isError)
-    return (
-      <Empty
-        title={getFormatText({ text: TEXTS.errorTitle[languageCode] })}
-        description={getFormatText({
-          text: TEXTS.errorDescription[languageCode],
-        })}
-        withBackground
-        withMargin
-      />
-    );
+  if (isError) return <Error />;
   const isEmpty = actions.length === 0;
   if (isEmpty)
     return (

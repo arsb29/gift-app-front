@@ -8,14 +8,10 @@ import styles from "./LeaderboardIdPage.module.css";
 import { userIdQueryFn } from "@/queries/userIdQueryFn.ts";
 import { useParams } from "react-router-dom";
 import { Loader } from "@/components/Loader/Loader.tsx";
-import { Empty } from "@/components/Empty/Empty.tsx";
-import { getFormatText } from "@/helpers/getFormatText.ts";
-import { TEXTS } from "@/texts.tsx";
-import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
+import { Error } from "@/components/Error/Error.tsx";
 
 export const LeaderboardIdPage: FC = () => {
   const { id } = useParams();
-  const { languageCode } = useLanguageContext();
   const {
     isPending,
     isError,
@@ -27,17 +23,7 @@ export const LeaderboardIdPage: FC = () => {
   });
 
   if (isPending) return <Loader />;
-  if (isError)
-    return (
-      <Empty
-        title={getFormatText({ text: TEXTS.errorTitle[languageCode] })}
-        description={getFormatText({
-          text: TEXTS.errorDescription[languageCode],
-        })}
-        withBackground
-        withMargin
-      />
-    );
+  if (isError) return <Error />;
   return (
     <Page withMenu className={styles.container} back={false}>
       <Profile user={user} />

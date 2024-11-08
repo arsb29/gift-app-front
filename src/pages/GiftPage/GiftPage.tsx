@@ -26,7 +26,7 @@ import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 import { getFormatText } from "@/helpers/getFormatText.ts";
 import { TEXTS } from "@/texts.tsx";
 import { Loader } from "@/components/Loader/Loader.tsx";
-import { Empty } from "@/components/Empty/Empty.tsx";
+import { Error } from "@/components/Error/Error.tsx";
 
 export const GiftPage: FC = () => {
   const { id } = useParams();
@@ -78,17 +78,7 @@ export const GiftPage: FC = () => {
   });
   const gift = gifts?.find((g) => g._id === id);
   if (isPending) return <Loader />;
-  if (isError || !gift)
-    return (
-      <Empty
-        title={getFormatText({ text: TEXTS.errorTitle[languageCode] })}
-        description={getFormatText({
-          text: TEXTS.errorDescription[languageCode],
-        })}
-        withBackground
-        withMargin
-      />
-    );
+  if (isError || !gift) return <Error />;
   return (
     <Page className={cc(styles.container)} onBack={handleBack}>
       <div className={cc(styles.image, `background-${gift.giftId}`)}>

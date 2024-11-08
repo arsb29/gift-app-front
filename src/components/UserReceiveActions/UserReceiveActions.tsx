@@ -8,6 +8,7 @@ import { TEXTS } from "@/texts.tsx";
 import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 import { getFormatText } from "@/helpers/getFormatText.ts";
 import { Loader } from "@/components/Loader/Loader.tsx";
+import { Error } from "@/components/Error/Error.tsx";
 
 type Props = {
   userId: string;
@@ -28,17 +29,7 @@ export function UserReceiveActions(props: Props) {
   });
 
   if (isPending) return <Loader />;
-  if (isError)
-    return (
-      <Empty
-        title={getFormatText({ text: TEXTS.errorTitle[languageCode] })}
-        description={getFormatText({
-          text: TEXTS.errorDescription[languageCode],
-        })}
-        withBackground
-        withMargin
-      />
-    );
+  if (isError) return <Error />;
   const isEmpty = actions.length === 0;
   const description = isOwnProfile
     ? getFormatText({
