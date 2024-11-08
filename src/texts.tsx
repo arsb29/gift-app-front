@@ -18,6 +18,10 @@ export const TEXTS: Record<string, TitleWithLanguage> = {
     [LANGUAGE_CODE.en]: "You can buy a gift to receive a gift in return.",
     [LANGUAGE_CODE.ru]: "Вы можете купить подарок, чтобы получить его взамен.",
   },
+  profileEmptyGiftsButtonText: {
+    [LANGUAGE_CODE.en]: "Open Store",
+    [LANGUAGE_CODE.ru]: "Открыть магазин",
+  },
   profileRecentActions: {
     [LANGUAGE_CODE.en]: "Recent Actions ›",
     [LANGUAGE_CODE.ru]: "Недавние действия ›",
@@ -116,6 +120,10 @@ export const TEXTS: Record<string, TitleWithLanguage> = {
     [LANGUAGE_CODE.ru]: ({ count }) =>
       pluralize(count, "подарок", "подарка", "подарков"),
   },
+  giftModalTableLabelGift: {
+    [LANGUAGE_CODE.en]: "Gift",
+    [LANGUAGE_CODE.ru]: "Подарок",
+  },
   giftModalTableLabelFrom: {
     [LANGUAGE_CODE.en]: "From",
     [LANGUAGE_CODE.ru]: "От кого",
@@ -132,6 +140,22 @@ export const TEXTS: Record<string, TitleWithLanguage> = {
     [LANGUAGE_CODE.en]: "Availability",
     [LANGUAGE_CODE.ru]: "Номер",
   },
+  giftModalTableTitle: {
+    [LANGUAGE_CODE.en]: "Send Gift",
+    [LANGUAGE_CODE.ru]: "Отправь подарок",
+  },
+  giftModalTableSendGiftButtonText: {
+    [LANGUAGE_CODE.en]: "Send Gift to Contact",
+    [LANGUAGE_CODE.ru]: "Отправь подарок другу",
+  },
+  myGiftsEmptyListDescription: {
+    [LANGUAGE_CODE.en]: "You don't have any gifts yet.",
+    [LANGUAGE_CODE.ru]: "У тебя пока нет никаких подарков.",
+  },
+  myGiftsEmptyListButtonText: {
+    [LANGUAGE_CODE.en]: "Open Store",
+    [LANGUAGE_CODE.ru]: "Открыть магазин",
+  },
   currentOfTotal: {
     [LANGUAGE_CODE.en]: ({ current, total }) => `${current} of ${total}`,
     [LANGUAGE_CODE.ru]: ({ current, total }) => `${current} из ${total}`,
@@ -142,8 +166,7 @@ export const TEXTS: Record<string, TitleWithLanguage> = {
   },
   profileRecentActionsDescription: {
     [LANGUAGE_CODE.en]: "Give and receive gifts so there's something here.",
-    [LANGUAGE_CODE.ru]:
-      "Дарите и получайте подарки, так что здесь что-то есть.",
+    [LANGUAGE_CODE.ru]: "Дарите и получайте подарки, и здесь что-то появится.",
   },
   giftPageTelegramMainButton: {
     [LANGUAGE_CODE.en]: "Buy a Gift",
@@ -213,5 +236,65 @@ export const TEXTS: Record<string, TitleWithLanguage> = {
   errorDescription: {
     [LANGUAGE_CODE.en]: "Failed to upload data",
     [LANGUAGE_CODE.ru]: "Не удалось загрузить данные",
+  },
+  giftPageRecentlyActionsEmptyTitle: {
+    [LANGUAGE_CODE.en]: "History is Empty",
+    [LANGUAGE_CODE.ru]: "История пуста",
+  },
+  giftPageRecentlyActionsEmptyDescription: {
+    [LANGUAGE_CODE.en]: "Give and receive gifts so there's something here.",
+    [LANGUAGE_CODE.ru]: "Дарите и получайте подарки, и здесь что-то появится.",
+  },
+  profileRecentActionsPageTypeSend: {
+    [LANGUAGE_CODE.en]: "Sent",
+    [LANGUAGE_CODE.ru]: "Отправил",
+  },
+  profileRecentActionsPageTypeBuy: {
+    [LANGUAGE_CODE.en]: "Buy",
+    [LANGUAGE_CODE.ru]: "Купил",
+  },
+  profileRecentActionsPageTypeReceive: {
+    [LANGUAGE_CODE.en]: "Receive",
+    [LANGUAGE_CODE.ru]: "Получил",
+  },
+  profileRecentActionsPageTitle: {
+    [LANGUAGE_CODE.en]: "Recent Actions",
+    [LANGUAGE_CODE.ru]: "Недавние действия",
+  },
+  profileRecentActionsPageDescription: {
+    [LANGUAGE_CODE.en]: "Here is your action history.",
+    [LANGUAGE_CODE.ru]: "Здесь история ваших действий.",
+  },
+  profileRecentActionBuyDescription: {
+    [LANGUAGE_CODE.en]: ({ amount, asset }) => `-${amount} ${asset}`,
+    [LANGUAGE_CODE.ru]: ({ amount, asset }) => `-${amount} ${asset}`,
+  },
+  profileRecentActionSendDescription: {
+    [LANGUAGE_CODE.en]: ({ receiver }) => (
+      <span>
+        to <ClickableUserName user={receiver} />
+      </span>
+    ),
+    [LANGUAGE_CODE.ru]: ({ receiver }) => (
+      <span>
+        <ClickableUserName user={receiver} />
+      </span>
+    ),
+  },
+  profileRecentActionReceiveDescription: {
+    [LANGUAGE_CODE.en]: ({ sender }) => (
+      <span>
+        from <ClickableUserName user={sender} />
+      </span>
+    ),
+    [LANGUAGE_CODE.ru]: ({ sender }) => (
+      <span>
+        от <ClickableUserName user={sender} />
+      </span>
+    ),
+  },
+  giftPurchasedButtonTitle: {
+    [LANGUAGE_CODE.en]: "Send",
+    [LANGUAGE_CODE.ru]: "Отправить",
   },
 };

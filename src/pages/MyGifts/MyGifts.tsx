@@ -11,6 +11,10 @@ import { getFormatText } from "@/helpers/getFormatText.ts";
 import { TEXTS } from "@/texts.tsx";
 import { Loader } from "@/components/Loader/Loader.tsx";
 import { Error } from "@/components/Error/Error.tsx";
+import { Empty } from "@/components/Empty/Empty.tsx";
+import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
+import { ROUTES_PATHS } from "@/navigation/routes.tsx";
 
 export function MyGifts() {
   const {
@@ -21,7 +25,11 @@ export function MyGifts() {
     queryKey: [QUERY_KEYS.myGifts],
     queryFn: checkTransactionQueryFn,
   });
+  const navigate = useNavigate();
   const { languageCode } = useLanguageContext();
+  const handleOpenStore = useCallback(() => {
+    navigate(ROUTES_PATHS.gifts);
+  }, [navigate]);
   if (isPending) return <Loader />;
   if (isError) return <Error />;
   return (
@@ -34,11 +42,25 @@ export function MyGifts() {
           text: TEXTS.giftsPageHeaderDescription[languageCode],
         })}
       />
-      <div className={styles.list}>
-        {transactions.map((transaction) => (
-          <GiftPurchased transaction={transaction} key={transaction._id} />
-        ))}
-      </div>
+      {transactions.length === 0 && (
+        <Empty
+          description={getFormatText({
+            text: TEXTS.myGiftsEmptyListDescription[languageCode],
+          })}
+          onClickText={getFormatText({
+            text: TEXTS.myGiftsEmptyListButtonText[languageCode],
+          })}
+          onClick={handleOpenStore}
+          withBackground
+        />
+      )}
+      {transactions.length > 0 && (
+        <div className={styles.list}>
+          {transactions.map((transaction) => (
+            <GiftPurchased transaction={transaction} key={transaction._id} />
+          ))}
+        </div>
+      )}
     </Page>
   );
 }

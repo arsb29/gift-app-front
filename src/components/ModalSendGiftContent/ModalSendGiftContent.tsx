@@ -13,7 +13,11 @@ import {
   unmountMainButton,
   onMainButtonClick,
   switchInlineQuery,
+  offMainButtonClick,
 } from "@telegram-apps/sdk-react";
+import { getFormatText } from "@/helpers/getFormatText.ts";
+import { TEXTS } from "@/texts.tsx";
+import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 
 type Props = {
   sender: User;
@@ -25,17 +29,21 @@ type Props = {
 export function ModalSendGiftContent(props: Props) {
   const { gift, time, serialNumberOfGift } = props;
   const { giftId } = gift;
+  const { languageCode } = useLanguageContext();
   const handleSendGift = useCallback(() => {
     if (switchInlineQuery.isSupported()) switchInlineQuery(giftId, ["users"]);
   }, [giftId]);
   useEffect(() => {
     mountMainButton();
     setMainButtonParams({
-      text: "Send Gift to Contact",
+      text: getFormatText({
+        text: TEXTS.giftModalTableSendGiftButtonText[languageCode],
+      }) as string,
       isVisible: true,
     });
     onMainButtonClick(handleSendGift);
     return () => {
+      offMainButtonClick(handleSendGift);
       setMainButtonParams({
         isVisible: false,
       });
@@ -45,15 +53,29 @@ export function ModalSendGiftContent(props: Props) {
   return (
     <div className={styles.container}>
       <IconAnimation icon={ICON_ANIMATION[gift.giftId]} />
-      <div className={styles.title}>Send Gift</div>
+      <div className={styles.title}>
+        {getFormatText({ text: TEXTS.giftModalTableTitle[languageCode] })}
+      </div>
       <Table>
-        <TableRow label="Gift">
-          <div>{gift.title.en}</div>
+        <TableRow
+          label={getFormatText({
+            text: TEXTS.giftModalTableLabelGift[languageCode],
+          })}
+        >
+          <div>{gift.title[languageCode]}</div>
         </TableRow>
-        <TableRow label="Date">
-          <div>{formatTime(time)}</div>
+        <TableRow
+          label={getFormatText({
+            text: TEXTS.giftModalTableLabelDate[languageCode],
+          })}
+        >
+          <div>{formatTime(time, languageCode)}</div>
         </TableRow>
-        <TableRow label="Price">
+        <TableRow
+          label={getFormatText({
+            text: TEXTS.giftModalTableLabelPrice[languageCode],
+          })}
+        >
           <div className={styles.price}>
             <IconAsset asset={gift.asset} withColor />
             <div className={styles.amount}>
@@ -61,9 +83,19 @@ export function ModalSendGiftContent(props: Props) {
             </div>
           </div>
         </TableRow>
-        <TableRow label="Availability">
+        <TableRow
+          label={getFormatText({
+            text: TEXTS.giftModalTableLabelAvailability[languageCode],
+          })}
+        >
           <div>
-            {serialNumberOfGift} of {gift.totalNumberOf}
+            {getFormatText({
+              text: TEXTS.currentOfTotal[languageCode],
+              params: {
+                current: serialNumberOfGift,
+                total: gift.totalNumberOf,
+              },
+            })}
           </div>
         </TableRow>
       </Table>

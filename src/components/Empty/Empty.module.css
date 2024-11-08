@@ -23,6 +23,10 @@
   font: var(--text24b);
 }
 
+.description {
+  text-align: center;
+}
+
 .button {
   color: var(--primary);
 }

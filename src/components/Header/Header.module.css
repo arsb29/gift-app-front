@@ -16,6 +16,7 @@
 
 .description {
   color: var(--label-secondary);
+  text-align: center;
 }
 
 .bold {

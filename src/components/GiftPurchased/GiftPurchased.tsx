@@ -5,6 +5,9 @@ import { IconAnimation } from "@/components/IconAnimation/IconAnimation.tsx";
 import { useCallback, useState } from "react";
 import { Modal } from "@/components/Modal/Modal.tsx";
 import { ModalSendGiftContent } from "@/components/ModalSendGiftContent/ModalSendGiftContent.tsx";
+import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
+import { getFormatText } from "@/helpers/getFormatText.ts";
+import { TEXTS } from "@/texts.tsx";
 
 type Props = {
   transaction: FullTransaction;
@@ -12,6 +15,7 @@ type Props = {
 
 export function GiftPurchased(props: Props) {
   const [openModal, setOpenModal] = useState<boolean>(false);
+  const { languageCode } = useLanguageContext();
   const { transaction } = props;
   const { gift, sender, serialNumberOfGift } = transaction;
   const handleClickOpenModal = useCallback(() => {
@@ -22,7 +26,7 @@ export function GiftPurchased(props: Props) {
   }, []);
   return (
     <div className={styles.container}>
-      <div className={styles.title}>{gift.title["en"]}</div>
+      <div className={styles.title}>{gift.title[languageCode]}</div>
       <IconAnimation
         size={80}
         autoplay
@@ -30,7 +34,7 @@ export function GiftPurchased(props: Props) {
         keepLastFrame
       />
       <div className={styles.send} onClick={handleClickOpenModal}>
-        Send
+        {getFormatText({ text: TEXTS.giftPurchasedButtonTitle[languageCode] })}
       </div>
       {openModal && (
         <Modal open={openModal} onClose={handleClickCloseModal}>

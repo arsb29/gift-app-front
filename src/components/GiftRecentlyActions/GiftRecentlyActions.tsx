@@ -7,15 +7,32 @@ import { GiftRecentlyAction } from "@/components/GiftRecentlyAction/GiftRecently
 import { useParams } from "react-router-dom";
 import { Loader } from "@/components/Loader/Loader.tsx";
 import { Error } from "@/components/Error/Error.tsx";
+import { Empty } from "@/components/Empty/Empty.tsx";
+import { getFormatText } from "@/helpers/getFormatText.ts";
+import { TEXTS } from "@/texts.tsx";
+import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 
 export const GiftRecentlyActions: FC = () => {
   const { id = "" } = useParams();
+  const { languageCode } = useLanguageContext();
   const { isPending, list, isError, lastElementRef } = useInfinite<Action[]>({
     queryKey: [`GiftRecentlyActions-${id}`],
     queryFn: giftActionsQueryFn(id),
   });
   if (isPending) return <Loader />;
   if (isError) return <Error />;
+  if (list.length === 0)
+    return (
+      <Empty
+        title={getFormatText({
+          text: TEXTS.giftPageRecentlyActionsEmptyTitle[languageCode],
+        })}
+        description={getFormatText({
+          text: TEXTS.giftPageRecentlyActionsEmptyDescription[languageCode],
+        })}
+        withBackground
+      />
+    );
   return (
     <div className={styles.list}>
       {list.map((action, index) => {

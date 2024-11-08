@@ -62,13 +62,17 @@ export const ProfileRecentActions: FC = () => {
   return (
     <Page className={styles.container}>
       <Header
-        title="Recent Actions"
-        description="Here is your action history."
+        title={getFormatText({
+          text: TEXTS.profileRecentActionsPageTitle[languageCode],
+        })}
+        description={getFormatText({
+          text: TEXTS.profileRecentActionsPageDescription[languageCode],
+        })}
       />
       {Object.entries(groupedActionsByDate).map(([date, groupActions]) => (
         <div className={styles.list} key={`group-${date}`} ref={lastElementRef}>
           <div key={date} className={styles.date}>
-            {formatDate({ date })}
+            {formatDate({ date, language: languageCode })}
           </div>
           {groupActions.map((actionFromGroup) => (
             <RecentAction action={actionFromGroup} key={actionFromGroup._id} />
