@@ -69,6 +69,7 @@
 * {
   box-sizing: border-box;
   letter-spacing: -0.43px;
+  user-select: none;
 }
 
 body {

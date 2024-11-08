@@ -9,4 +9,5 @@
   background-color: var(--tab-bar);
   padding-top: 8px;
   padding-bottom: 4px;
+  border-top: 0.33px solid var(--separator);
 }
