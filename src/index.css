@@ -98,4 +98,5 @@ dialog {
 dialog::backdrop {
   opacity: 0.3;
   background-color: black;
+  cursor: pointer;
 }
