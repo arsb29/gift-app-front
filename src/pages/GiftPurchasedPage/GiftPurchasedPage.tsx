@@ -70,7 +70,7 @@ export function GiftPurchasedPage() {
         onClick: handleSendGift,
       });
     }
-  }, [transaction?._id, transaction?.gift?.giftId]);
+  }, [transaction, handleSendGift, languageCode]);
   useEffect(() => {
     onHideMenu();
     return () => {

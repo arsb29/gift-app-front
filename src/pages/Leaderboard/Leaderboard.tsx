@@ -57,7 +57,7 @@ export const Leaderboard: FC = () => {
   if (isPending) return <Loader />;
   if (isError || isFetchNextPageError) return <Error />;
   return (
-    <Page withMenu className={cc(styles.container)}>
+    <Page withMenu className={cc(styles.container)} back={false}>
       <Input
         className={styles.input}
         value={searchValue}

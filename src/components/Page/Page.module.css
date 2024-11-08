@@ -1,0 +1,14 @@
+.container {
+  animation: animationPage 0.3s ease-in;
+}
+
+@keyframes animationPage {
+  from {
+    transform: translate(0, 10%) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+}

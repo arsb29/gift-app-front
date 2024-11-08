@@ -6,6 +6,7 @@
   padding: 9px 16px;
   gap: 12px;
   align-items: center;
+  animation: animationNotification 0.3s ease-in;
 }
 
 .content {
@@ -34,4 +35,15 @@
 .button {
   color: var(--accent-cyan);
   cursor: pointer;
+}
+
+@keyframes animationNotification {
+  from {
+    transform: translate(0, 30%);
+    opacity: 0.7;
+  }
+  to {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
 }

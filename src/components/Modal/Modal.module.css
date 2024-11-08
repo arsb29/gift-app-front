@@ -7,10 +7,35 @@
   margin: auto 0 0;
   max-width: 100%;
   outline: none;
+  animation: modalAnimation 0.3s ease-in;
+}
+
+.dialog::backdrop {
+  animation: animationBackdrop 0.3s ease-in;
 }
 
 .close {
   position: absolute;
   top: 12px;
   right: 16px;
+}
+
+@keyframes modalAnimation {
+  from {
+    transform: translate(0, 30%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes animationBackdrop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.3;
+  }
 }

@@ -25,4 +25,16 @@
   padding: 0 10px;
   border-top: 0.33px solid var(--separator);
   background-color: var(--bg-color);
+  animation: animationFixedItem 0.3s ease-in;
+}
+
+@keyframes animationFixedItem {
+  from {
+    transform: translate(0, 10%) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
 }
