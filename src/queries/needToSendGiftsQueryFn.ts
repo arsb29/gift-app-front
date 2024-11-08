@@ -12,5 +12,6 @@ export const checkTransactionQueryFn = async (): Promise<FullTransaction[]> => {
       },
     },
   );
+  if (!response.ok) return Promise.reject();
   return await response.json();
 };

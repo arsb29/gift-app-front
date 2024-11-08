@@ -12,5 +12,6 @@ export const leaderboardQueryFn = async ({ pageParam }: any) => {
       body: JSON.stringify({ page: pageParam, limit: 20 }),
     },
   );
+  if (!response.ok) return Promise.reject();
   return await response.json();
 };

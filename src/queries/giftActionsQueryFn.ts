@@ -14,5 +14,6 @@ export const giftActionsQueryFn =
         body: JSON.stringify({ page: pageParam, limit: 20, gift: id }),
       },
     );
+    if (!response.ok) return Promise.reject();
     return await response.json();
   };

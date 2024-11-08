@@ -11,5 +11,6 @@ export const userIdQueryFn =
         "Content-Type": "application/json",
       },
     });
+    if (!response.ok) return Promise.reject();
     return await response.json();
   };

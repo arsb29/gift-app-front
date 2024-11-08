@@ -14,6 +14,7 @@ export const createTransactionQueryFn = (_id?: string) => async () => {
       body: JSON.stringify({ _id }),
     },
   );
+  if (!response.ok) return Promise.reject();
   const transaction = await response.json();
   openTelegramLink(transaction.miniAppPayUrl);
 };

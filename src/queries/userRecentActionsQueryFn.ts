@@ -15,5 +15,6 @@ export const userRecentActionsQueryFn =
         body: JSON.stringify({ user: id, page: pageParam, limit: 20 }),
       },
     );
+    if (!response.ok) return Promise.reject();
     return await response.json();
   };

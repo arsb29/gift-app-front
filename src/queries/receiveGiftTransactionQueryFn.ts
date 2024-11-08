@@ -14,5 +14,6 @@ export const receiveGiftTransactionQueryFn =
         body: JSON.stringify({ transactionId }),
       },
     );
+    if (!response.ok) return Promise.reject();
     return await response.json();
   };

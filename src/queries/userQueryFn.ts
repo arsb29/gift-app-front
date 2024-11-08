@@ -9,5 +9,6 @@ export const userQueryFn = async (): Promise<User> => {
       "Content-Type": "application/json",
     },
   });
+  if (!response.ok) return Promise.reject();
   return await response.json();
 };
