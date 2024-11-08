@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Page } from "@/components/Page/Page.tsx";
 import { FullTransaction } from "@/types.ts";
 import { QUERY_KEYS } from "@/constants.ts";
-import styles from "./MyGifts.module.css";
+import styles from "./GiftsPurchasedPage.module.css";
 import { Header } from "@/components/Header/Header.tsx";
 import { checkTransactionQueryFn } from "@/queries/needToSendGiftsQueryFn.ts";
 import { GiftPurchased } from "@/components/GiftPurchased/GiftPurchased.tsx";
@@ -16,7 +16,7 @@ import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { ROUTES_PATHS } from "@/navigation/routes.tsx";
 
-export function MyGifts() {
+export function GiftsPurchasedPage() {
   const {
     isPending,
     isError,

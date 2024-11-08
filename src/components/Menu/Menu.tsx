@@ -19,7 +19,7 @@ export function Menu() {
         label={getFormatText({ text: TEXTS.menuStore[languageCode] })}
       />
       <MenuElement
-        route={ROUTES_PATHS.mygifts}
+        route={ROUTES_PATHS.giftsPurchased}
         icon={ICON_ANIMATION.tabGifts}
         label={getFormatText({ text: TEXTS.menuGifts[languageCode] })}
       />
