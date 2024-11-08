@@ -43,6 +43,11 @@
   color: var(--white);
 }
 
+.soldOut {
+  background-color: var(--bg-secondary);
+  color: var(--label-secondary);
+}
+
 .amount {
   font: var(--text13);
 }

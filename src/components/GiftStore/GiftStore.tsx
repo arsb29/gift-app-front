@@ -21,8 +21,10 @@ export const GiftStore = forwardRef(
     const navigate = useNavigate();
     const { languageCode } = useLanguageContext();
     const { gift } = props;
+    const isSoldOut = gift.numberOfPurchased >= gift.totalNumberOf;
     const handleClick = useCallback(() => {
-      navigate(generatePath(ROUTES_PATHS.gift, { giftId: gift._id }));
+      if (!isSoldOut)
+        navigate(generatePath(ROUTES_PATHS.gift, { giftId: gift._id }));
     }, [navigate, gift._id]);
     return (
       <div
@@ -34,9 +36,7 @@ export const GiftStore = forwardRef(
           {getFormatText({
             text: TEXTS.currentOfTotal[languageCode],
             params: {
-              current: formatNumber(
-                gift.numberOfPurchased + gift.numberOfBooked,
-              ),
+              current: formatNumber(gift.numberOfPurchased),
               total: formatNumber(gift.totalNumberOf),
             },
           })}
@@ -48,12 +48,17 @@ export const GiftStore = forwardRef(
           keepLastFrame
         />
         <div className={styles.title}>{gift.title[languageCode]}</div>
-        <div className={styles.buyButton}>
-          <IconAsset asset={CRYPTO_ASSET[gift.asset]} size={24} />
-          <div className={styles.amount}>
-            {gift.amount} {gift.asset}
+        {isSoldOut && (
+          <div className={cc(styles.soldOut, styles.buyButton)}>Sold Out</div>
+        )}
+        {!isSoldOut && (
+          <div className={styles.buyButton}>
+            <IconAsset asset={CRYPTO_ASSET[gift.asset]} size={24} />
+            <div className={styles.amount}>
+              {gift.amount} {gift.asset}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     );
   },

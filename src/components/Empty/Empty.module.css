@@ -29,6 +29,7 @@
 
 .button {
   color: var(--primary);
+  cursor: pointer;
 }
 
 .margin {

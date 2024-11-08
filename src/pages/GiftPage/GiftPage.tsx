@@ -96,9 +96,7 @@ export const GiftPage: FC = () => {
             {getFormatText({
               text: TEXTS.currentOfTotal[languageCode],
               params: {
-                current: formatNumber(
-                  gift.numberOfPurchased + gift.numberOfBooked,
-                ),
+                current: formatNumber(gift.numberOfPurchased),
                 total: formatNumber(gift.totalNumberOf),
               },
             })}
