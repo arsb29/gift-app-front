@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Page } from "@/components/Page/Page.tsx";
 import { Gift } from "@/types.ts";
 import { QUERY_KEYS } from "@/constants.ts";
-import { giftsQueryFn } from "@/queries/giftsQueryFn.ts";
+import { storeQueryFn } from "@/queries/storeQueryFn.ts";
 import { GiftStore } from "@/components/GiftStore/GiftStore.tsx";
 import styles from "./StorePage.module.css";
 import { Header } from "@/components/Header/Header.tsx";
@@ -22,7 +22,7 @@ export const StorePage: FC = () => {
     isFetchNextPageError,
   } = useInfinite<Gift[]>({
     queryKey: [QUERY_KEYS.gifts],
-    queryFn: giftsQueryFn,
+    queryFn: storeQueryFn,
   });
   const { languageCode } = useLanguageContext();
   if (isPending) return <Loader />;

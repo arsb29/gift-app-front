@@ -5,7 +5,7 @@ import { toMilliseconds } from "@/helpers/toMilliseconds.ts";
 import { useNavigate, useParams } from "react-router-dom";
 import { ICON_ANIMATION, QUERY_KEYS } from "@/constants.ts";
 import { createTransactionQueryFn } from "@/queries/createTransactionQueryFn.ts";
-import { giftsQueryFn } from "@/queries/giftsQueryFn.ts";
+import { storeQueryFn } from "@/queries/storeQueryFn.ts";
 import { Page } from "@/components/Page/Page.tsx";
 import styles from "./GiftPage.module.css";
 import { formatNumber } from "@/helpers/formatNumber.ts";
@@ -73,7 +73,7 @@ export const GiftPage: FC = () => {
   } = useQuery<Gift[]>({
     //todo вынести и убрать дублирование запросов
     queryKey: [QUERY_KEYS.gifts],
-    queryFn: giftsQueryFn,
+    queryFn: storeQueryFn,
     staleTime: toMilliseconds({ minutes: 1 }),
   });
   const gift = gifts?.find((g) => g._id === id);

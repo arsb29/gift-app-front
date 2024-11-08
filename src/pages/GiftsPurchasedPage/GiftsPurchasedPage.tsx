@@ -1,4 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
 import { Page } from "@/components/Page/Page.tsx";
 import { FullTransaction } from "@/types.ts";
 import { QUERY_KEYS } from "@/constants.ts";
@@ -15,13 +14,17 @@ import { Empty } from "@/components/Empty/Empty.tsx";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { ROUTES_PATHS } from "@/navigation/routes.tsx";
+import { useInfinite } from "@/hooks/useInfinite.ts";
 
 export function GiftsPurchasedPage() {
   const {
     isPending,
+    list: transactions,
     isError,
-    data: transactions,
-  } = useQuery<FullTransaction[]>({
+    lastElementRef,
+    isFetchingNextPage,
+    isFetchNextPageError,
+  } = useInfinite<FullTransaction[]>({
     queryKey: [QUERY_KEYS.myGifts],
     queryFn: checkTransactionQueryFn,
   });
@@ -31,7 +34,7 @@ export function GiftsPurchasedPage() {
     navigate(ROUTES_PATHS.store);
   }, [navigate]);
   if (isPending) return <Loader />;
-  if (isError) return <Error />;
+  if (isError || isFetchNextPageError) return <Error />;
   return (
     <Page back={false} withMenu className={styles.container} key="page">
       <Header
@@ -56,11 +59,16 @@ export function GiftsPurchasedPage() {
       )}
       {transactions.length > 0 && (
         <div className={styles.list}>
-          {transactions.map((transaction) => (
-            <GiftPurchased transaction={transaction} key={transaction._id} />
+          {transactions.map((transaction, index) => (
+            <GiftPurchased
+              transaction={transaction}
+              key={transaction._id}
+              ref={transactions.length === index + 1 ? lastElementRef : null}
+            />
           ))}
         </div>
       )}
+      {isFetchingNextPage && <Loader />}
     </Page>
   );
 }
