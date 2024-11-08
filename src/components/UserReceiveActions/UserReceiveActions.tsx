@@ -26,6 +26,8 @@ export function UserReceiveActions(props: Props) {
     list: actions,
     isError,
     lastElementRef,
+    isFetchingNextPage,
+    isFetchNextPageError,
   } = useInfinite<Action[]>({
     queryKey: [`userReceiveActions-${userId}`],
     queryFn: userReceiveActionsQueryFn(userId),
@@ -35,7 +37,7 @@ export function UserReceiveActions(props: Props) {
     navigate(ROUTES_PATHS.store);
   }, [navigate]);
   if (isPending) return <Loader />;
-  if (isError) return <Error />;
+  if (isError || isFetchNextPageError) return <Error />;
   const isEmpty = actions.length === 0;
   if (isEmpty) {
     if (isOwnProfile)
@@ -62,18 +64,21 @@ export function UserReceiveActions(props: Props) {
   }
 
   return (
-    <div className={styles.container}>
-      {actions.map((action, index) => {
-        if (actions.length === index + 1)
-          return (
-            <GiftInProfile
-              ref={lastElementRef}
-              key={action._id}
-              action={action}
-            />
-          );
-        return <GiftInProfile key={action._id} action={action} />;
-      })}
-    </div>
+    <>
+      <div className={styles.container}>
+        {actions.map((action, index) => {
+          if (actions.length === index + 1)
+            return (
+              <GiftInProfile
+                ref={lastElementRef}
+                key={action._id}
+                action={action}
+              />
+            );
+          return <GiftInProfile key={action._id} action={action} />;
+        })}
+      </div>
+      {isFetchingNextPage && <Loader />}
+    </>
   );
 }

@@ -27,6 +27,8 @@ export const Leaderboard: FC = () => {
     list: users,
     isError,
     lastElementRef,
+    isFetchingNextPage,
+    isFetchNextPageError,
   } = useInfinite<User[]>({
     queryKey: [QUERY_KEYS.leaderboard],
     queryFn: leaderboardQueryFn,
@@ -44,7 +46,7 @@ export const Leaderboard: FC = () => {
   );
 
   if (isPending) return <Loader />;
-  if (isError) return <Error />;
+  if (isError || isFetchNextPageError) return <Error />;
   return (
     <Page withMenu className={cc(styles.container)}>
       <Input
@@ -67,6 +69,7 @@ export const Leaderboard: FC = () => {
           return <LeaderboardItem key={user._id} user={user} />;
         })}
       </div>
+      {isFetchingNextPage && <Loader />}
     </Page>
   );
 };
