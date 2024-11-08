@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react";
+import { FC, useEffect, useMemo } from "react";
 import { Page } from "@/components/Page/Page.tsx";
 import { Action } from "@/types.ts";
 import { userRecentActionsQueryFn } from "@/queries/userRecentActionsQueryFn.ts";
@@ -14,6 +14,7 @@ import { getFormatText } from "@/helpers/getFormatText.ts";
 import { TEXTS } from "@/texts.tsx";
 import { Loader } from "@/components/Loader/Loader.tsx";
 import { Error } from "@/components/Error/Error.tsx";
+import { useMenuContext } from "@/contexts/menu/MenuContext.tsx";
 
 const groupActionsByDate = (actions: Action[]) => {
   return actions.reduce((grouped: Record<string, Action[]>, action) => {
@@ -28,11 +29,13 @@ const groupActionsByDate = (actions: Action[]) => {
 
 export const ProfileRecentActions: FC = () => {
   const { id } = useParams();
+  const { onShowMenu, onHideMenu } = useMenuContext();
   const {
     isPending,
     list: actions,
     isError,
     lastElementRef,
+    isFetchingNextPage,
   } = useInfinite<Action[]>({
     queryKey: [`ProfileRecentActions-${id}`],
     queryFn: userRecentActionsQueryFn(id),
@@ -42,6 +45,12 @@ export const ProfileRecentActions: FC = () => {
     () => groupActionsByDate(actions),
     [actions],
   );
+  useEffect(() => {
+    onHideMenu();
+    return () => {
+      onShowMenu();
+    };
+  }, []);
   if (isPending) return <Loader />;
   if (isError) return <Error />;
   const isEmpty = actions.length === 0;
@@ -58,7 +67,7 @@ export const ProfileRecentActions: FC = () => {
         />
       </Page>
     );
-
+  const groupsCount = Object.entries(groupedActionsByDate).length;
   return (
     <Page className={styles.container}>
       <Header
@@ -69,16 +78,28 @@ export const ProfileRecentActions: FC = () => {
           text: TEXTS.profileRecentActionsPageDescription[languageCode],
         })}
       />
-      {Object.entries(groupedActionsByDate).map(([date, groupActions]) => (
-        <div className={styles.list} key={`group-${date}`} ref={lastElementRef}>
-          <div key={date} className={styles.date}>
-            {formatDate({ date, language: languageCode })}
+      {Object.entries(groupedActionsByDate).map(
+        ([date, groupActions], groupIndex) => (
+          <div className={styles.list} key={`group-${date}`}>
+            <div key={date} className={styles.date}>
+              {formatDate({ date, language: languageCode })}
+            </div>
+            {groupActions.map((actionFromGroup, actionIndex) => (
+              <RecentAction
+                action={actionFromGroup}
+                key={actionFromGroup._id}
+                ref={
+                  groupsCount === groupIndex + 1 &&
+                  groupActions.length === actionIndex + 1
+                    ? lastElementRef
+                    : null
+                }
+              />
+            ))}
           </div>
-          {groupActions.map((actionFromGroup) => (
-            <RecentAction action={actionFromGroup} key={actionFromGroup._id} />
-          ))}
-        </div>
-      ))}
+        ),
+      )}
+      {isFetchingNextPage && <Loader />}
     </Page>
   );
 };

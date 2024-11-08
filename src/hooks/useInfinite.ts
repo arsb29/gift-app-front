@@ -46,5 +46,5 @@ export function useInfinite<T>(options: Options) {
     [isFetchingNextPage, fetchNextPage, hasNextPage],
   );
 
-  return { list, lastElementRef, isPending, isError };
+  return { list, lastElementRef, isPending, isError, isFetchingNextPage };
 }
