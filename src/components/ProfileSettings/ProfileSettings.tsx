@@ -1,12 +1,11 @@
 import styles from "./ProfileSettings.module.css";
 import IconLight from "@/assets/light.svg?react";
 import IconDark from "@/assets/dark.svg?react";
-
 import { Toggle } from "@/components/Toggle/Toggle.tsx";
 import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 import { ToggleValue } from "@/types.ts";
 import { LANGUAGE_CODE, THEME } from "@/constants.ts";
-import { useThemeSettings } from "@/hooks/useThemeSettings.ts";
+import { useThemeContext } from "@/contexts/theme/ThemeContext.tsx";
 
 const SETTINGS_LANGUAGE_VALUES: ToggleValue[] = [
   { value: LANGUAGE_CODE.en, title: "EN" },
@@ -19,7 +18,7 @@ const SETTINGS_THEME_VALUES: ToggleValue[] = [
 ];
 
 export function ProfileSettings() {
-  const { onChange: onChangeTheme, theme } = useThemeSettings();
+  const { onChange: onChangeTheme, theme } = useThemeContext();
   const { onChange, languageCode } = useLanguageContext();
   return (
     <div className={styles.container}>
