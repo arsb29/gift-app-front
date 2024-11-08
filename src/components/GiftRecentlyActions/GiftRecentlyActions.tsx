@@ -13,14 +13,21 @@ import { TEXTS } from "@/texts.tsx";
 import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 
 export const GiftRecentlyActions: FC = () => {
-  const { id = "" } = useParams();
+  const { giftId = "" } = useParams();
   const { languageCode } = useLanguageContext();
-  const { isPending, list, isError, lastElementRef } = useInfinite<Action[]>({
-    queryKey: [`GiftRecentlyActions-${id}`],
-    queryFn: giftActionsQueryFn(id),
+  const {
+    isPending,
+    list,
+    isError,
+    lastElementRef,
+    isFetchingNextPage,
+    isFetchNextPageError,
+  } = useInfinite<Action[]>({
+    queryKey: [`GiftRecentlyActions-${giftId}`],
+    queryFn: giftActionsQueryFn(giftId),
   });
   if (isPending) return <Loader />;
-  if (isError) return <Error />;
+  if (isError || isFetchNextPageError) return <Error />;
   if (list.length === 0)
     return (
       <Empty
@@ -34,18 +41,17 @@ export const GiftRecentlyActions: FC = () => {
       />
     );
   return (
-    <div className={styles.list}>
-      {list.map((action, index) => {
-        if (list.length === index + 1)
-          return (
-            <GiftRecentlyAction
-              key={action._id}
-              action={action}
-              ref={lastElementRef}
-            />
-          );
-        return <GiftRecentlyAction key={action._id} action={action} />;
-      })}
-    </div>
+    <>
+      <div className={styles.list}>
+        {list.map((action, index) => (
+          <GiftRecentlyAction
+            key={action._id}
+            action={action}
+            ref={list.length === index + 1 ? lastElementRef : null}
+          />
+        ))}
+      </div>
+      {isFetchingNextPage && <Loader />}
+    </>
   );
 };

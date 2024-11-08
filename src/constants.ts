@@ -20,6 +20,7 @@ export const QUERY_KEYS = {
   gifts: "gifts",
   myGifts: "myGifts",
   leaderboard: "leaderboard",
+  createTransactionQueryFn: "createTransactionQueryFn",
 } as const;
 
 export const GIFT_ID = {

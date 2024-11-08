@@ -7,7 +7,7 @@ import { formatNumber } from "@/helpers/formatNumber.ts";
 import { cc } from "@/helpers/classConcat.ts";
 import { ForwardedRef, forwardRef, useCallback } from "react";
 import { ROUTES_PATHS } from "@/navigation/routes.tsx";
-import { useNavigate } from "react-router-dom";
+import { generatePath, useNavigate } from "react-router-dom";
 import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 import { getFormatText } from "@/helpers/getFormatText.ts";
 import { TEXTS } from "@/texts.tsx";
@@ -22,7 +22,7 @@ export const GiftStore = forwardRef(
     const { languageCode } = useLanguageContext();
     const { gift } = props;
     const handleClick = useCallback(() => {
-      navigate(`${ROUTES_PATHS.store}/${gift._id}`);
+      navigate(generatePath(ROUTES_PATHS.gift, { giftId: gift._id }));
     }, [navigate, gift._id]);
     return (
       <div

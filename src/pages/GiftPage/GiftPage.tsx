@@ -5,7 +5,6 @@ import { toMilliseconds } from "@/helpers/toMilliseconds.ts";
 import { useNavigate, useParams } from "react-router-dom";
 import { ICON_ANIMATION, QUERY_KEYS } from "@/constants.ts";
 import { createTransactionQueryFn } from "@/queries/createTransactionQueryFn.ts";
-import { storeQueryFn } from "@/queries/storeQueryFn.ts";
 import { Page } from "@/components/Page/Page.tsx";
 import styles from "./GiftPage.module.css";
 import { formatNumber } from "@/helpers/formatNumber.ts";
@@ -27,20 +26,31 @@ import { getFormatText } from "@/helpers/getFormatText.ts";
 import { TEXTS } from "@/texts.tsx";
 import { Loader } from "@/components/Loader/Loader.tsx";
 import { Error } from "@/components/Error/Error.tsx";
+import { storeIdQueryFn } from "@/queries/storeIdQueryFn.ts";
 
 export const GiftPage: FC = () => {
-  const { id } = useParams();
+  const { giftId } = useParams();
   const navigate = useNavigate();
   const { onHideMenu, onShowMenu } = useMenuContext();
   const { languageCode } = useLanguageContext();
   const { refetch } = useQuery({
-    queryKey: ["createTransactionQueryFn"],
-    queryFn: createTransactionQueryFn(id),
+    queryKey: [QUERY_KEYS.createTransactionQueryFn],
+    queryFn: createTransactionQueryFn(giftId),
     enabled: false,
   });
   const handleBack = useCallback(() => {
     navigate(ROUTES_PATHS.store);
   }, [navigate]);
+
+  const {
+    isPending,
+    isError,
+    data: gift,
+  } = useQuery<Gift>({
+    queryKey: [`${QUERY_KEYS.gifts}-${giftId}`],
+    queryFn: storeIdQueryFn(giftId),
+    staleTime: toMilliseconds({ minutes: 1 }),
+  });
 
   useEffect(() => {
     onHideMenu();
@@ -53,7 +63,7 @@ export const GiftPage: FC = () => {
     mountMainButton();
     setMainButtonParams({
       hasShineEffect: true,
-      isVisible: true,
+      isVisible: Boolean(gift),
       text: getFormatText({
         text: TEXTS.giftPageTelegramMainButton[languageCode],
       }) as string,
@@ -64,19 +74,8 @@ export const GiftPage: FC = () => {
       setMainButtonParams({ isVisible: false });
       unmountMainButton();
     };
-  }, [languageCode, id]);
+  }, [languageCode, giftId]);
 
-  const {
-    isPending,
-    isError,
-    data: gifts,
-  } = useQuery<Gift[]>({
-    //todo вынести и убрать дублирование запросов
-    queryKey: [QUERY_KEYS.gifts],
-    queryFn: storeQueryFn,
-    staleTime: toMilliseconds({ minutes: 1 }),
-  });
-  const gift = gifts?.find((g) => g._id === id);
   if (isPending) return <Loader />;
   if (isError || !gift) return <Error />;
   return (

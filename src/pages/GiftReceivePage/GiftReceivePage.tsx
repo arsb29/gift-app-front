@@ -12,6 +12,7 @@ import {
   setMainButtonParams,
   unmountMainButton,
   onMainButtonClick,
+  offMainButtonClick,
 } from "@telegram-apps/sdk-react";
 import { ROUTES_PATHS } from "@/navigation/routes.tsx";
 import { receiveGiftTransactionQueryFn } from "@/queries/receiveGiftTransactionQueryFn.ts";
@@ -76,8 +77,9 @@ export function GiftReceivePage() {
         text: TEXTS.giftReceivedPageTelegramMainButton[languageCode],
       }) as string,
     });
-    onMainButtonClick(() => navigate(ROUTES_PATHS.profile));
+    onMainButtonClick(handleNotificationClick);
     return () => {
+      offMainButtonClick(handleNotificationClick);
       setMainButtonParams({ isVisible: false });
       unmountMainButton();
     };

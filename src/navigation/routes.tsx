@@ -19,7 +19,7 @@ interface Route {
 export const ROUTES_PATHS = {
   store: "/store",
   giftsPurchased: "/giftsPurchased",
-  gift: "/gifts/:id",
+  gift: "/gifts/:giftId",
   giftPaid: "/gifts/paid/:id",
   giftReceive: "/gifts/receive/:transactionId",
   leaderboard: "/leaderboard",
