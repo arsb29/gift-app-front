@@ -18,7 +18,10 @@ export function Avatar(props: Props) {
   useEffect(() => {
     if (imageId) {
       fetch(`${import.meta.env.VITE_ENDPOINT}image/${imageId}`, {
-        headers: { authorization: getAuthorizationHeader() },
+        headers: {
+          authorization: getAuthorizationHeader(),
+          "Cache-Control": "public",
+        },
       })
         .then((res) => {
           if (res.ok) return res.text();
