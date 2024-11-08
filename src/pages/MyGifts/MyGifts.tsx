@@ -28,7 +28,7 @@ export function MyGifts() {
   const navigate = useNavigate();
   const { languageCode } = useLanguageContext();
   const handleOpenStore = useCallback(() => {
-    navigate(ROUTES_PATHS.gifts);
+    navigate(ROUTES_PATHS.store);
   }, [navigate]);
   if (isPending) return <Loader />;
   if (isError) return <Error />;

@@ -39,7 +39,7 @@ export const GiftPage: FC = () => {
     enabled: false,
   });
   const handleBack = useCallback(() => {
-    navigate(ROUTES_PATHS.gifts);
+    navigate(ROUTES_PATHS.store);
   }, [navigate]);
 
   useEffect(() => {

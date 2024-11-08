@@ -1,5 +1,5 @@
 import type { ComponentType, JSX } from "react";
-import { GiftsPage } from "@/pages/GiftsPage/GiftsPage.tsx";
+import { StorePage } from "@/pages/StorePage/StorePage.tsx";
 import { GiftPage } from "@/pages/GiftPage/GiftPage.tsx";
 import { GiftPurchasedPage } from "@/pages/GiftPurchasedPage/GiftPurchasedPage.tsx";
 import { MyGifts } from "@/pages/MyGifts/MyGifts.tsx";
@@ -17,7 +17,7 @@ interface Route {
 }
 
 export const ROUTES_PATHS = {
-  gifts: "/gifts",
+  store: "/store",
   mygifts: "/mygifts",
   gift: "/gifts/:id",
   giftPaid: "/gifts/paid/:id",
@@ -29,7 +29,7 @@ export const ROUTES_PATHS = {
 } as const;
 
 export const routes: Route[] = [
-  { path: ROUTES_PATHS.gifts, Component: GiftsPage },
+  { path: ROUTES_PATHS.store, Component: StorePage },
   { path: ROUTES_PATHS.gift, Component: GiftPage },
   { path: ROUTES_PATHS.giftPaid, Component: GiftPurchasedPage },
   { path: ROUTES_PATHS.mygifts, Component: MyGifts },

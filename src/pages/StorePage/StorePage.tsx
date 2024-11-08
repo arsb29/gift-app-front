@@ -4,7 +4,7 @@ import { Gift } from "@/types.ts";
 import { QUERY_KEYS } from "@/constants.ts";
 import { giftsQueryFn } from "@/queries/giftsQueryFn.ts";
 import { GiftStore } from "@/components/GiftStore/GiftStore.tsx";
-import styles from "./GiftsPage.module.css";
+import styles from "./StorePage.module.css";
 import { Header } from "@/components/Header/Header.tsx";
 import { getFormatText } from "@/helpers/getFormatText.ts";
 import { TEXTS } from "@/texts.tsx";
@@ -12,7 +12,7 @@ import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 import { Loader } from "@/components/Loader/Loader.tsx";
 import { Error } from "@/components/Error/Error.tsx";
 import { useInfinite } from "@/hooks/useInfinite.ts";
-export const GiftsPage: FC = () => {
+export const StorePage: FC = () => {
   const {
     isPending,
     list: gifts,

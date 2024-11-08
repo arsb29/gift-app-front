@@ -52,7 +52,7 @@ export function GiftPurchasedPage() {
     }
   }, [transaction?.gift?.giftId]);
   const handleSecondaryButtonClick = useCallback(() => {
-    navigate(ROUTES_PATHS.gifts);
+    navigate(ROUTES_PATHS.store);
   }, [navigate]);
   useEffect(() => {
     if (transaction?._id) {

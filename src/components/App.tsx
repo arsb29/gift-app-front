@@ -25,7 +25,7 @@ export function App() {
                 ))}
                 <Route
                   path="*"
-                  element={<Navigate to={ROUTES_PATHS.gifts} />}
+                  element={<Navigate to={ROUTES_PATHS.store} />}
                 />
               </Routes>
               <Menu />

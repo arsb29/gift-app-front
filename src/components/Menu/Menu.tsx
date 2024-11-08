@@ -14,7 +14,7 @@ export function Menu() {
   return (
     <div className={styles.container}>
       <MenuElement
-        route={ROUTES_PATHS.gifts}
+        route={ROUTES_PATHS.store}
         icon={ICON_ANIMATION.tabStore}
         label={getFormatText({ text: TEXTS.menuStore[languageCode] })}
       />

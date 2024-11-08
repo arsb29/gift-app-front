@@ -32,7 +32,7 @@ export function UserReceiveActions(props: Props) {
   });
   const navigate = useNavigate();
   const handleOpenStore = useCallback(() => {
-    navigate(ROUTES_PATHS.gifts);
+    navigate(ROUTES_PATHS.store);
   }, [navigate]);
   if (isPending) return <Loader />;
   if (isError) return <Error />;

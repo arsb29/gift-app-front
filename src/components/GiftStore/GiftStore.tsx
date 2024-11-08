@@ -22,7 +22,7 @@ export const GiftStore = forwardRef(
     const { languageCode } = useLanguageContext();
     const { gift } = props;
     const handleClick = useCallback(() => {
-      navigate(`${ROUTES_PATHS.gifts}/${gift._id}`);
+      navigate(`${ROUTES_PATHS.store}/${gift._id}`);
     }, [navigate, gift._id]);
     return (
       <div
