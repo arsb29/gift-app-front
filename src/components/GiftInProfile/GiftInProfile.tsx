@@ -1,4 +1,4 @@
-import { Action } from "@/types.ts";
+import { FullTransaction } from "@/types.ts";
 import { IconAnimation } from "@/components/IconAnimation/IconAnimation.tsx";
 import { Avatar } from "@/components/Avatar/Avatar.tsx";
 import styles from "./GiftInProfile.module.css";
@@ -11,14 +11,13 @@ import { getFormatText } from "@/helpers/getFormatText.ts";
 import { TEXTS } from "@/texts.tsx";
 
 type Props = {
-  action: Action;
+  transaction: FullTransaction;
 };
 
 export const GiftInProfile = forwardRef(
   (props: Props, ref: LegacyRef<HTMLDivElement>) => {
-    const { action } = props;
+    const { transaction } = props;
     const { languageCode } = useLanguageContext();
-    const { transaction } = action;
     const { serialNumberOfGift } = transaction;
     const [openModal, setOpenModal] = useState<boolean>(false);
     const handleClickOpenModal = useCallback(() => {
@@ -27,7 +26,7 @@ export const GiftInProfile = forwardRef(
     const handleClickCloseModal = useCallback(() => {
       setOpenModal(false);
     }, []);
-    const { gift, sender } = action;
+    const { gift, sender } = transaction;
     return (
       <>
         <div
@@ -56,7 +55,7 @@ export const GiftInProfile = forwardRef(
               gift={gift}
               sender={sender}
               serialNumberOfGift={serialNumberOfGift}
-              time={action.time}
+              time={transaction.updateTime}
               onClick={handleClickCloseModal}
             />
           </Modal>

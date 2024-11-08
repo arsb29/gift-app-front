@@ -1,9 +1,9 @@
-import { Action } from "@/types.ts";
+import { FullTransaction } from "@/types.ts";
 import { useInfinite } from "@/hooks/useInfinite.ts";
 import { Empty } from "@/components/Empty/Empty.tsx";
-import { userReceiveActionsQueryFn } from "@/queries/userRecieveActionsQueryFn.ts";
+import { profileReceiveGiftsQueryFn } from "@/queries/profileReceiveGiftsQueryFn.ts";
 import { GiftInProfile } from "@/components/GiftInProfile/GiftInProfile.tsx";
-import styles from "./UserReceiveActions.module.css";
+import styles from "./ProfileReceiveGifts.module.css";
 import { TEXTS } from "@/texts.tsx";
 import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 import { getFormatText } from "@/helpers/getFormatText.ts";
@@ -18,19 +18,19 @@ type Props = {
   isOwnProfile?: boolean;
 };
 
-export function UserReceiveActions(props: Props) {
+export function ProfileReceiveGifts(props: Props) {
   const { userId, isOwnProfile } = props;
   const { languageCode } = useLanguageContext();
   const {
     isPending,
-    list: actions,
+    list: transactions,
     isError,
     lastElementRef,
     isFetchingNextPage,
     isFetchNextPageError,
-  } = useInfinite<Action[]>({
-    queryKey: [`userReceiveActions-${userId}`],
-    queryFn: userReceiveActionsQueryFn(userId),
+  } = useInfinite<FullTransaction[]>({
+    queryKey: [`ProfileReceiveGifts-${userId}`],
+    queryFn: profileReceiveGiftsQueryFn(userId),
   });
   const navigate = useNavigate();
   const handleOpenStore = useCallback(() => {
@@ -38,7 +38,7 @@ export function UserReceiveActions(props: Props) {
   }, [navigate]);
   if (isPending) return <Loader />;
   if (isError || isFetchNextPageError) return <Error />;
-  const isEmpty = actions.length === 0;
+  const isEmpty = transactions.length === 0;
   if (isEmpty) {
     if (isOwnProfile)
       return (
@@ -66,17 +66,13 @@ export function UserReceiveActions(props: Props) {
   return (
     <>
       <div className={styles.container}>
-        {actions.map((action, index) => {
-          if (actions.length === index + 1)
-            return (
-              <GiftInProfile
-                ref={lastElementRef}
-                key={action._id}
-                action={action}
-              />
-            );
-          return <GiftInProfile key={action._id} action={action} />;
-        })}
+        {transactions.map((transaction, index) => (
+          <GiftInProfile
+            ref={transactions.length === index + 1 ? lastElementRef : null}
+            key={transaction._id}
+            transaction={transaction}
+          />
+        ))}
       </div>
       {isFetchingNextPage && <Loader />}
     </>

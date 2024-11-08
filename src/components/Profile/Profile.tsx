@@ -5,7 +5,7 @@ import { ProfileInfo } from "@/components/ProfileInfo/ProfileInfo.tsx";
 import { generatePath, useNavigate } from "react-router-dom";
 import { useCallback } from "react";
 import { ROUTES_PATHS } from "@/navigation/routes.tsx";
-import { UserReceiveActions } from "@/components/UserReceiveActions/UserReceiveActions.tsx";
+import { ProfileReceiveGifts } from "@/components/ProfileReceiveGifts/ProfileReceiveGifts.tsx";
 import { ProfileSettings } from "@/components/ProfileSettings/ProfileSettings.tsx";
 import { TEXTS } from "@/texts.tsx";
 import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
@@ -36,7 +36,7 @@ export function Profile(props: Props) {
           {getFormatText({ text: TEXTS.profileRecentActions[languageCode] })}
         </div>
       </div>
-      <UserReceiveActions userId={user._id} isOwnProfile={isOwnProfile} />
+      <ProfileReceiveGifts userId={user._id} isOwnProfile={isOwnProfile} />
     </div>
   );
 }
