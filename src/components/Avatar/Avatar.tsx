@@ -17,7 +17,7 @@ export function Avatar(props: Props) {
   const [image, setImage] = useState<string | null>(null);
   useEffect(() => {
     if (imageId) {
-      fetch(`${import.meta.env.VITE_ENDPOINT}image/${imageId}`, {
+      fetch(`${import.meta.env.VITE_ENDPOINT}/image/${imageId}`, {
         headers: {
           authorization: getAuthorizationHeader(),
           "Cache-Control": "public",

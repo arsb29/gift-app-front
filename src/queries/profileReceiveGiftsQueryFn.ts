@@ -5,7 +5,7 @@ export const profileReceiveGiftsQueryFn =
   (userId: string = "") =>
   async ({ pageParam }: any): Promise<User> => {
     const response = await fetch(
-      `${import.meta.env.VITE_ENDPOINT}transaction/giftsReceived`,
+      `${import.meta.env.VITE_ENDPOINT}/transaction/giftsReceived`,
       {
         method: "POST",
         headers: {

@@ -4,7 +4,7 @@ import { FullTransaction } from "@/types.ts";
 export const receiveGiftTransactionQueryFn =
   (transactionId?: string) => async (): Promise<FullTransaction> => {
     const response = await fetch(
-      `${import.meta.env.VITE_ENDPOINT}transaction/receive`,
+      `${import.meta.env.VITE_ENDPOINT}/transaction/receive`,
       {
         method: "POST",
         headers: {

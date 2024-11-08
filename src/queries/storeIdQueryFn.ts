@@ -1,7 +1,7 @@
 import { getAuthorizationHeader } from "@/helpers/getAthorizationHeader.ts";
 
 export const storeIdQueryFn = (id?: string) => async () => {
-  const response = await fetch(`${import.meta.env.VITE_ENDPOINT}store/${id}`, {
+  const response = await fetch(`${import.meta.env.VITE_ENDPOINT}/store/${id}`, {
     method: "GET",
     headers: {
       authorization: getAuthorizationHeader(),

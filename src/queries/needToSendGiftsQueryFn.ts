@@ -5,7 +5,7 @@ export const checkTransactionQueryFn = async ({
   pageParam,
 }: any): Promise<FullTransaction[]> => {
   const response = await fetch(
-    `${import.meta.env.VITE_ENDPOINT}transaction/needToSend`,
+    `${import.meta.env.VITE_ENDPOINT}/transaction/needToSend`,
     {
       method: "POST",
       headers: {

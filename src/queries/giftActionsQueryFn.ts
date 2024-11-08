@@ -4,7 +4,7 @@ export const giftActionsQueryFn =
   (id: string) =>
   async ({ pageParam }: any) => {
     const response = await fetch(
-      `${import.meta.env.VITE_ENDPOINT}actions/gift`,
+      `${import.meta.env.VITE_ENDPOINT}/actions/gift`,
       {
         method: "POST",
         headers: {

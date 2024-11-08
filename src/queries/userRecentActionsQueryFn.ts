@@ -5,7 +5,7 @@ export const userRecentActionsQueryFn =
   (id: string = "") =>
   async ({ pageParam }: any): Promise<User> => {
     const response = await fetch(
-      `${import.meta.env.VITE_ENDPOINT}actions/user`,
+      `${import.meta.env.VITE_ENDPOINT}/actions/user`,
       {
         method: "POST",
         headers: {
