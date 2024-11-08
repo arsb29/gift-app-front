@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { Page } from "@/components/Page/Page.tsx";
 import { Gift } from "@/types.ts";
 import { QUERY_KEYS } from "@/constants.ts";
@@ -12,19 +11,22 @@ import { TEXTS } from "@/texts.tsx";
 import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 import { Loader } from "@/components/Loader/Loader.tsx";
 import { Error } from "@/components/Error/Error.tsx";
-
+import { useInfinite } from "@/hooks/useInfinite.ts";
 export const GiftsPage: FC = () => {
   const {
     isPending,
+    list: gifts,
     isError,
-    data: gifts,
-  } = useQuery<Gift[]>({
+    lastElementRef,
+    isFetchingNextPage,
+    isFetchNextPageError,
+  } = useInfinite<Gift[]>({
     queryKey: [QUERY_KEYS.gifts],
     queryFn: giftsQueryFn,
   });
   const { languageCode } = useLanguageContext();
   if (isPending) return <Loader />;
-  if (isError) return <Error />;
+  if (isError || isFetchNextPageError) return <Error />;
   return (
     <Page back={false} withMenu className={styles.container}>
       <Header
@@ -34,10 +36,15 @@ export const GiftsPage: FC = () => {
         })}
       />
       <div className={styles.list}>
-        {gifts.map((gift) => (
-          <GiftStore gift={gift} key={gift._id} />
+        {gifts.map((gift, index) => (
+          <GiftStore
+            gift={gift}
+            key={gift._id}
+            ref={gifts.length === index + 1 ? lastElementRef : null}
+          />
         ))}
       </div>
+      {isFetchingNextPage && <Loader />}
     </Page>
   );
 };

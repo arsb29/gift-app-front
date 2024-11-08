@@ -15,6 +15,8 @@ export function useInfinite<T>(options: Options) {
     isFetchingNextPage,
     isPending,
     isError,
+    isFetchNextPageError,
+    refetch,
   } = useInfiniteQuery({
     queryKey,
     queryFn,
@@ -26,7 +28,7 @@ export function useInfinite<T>(options: Options) {
   const list = useMemo(() => {
     if (!data?.pages) return [];
     return data?.pages?.reduce(
-      (result, group) => [...result, ...group.items],
+      (result, group) => [...result, ...(group?.items || [])],
       [],
     );
   }, [data]) as T;
@@ -46,5 +48,13 @@ export function useInfinite<T>(options: Options) {
     [isFetchingNextPage, fetchNextPage, hasNextPage],
   );
 
-  return { list, lastElementRef, isPending, isError, isFetchingNextPage };
+  return {
+    list,
+    lastElementRef,
+    isPending,
+    isError,
+    isFetchingNextPage,
+    isFetchNextPageError,
+    refetch,
+  };
 }
