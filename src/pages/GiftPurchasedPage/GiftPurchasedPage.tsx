@@ -124,7 +124,7 @@ export function GiftPurchasedPage() {
       </div>
       <div className={styles.description}>
         {getFormatText({
-          text: TEXTS.giftPurchasedPageTitle[languageCode],
+          text: TEXTS.giftPurchasedPageDescription[languageCode],
           params: {
             gift: transaction.gift.title[languageCode],
             amount: transaction.gift.amount,

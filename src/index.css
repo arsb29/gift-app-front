@@ -28,7 +28,6 @@
   --accent-blue: #007aff;
   --accent-green: #35c759;
   --accent-cyan: #5ac8fa;
-  --bg-notification: #2d2d2dcc;
 
   --text12: normal normal 400 normal 12px/18px SFProRegular, sans-serif;
   --text13: normal normal 400 normal 13px/18px SFProRegular, sans-serif;
@@ -49,6 +48,7 @@
   --modal--close-bg-color: #e3e3e8;
   --input-label-color: #3c3c4399;
   --input-bg-color: var(--bg-secondary);
+  --bg-notification: #2d2d2dcc;
 }
 
 [data-theme="dark"] {
@@ -64,6 +64,7 @@
   --modal--close-bg-color: #2c2c2e;
   --input-label-color: var(--label-secondary);
   --input-bg-color: #00000080;
+  --bg-notification: #000000cc;
 }
 
 * {
