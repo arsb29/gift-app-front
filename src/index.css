@@ -47,6 +47,8 @@
   --modal-bg-color: var(--bg-secondary);
   --modal--close-color: #9e9ea1;
   --modal--close-bg-color: #e3e3e8;
+  --input-label-color: #3c3c4399;
+  --input-bg-color: var(--bg-secondary);
 }
 
 [data-theme="dark"] {
@@ -60,6 +62,8 @@
   --modal-bg-color: #1c1c1e;
   --modal--close-color: var(--label-secondary);
   --modal--close-bg-color: #2c2c2e;
+  --input-label-color: var(--label-secondary);
+  --input-bg-color: #00000080;
 }
 
 * {

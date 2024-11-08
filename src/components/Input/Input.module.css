@@ -7,7 +7,7 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  color: #3c3c4399;
+  color: var(--input-label-color);
   display: flex;
   align-items: center;
   gap: 4px;
@@ -27,10 +27,12 @@
 }
 
 .input {
-  background-color: var(--bg-secondary);
+  background-color: var(--input-bg-color);
   border: none;
   width: 100%;
   padding: 7px 8px 7px 30px;
   border-radius: 10px;
   outline: none;
+  caret-color: var(--input-label-color);
+  color: var(--text-color);
 }
