@@ -14,7 +14,7 @@ export function Header(props: Props) {
     <div className={styles.container}>
       <div className={styles.iconWithText}>
         {withIcon && <IconGift />}
-        <div className={styles.bold}>{title}</div>
+        <div className={styles.title}>{title}</div>
       </div>
       <div className={styles.description}>{description}</div>
     </div>

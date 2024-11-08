@@ -79,6 +79,7 @@ export type FullTransaction = {
   invoiceId: number;
   expiresIn: number;
   miniAppPayUrl: string;
+  updateTime: number;
 };
 
 export type NotificationType = {

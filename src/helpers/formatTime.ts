@@ -5,6 +5,7 @@ export function formatTime(
   time: number,
   languageCode: LanguageCode = LANGUAGE_CODE.en,
 ) {
+  if (!time) return;
   const date = new Date(time);
   const year = date.getFullYear().toString().substr(-2);
   const month = ("0" + (date.getMonth() + 1)).slice(-2);

@@ -17,7 +17,7 @@ export function GiftPurchased(props: Props) {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const { languageCode } = useLanguageContext();
   const { transaction } = props;
-  const { gift, sender, serialNumberOfGift } = transaction;
+  const { gift, sender, serialNumberOfGift, updateTime } = transaction;
   const handleClickOpenModal = useCallback(() => {
     setOpenModal(true);
   }, []);
@@ -42,7 +42,7 @@ export function GiftPurchased(props: Props) {
             gift={gift}
             sender={sender}
             serialNumberOfGift={serialNumberOfGift}
-            time={0}
+            time={updateTime}
           />
         </Modal>
       )}

@@ -19,6 +19,7 @@
   text-align: center;
 }
 
-.bold {
+.title {
   font: var(--text24b);
+  text-align: center;
 }
