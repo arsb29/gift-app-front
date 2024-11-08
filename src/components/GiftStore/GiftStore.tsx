@@ -49,7 +49,9 @@ export const GiftStore = forwardRef(
         />
         <div className={styles.title}>{gift.title[languageCode]}</div>
         {isSoldOut && (
-          <div className={cc(styles.soldOut, styles.buyButton)}>Sold Out</div>
+          <div className={cc(styles.soldOut, styles.buyButton)}>
+            {getFormatText({ text: TEXTS.giftStoreSoldOut[languageCode] })}
+          </div>
         )}
         {!isSoldOut && (
           <div className={styles.buyButton}>

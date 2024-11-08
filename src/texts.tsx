@@ -5,50 +5,45 @@ import { ClickableUserName } from "@/components/ClickableUserName/ClickableUserN
 import { formatName } from "@/helpers/formatName.ts";
 
 export const TEXTS: Record<string, TitleWithLanguage> = {
-  leaderboardIdEmptyGiftsDescriptions: {
-    [LANGUAGE_CODE.en]: "The user has no gifts",
-    [LANGUAGE_CODE.ru]: "У пользователя нет подарков.",
+  currentOfTotal: {
+    [LANGUAGE_CODE.en]: ({ current, total }) => `${current} of ${total}`,
+    [LANGUAGE_CODE.ru]: ({ current, total }) => `${current} из ${total}`,
   },
-  profileGiftsReceived: {
-    [LANGUAGE_CODE.en]: ({ count }) => `${count} gifts received`,
-    [LANGUAGE_CODE.ru]: ({ count }) =>
-      `${pluralize(count, "подарок", "подарка", "подарков")} ${plural(count, "получен", "получено")}`,
+  errorDescription: {
+    [LANGUAGE_CODE.en]: "Failed to upload data",
+    [LANGUAGE_CODE.ru]: "Не удалось загрузить данные",
   },
-  profileEmptyGiftsDescriptions: {
-    [LANGUAGE_CODE.en]: "You can buy a gift to receive a gift in return.",
-    [LANGUAGE_CODE.ru]: "Вы можете купить подарок, чтобы получить его взамен.",
+  errorTitle: {
+    [LANGUAGE_CODE.en]: "Error",
+    [LANGUAGE_CODE.ru]: "Ошибка",
   },
-  profileEmptyGiftsButtonText: {
-    [LANGUAGE_CODE.en]: "Open Store",
-    [LANGUAGE_CODE.ru]: "Открыть магазин",
+  giftModalTableLabelAvailability: {
+    [LANGUAGE_CODE.en]: "Availability",
+    [LANGUAGE_CODE.ru]: "Номер",
   },
-  profileRecentActions: {
-    [LANGUAGE_CODE.en]: "Recent Actions ›",
-    [LANGUAGE_CODE.ru]: "Недавние действия ›",
+  giftModalTableLabelDate: {
+    [LANGUAGE_CODE.en]: "Date",
+    [LANGUAGE_CODE.ru]: "Дата",
   },
-  menuStore: {
-    [LANGUAGE_CODE.en]: "Store",
-    [LANGUAGE_CODE.ru]: "Магазин",
+  giftModalTableLabelFrom: {
+    [LANGUAGE_CODE.en]: "From",
+    [LANGUAGE_CODE.ru]: "От кого",
   },
-  menuGifts: {
-    [LANGUAGE_CODE.en]: "Gifts",
-    [LANGUAGE_CODE.ru]: "Подарки",
+  giftModalTableLabelGift: {
+    [LANGUAGE_CODE.en]: "Gift",
+    [LANGUAGE_CODE.ru]: "Подарок",
   },
-  menuLeaderboard: {
-    [LANGUAGE_CODE.en]: "Leaderboard",
-    [LANGUAGE_CODE.ru]: "Лидеры",
+  giftModalTableLabelPrice: {
+    [LANGUAGE_CODE.en]: "Price",
+    [LANGUAGE_CODE.ru]: "Цена",
   },
-  menuProfile: {
-    [LANGUAGE_CODE.en]: "Profile",
-    [LANGUAGE_CODE.ru]: "Профиль",
+  giftModalTableSendGiftButtonText: {
+    [LANGUAGE_CODE.en]: "Send Gift to Contact",
+    [LANGUAGE_CODE.ru]: "Отправь подарок другу",
   },
-  storeHeaderTitle: {
-    [LANGUAGE_CODE.en]: "Buy and Send Gifts",
-    [LANGUAGE_CODE.ru]: "Покупайте и отправляйте подарки",
-  },
-  storeHeaderDescription: {
-    [LANGUAGE_CODE.en]: "Unique gifts for everyone by Crypto Pay.",
-    [LANGUAGE_CODE.ru]: "Уникальные подарки для всех от Crypto Pay.",
+  giftModalTableTitle: {
+    [LANGUAGE_CODE.en]: "Send Gift",
+    [LANGUAGE_CODE.ru]: "Отправь подарок",
   },
   giftPageDescription: {
     [LANGUAGE_CODE.en]:
@@ -56,17 +51,9 @@ export const TEXTS: Record<string, TitleWithLanguage> = {
     [LANGUAGE_CODE.ru]:
       "Приобретайте этот подарок ради возможности подарить его другому пользователю.",
   },
-  giftPageRecentlyActions: {
-    [LANGUAGE_CODE.en]: "Recently Actions",
-    [LANGUAGE_CODE.ru]: "Недавние действия",
-  },
   giftPageRecentlyActionTypeBuy: {
     [LANGUAGE_CODE.en]: "Buy gift",
     [LANGUAGE_CODE.ru]: "Покупка подарка",
-  },
-  giftPageRecentlyActionTypeSend: {
-    [LANGUAGE_CODE.en]: "Send gift",
-    [LANGUAGE_CODE.ru]: "Отправка подарка",
   },
   giftPageRecentlyActionTypeBuyDescription: {
     [LANGUAGE_CODE.en]: ({ sender }) => (
@@ -79,6 +66,10 @@ export const TEXTS: Record<string, TitleWithLanguage> = {
         <ClickableUserName user={sender} /> купил подарок
       </span>
     ),
+  },
+  giftPageRecentlyActionTypeSend: {
+    [LANGUAGE_CODE.en]: "Send gift",
+    [LANGUAGE_CODE.ru]: "Отправка подарка",
   },
   giftPageRecentlyActionTypeSendDescription: {
     [LANGUAGE_CODE.en]: ({ sender, receiver }) => (
@@ -101,80 +92,25 @@ export const TEXTS: Record<string, TitleWithLanguage> = {
       </span>
     ),
   },
-  giftsPageHeaderTitle: {
-    [LANGUAGE_CODE.en]: "Send Gifts in Telegram",
-    [LANGUAGE_CODE.ru]: "Отправляйте подарки в Telegram",
+  giftPageRecentlyActions: {
+    [LANGUAGE_CODE.en]: "Recently Actions",
+    [LANGUAGE_CODE.ru]: "Недавние действия",
   },
-  giftsPageHeaderDescription: {
-    [LANGUAGE_CODE.en]:
-      "Send gifts to users that can be stored in their app profile.",
-    [LANGUAGE_CODE.ru]:
-      "Отправляйте пользователям подарки, которые можно сохранить в их профиле приложения.",
-  },
-  leaderboardPageSearchPlaceholder: {
-    [LANGUAGE_CODE.en]: "Search",
-    [LANGUAGE_CODE.ru]: "Поиск",
-  },
-  leaderboardPageLeaderboardItemGiftsCount: {
-    [LANGUAGE_CODE.en]: ({ count }) => `${count} gifts`,
-    [LANGUAGE_CODE.ru]: ({ count }) =>
-      pluralize(count, "подарок", "подарка", "подарков"),
-  },
-  giftModalTableLabelGift: {
-    [LANGUAGE_CODE.en]: "Gift",
-    [LANGUAGE_CODE.ru]: "Подарок",
-  },
-  giftModalTableLabelFrom: {
-    [LANGUAGE_CODE.en]: "From",
-    [LANGUAGE_CODE.ru]: "От кого",
-  },
-  giftModalTableLabelDate: {
-    [LANGUAGE_CODE.en]: "Date",
-    [LANGUAGE_CODE.ru]: "Дата",
-  },
-  giftModalTableLabelPrice: {
-    [LANGUAGE_CODE.en]: "Price",
-    [LANGUAGE_CODE.ru]: "Цена",
-  },
-  giftModalTableLabelAvailability: {
-    [LANGUAGE_CODE.en]: "Availability",
-    [LANGUAGE_CODE.ru]: "Номер",
-  },
-  giftModalTableTitle: {
-    [LANGUAGE_CODE.en]: "Send Gift",
-    [LANGUAGE_CODE.ru]: "Отправь подарок",
-  },
-  giftModalTableSendGiftButtonText: {
-    [LANGUAGE_CODE.en]: "Send Gift to Contact",
-    [LANGUAGE_CODE.ru]: "Отправь подарок другу",
-  },
-  myGiftsEmptyListDescription: {
-    [LANGUAGE_CODE.en]: "You don't have any gifts yet.",
-    [LANGUAGE_CODE.ru]: "У тебя пока нет никаких подарков.",
-  },
-  myGiftsEmptyListButtonText: {
-    [LANGUAGE_CODE.en]: "Open Store",
-    [LANGUAGE_CODE.ru]: "Открыть магазин",
-  },
-  currentOfTotal: {
-    [LANGUAGE_CODE.en]: ({ current, total }) => `${current} of ${total}`,
-    [LANGUAGE_CODE.ru]: ({ current, total }) => `${current} из ${total}`,
-  },
-  profileRecentActionsHeader: {
-    [LANGUAGE_CODE.en]: "History is Empty",
-    [LANGUAGE_CODE.ru]: "История пуста",
-  },
-  profileRecentActionsDescription: {
+  giftPageRecentlyActionsEmptyDescription: {
     [LANGUAGE_CODE.en]: "Give and receive gifts so there's something here.",
     [LANGUAGE_CODE.ru]: "Дарите и получайте подарки, и здесь что-то появится.",
+  },
+  giftPageRecentlyActionsEmptyTitle: {
+    [LANGUAGE_CODE.en]: "History is Empty",
+    [LANGUAGE_CODE.ru]: "История пуста",
   },
   giftPageTelegramMainButton: {
     [LANGUAGE_CODE.en]: "Buy a Gift",
     [LANGUAGE_CODE.ru]: "Купить подарок",
   },
-  giftPurchasedPageTitle: {
-    [LANGUAGE_CODE.en]: "Gift Purchased",
-    [LANGUAGE_CODE.ru]: "Подарок приобретен ",
+  giftPurchasedButtonTitle: {
+    [LANGUAGE_CODE.en]: "Send",
+    [LANGUAGE_CODE.ru]: "Отправить",
   },
   giftPurchasedPageDescription: {
     [LANGUAGE_CODE.en]: ({ gift, amount, asset }) =>
@@ -182,17 +118,17 @@ export const TEXTS: Record<string, TitleWithLanguage> = {
     [LANGUAGE_CODE.ru]: ({ gift, amount, asset }) =>
       `Подарок ${gift} был приобретен за ${amount} ${asset}.`,
   },
-  giftPurchasedPageNotificationTitle: {
-    [LANGUAGE_CODE.en]: "You Bought a Gift",
-    [LANGUAGE_CODE.ru]: "Вы купили подарок",
+  giftPurchasedPageNotificationButtonText: {
+    [LANGUAGE_CODE.en]: "Send",
+    [LANGUAGE_CODE.ru]: "Отправить",
   },
   giftPurchasedPageNotificationDescription: {
     [LANGUAGE_CODE.en]: "Now send it to your friend.",
     [LANGUAGE_CODE.ru]: "Теперь отправь его своему другу.",
   },
-  giftPurchasedPageNotificationButtonText: {
-    [LANGUAGE_CODE.en]: "Send",
-    [LANGUAGE_CODE.ru]: "Отправить",
+  giftPurchasedPageNotificationTitle: {
+    [LANGUAGE_CODE.en]: "You Bought a Gift",
+    [LANGUAGE_CODE.ru]: "Вы купили подарок",
   },
   giftPurchasedPageTelegramMainButton: {
     [LANGUAGE_CODE.en]: "Send Gift",
@@ -202,18 +138,14 @@ export const TEXTS: Record<string, TitleWithLanguage> = {
     [LANGUAGE_CODE.en]: "Open Store",
     [LANGUAGE_CODE.ru]: "Открыть магазин",
   },
-  giftReceivedPageTitle: {
-    [LANGUAGE_CODE.en]: "Gift Received",
-    [LANGUAGE_CODE.ru]: "Получен подарок",
+  giftPurchasedPageTitle: {
+    [LANGUAGE_CODE.en]: "Gift Purchased",
+    [LANGUAGE_CODE.ru]: "Подарок приобретен ",
   },
   giftReceivedPageDescription: {
     [LANGUAGE_CODE.en]: ({ giftTitle }) =>
       `You have received the gift ${giftTitle}.`,
     [LANGUAGE_CODE.ru]: ({ giftTitle }) => `Вы получили подарок ${giftTitle}.`,
-  },
-  giftReceivedPageNotificationTitle: {
-    [LANGUAGE_CODE.en]: "Gift Received",
-    [LANGUAGE_CODE.ru]: "Получен подарок",
   },
   giftReceivedPageNotificationButtonText: {
     [LANGUAGE_CODE.en]: "View",
@@ -225,61 +157,85 @@ export const TEXTS: Record<string, TitleWithLanguage> = {
     [LANGUAGE_CODE.ru]: ({ giftTitle, sender }) =>
       `${giftTitle} от ${formatName(sender)}`,
   },
+  giftReceivedPageNotificationTitle: {
+    [LANGUAGE_CODE.en]: "Gift Received",
+    [LANGUAGE_CODE.ru]: "Получен подарок",
+  },
   giftReceivedPageTelegramMainButton: {
     [LANGUAGE_CODE.en]: "Open Profile",
     [LANGUAGE_CODE.ru]: "Открыть профиль",
   },
-  errorTitle: {
-    [LANGUAGE_CODE.en]: "Error",
-    [LANGUAGE_CODE.ru]: "Ошибка",
+  giftReceivedPageTitle: {
+    [LANGUAGE_CODE.en]: "Gift Received",
+    [LANGUAGE_CODE.ru]: "Получен подарок",
   },
-  errorDescription: {
-    [LANGUAGE_CODE.en]: "Failed to upload data",
-    [LANGUAGE_CODE.ru]: "Не удалось загрузить данные",
+  giftStoreSoldOut: {
+    [LANGUAGE_CODE.en]: "Sold Out",
+    [LANGUAGE_CODE.ru]: "Распродан",
   },
-  giftPageRecentlyActionsEmptyTitle: {
-    [LANGUAGE_CODE.en]: "History is Empty",
-    [LANGUAGE_CODE.ru]: "История пуста",
+  giftsPageHeaderDescription: {
+    [LANGUAGE_CODE.en]:
+      "Send gifts to users that can be stored in their app profile.",
+    [LANGUAGE_CODE.ru]:
+      "Отправляйте пользователям подарки, которые можно сохранить в их профиле приложения.",
   },
-  giftPageRecentlyActionsEmptyDescription: {
-    [LANGUAGE_CODE.en]: "Give and receive gifts so there's something here.",
-    [LANGUAGE_CODE.ru]: "Дарите и получайте подарки, и здесь что-то появится.",
+  giftsPageHeaderTitle: {
+    [LANGUAGE_CODE.en]: "Send Gifts in Telegram",
+    [LANGUAGE_CODE.ru]: "Отправляйте подарки в Telegram",
   },
-  profileRecentActionsPageTypeSend: {
-    [LANGUAGE_CODE.en]: "Sent",
-    [LANGUAGE_CODE.ru]: "Отправил",
+  leaderboardIdEmptyGiftsDescriptions: {
+    [LANGUAGE_CODE.en]: "The user has no gifts",
+    [LANGUAGE_CODE.ru]: "У пользователя нет подарков.",
   },
-  profileRecentActionsPageTypeBuy: {
-    [LANGUAGE_CODE.en]: "Buy",
-    [LANGUAGE_CODE.ru]: "Купил",
+  leaderboardPageLeaderboardItemGiftsCount: {
+    [LANGUAGE_CODE.en]: ({ count }) => `${count} gifts`,
+    [LANGUAGE_CODE.ru]: ({ count }) =>
+      pluralize(count, "подарок", "подарка", "подарков"),
   },
-  profileRecentActionsPageTypeReceive: {
-    [LANGUAGE_CODE.en]: "Receive",
-    [LANGUAGE_CODE.ru]: "Получил",
+  leaderboardPageSearchPlaceholder: {
+    [LANGUAGE_CODE.en]: "Search",
+    [LANGUAGE_CODE.ru]: "Поиск",
   },
-  profileRecentActionsPageTitle: {
-    [LANGUAGE_CODE.en]: "Recent Actions",
-    [LANGUAGE_CODE.ru]: "Недавние действия",
+  menuGifts: {
+    [LANGUAGE_CODE.en]: "Gifts",
+    [LANGUAGE_CODE.ru]: "Подарки",
   },
-  profileRecentActionsPageDescription: {
-    [LANGUAGE_CODE.en]: "Here is your action history.",
-    [LANGUAGE_CODE.ru]: "Здесь история ваших действий.",
+  menuLeaderboard: {
+    [LANGUAGE_CODE.en]: "Leaderboard",
+    [LANGUAGE_CODE.ru]: "Лидеры",
+  },
+  menuProfile: {
+    [LANGUAGE_CODE.en]: "Profile",
+    [LANGUAGE_CODE.ru]: "Профиль",
+  },
+  menuStore: {
+    [LANGUAGE_CODE.en]: "Store",
+    [LANGUAGE_CODE.ru]: "Магазин",
+  },
+  myGiftsEmptyListButtonText: {
+    [LANGUAGE_CODE.en]: "Open Store",
+    [LANGUAGE_CODE.ru]: "Открыть магазин",
+  },
+  myGiftsEmptyListDescription: {
+    [LANGUAGE_CODE.en]: "You don't have any gifts yet.",
+    [LANGUAGE_CODE.ru]: "У тебя пока нет никаких подарков.",
+  },
+  profileEmptyGiftsButtonText: {
+    [LANGUAGE_CODE.en]: "Open Store",
+    [LANGUAGE_CODE.ru]: "Открыть магазин",
+  },
+  profileEmptyGiftsDescriptions: {
+    [LANGUAGE_CODE.en]: "You can buy a gift to receive a gift in return.",
+    [LANGUAGE_CODE.ru]: "Вы можете купить подарок, чтобы получить его взамен.",
+  },
+  profileGiftsReceived: {
+    [LANGUAGE_CODE.en]: ({ count }) => `${count} gifts received`,
+    [LANGUAGE_CODE.ru]: ({ count }) =>
+      `${pluralize(count, "подарок", "подарка", "подарков")} ${plural(count, "получен", "получено")}`,
   },
   profileRecentActionBuyDescription: {
     [LANGUAGE_CODE.en]: ({ amount, asset }) => `-${amount} ${asset}`,
     [LANGUAGE_CODE.ru]: ({ amount, asset }) => `-${amount} ${asset}`,
-  },
-  profileRecentActionSendDescription: {
-    [LANGUAGE_CODE.en]: ({ receiver }) => (
-      <span>
-        to <ClickableUserName user={receiver} />
-      </span>
-    ),
-    [LANGUAGE_CODE.ru]: ({ receiver }) => (
-      <span>
-        <ClickableUserName user={receiver} />
-      </span>
-    ),
   },
   profileRecentActionReceiveDescription: {
     [LANGUAGE_CODE.en]: ({ sender }) => (
@@ -293,8 +249,56 @@ export const TEXTS: Record<string, TitleWithLanguage> = {
       </span>
     ),
   },
-  giftPurchasedButtonTitle: {
-    [LANGUAGE_CODE.en]: "Send",
-    [LANGUAGE_CODE.ru]: "Отправить",
+  profileRecentActionSendDescription: {
+    [LANGUAGE_CODE.en]: ({ receiver }) => (
+      <span>
+        to <ClickableUserName user={receiver} />
+      </span>
+    ),
+    [LANGUAGE_CODE.ru]: ({ receiver }) => (
+      <span>
+        <ClickableUserName user={receiver} />
+      </span>
+    ),
+  },
+  profileRecentActions: {
+    [LANGUAGE_CODE.en]: "Recent Actions ›",
+    [LANGUAGE_CODE.ru]: "Недавние действия ›",
+  },
+  profileRecentActionsDescription: {
+    [LANGUAGE_CODE.en]: "Give and receive gifts so there's something here.",
+    [LANGUAGE_CODE.ru]: "Дарите и получайте подарки, и здесь что-то появится.",
+  },
+  profileRecentActionsHeader: {
+    [LANGUAGE_CODE.en]: "History is Empty",
+    [LANGUAGE_CODE.ru]: "История пуста",
+  },
+  profileRecentActionsPageDescription: {
+    [LANGUAGE_CODE.en]: "Here is your action history.",
+    [LANGUAGE_CODE.ru]: "Здесь история ваших действий.",
+  },
+  profileRecentActionsPageTitle: {
+    [LANGUAGE_CODE.en]: "Recent Actions",
+    [LANGUAGE_CODE.ru]: "Недавние действия",
+  },
+  profileRecentActionsPageTypeBuy: {
+    [LANGUAGE_CODE.en]: "Buy",
+    [LANGUAGE_CODE.ru]: "Купил",
+  },
+  profileRecentActionsPageTypeReceive: {
+    [LANGUAGE_CODE.en]: "Receive",
+    [LANGUAGE_CODE.ru]: "Получил",
+  },
+  profileRecentActionsPageTypeSend: {
+    [LANGUAGE_CODE.en]: "Sent",
+    [LANGUAGE_CODE.ru]: "Отправил",
+  },
+  storeHeaderDescription: {
+    [LANGUAGE_CODE.en]: "Unique gifts for everyone by Crypto Pay.",
+    [LANGUAGE_CODE.ru]: "Уникальные подарки для всех от Crypto Pay.",
+  },
+  storeHeaderTitle: {
+    [LANGUAGE_CODE.en]: "Buy and Send Gifts",
+    [LANGUAGE_CODE.ru]: "Покупайте и отправляйте подарки",
   },
 };
