@@ -12,6 +12,7 @@ import {
   setMainButtonParams,
   unmountMainButton,
   onMainButtonClick,
+  offMainButtonClick,
 } from "@telegram-apps/sdk-react";
 import { Avatar } from "@/components/Avatar/Avatar.tsx";
 import { ClickableUserName } from "@/components/ClickableUserName/ClickableUserName.tsx";
@@ -39,6 +40,7 @@ export function ModalGiftContent(props: Props) {
     });
     onMainButtonClick(onClick);
     return () => {
+      offMainButtonClick(onClick);
       setMainButtonParams({
         isVisible: false,
       });
