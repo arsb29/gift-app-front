@@ -10,4 +10,5 @@
   padding-top: 8px;
   padding-bottom: 4px;
   border-top: 0.33px solid var(--separator);
+  height: var(--menu-height);
 }

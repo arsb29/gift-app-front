@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 10px 10px 68px;
+  padding: 10px 10px calc(var(--menu-height) * 2 + 8px);
 }
 
 .separator {
@@ -15,4 +15,14 @@
   & > *:not(:last-child) > *:last-child {
     border-bottom: 0.33px solid var(--separator);
   }
+}
+
+.fixedItem {
+  position: fixed;
+  left: 0;
+  bottom: var(--menu-height);
+  width: 100%;
+  padding: 0 10px;
+  border-top: 0.33px solid var(--separator);
+  background-color: var(--bg-color);
 }

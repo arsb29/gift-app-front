@@ -12,6 +12,9 @@ import { filterUsers } from "@/helpers/filterUsers.ts";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Loader } from "@/components/Loader/Loader.tsx";
 import { Error } from "@/components/Error/Error.tsx";
+import { useQuery } from "@tanstack/react-query";
+import { userQueryFn } from "@/queries/userQueryFn.ts";
+import { toMilliseconds } from "@/helpers/toMilliseconds.ts";
 
 const SEARCH_NAME = "searchFilter";
 
@@ -32,6 +35,12 @@ export const Leaderboard: FC = () => {
   } = useInfinite<User[]>({
     queryKey: [QUERY_KEYS.leaderboard],
     queryFn: leaderboardQueryFn,
+  });
+
+  const { data: userProfile } = useQuery<User>({
+    queryKey: ["user"],
+    queryFn: userQueryFn,
+    staleTime: toMilliseconds({ minutes: 1 }),
   });
 
   useEffect(() => {
@@ -56,20 +65,18 @@ export const Leaderboard: FC = () => {
       />
       <div className={styles.separator} />
       <div className={styles.leaderboard}>
-        {filteredUsers.map((user, index) => {
-          if (filteredUsers.length === index + 1) {
-            return (
-              <LeaderboardItem
-                key={user._id}
-                user={user}
-                ref={lastElementRef}
-              />
-            );
-          }
-          return <LeaderboardItem key={user._id} user={user} />;
-        })}
+        {filteredUsers.map((user, index) => (
+          <LeaderboardItem
+            key={user._id}
+            user={user}
+            ref={filteredUsers.length === index + 1 ? lastElementRef : null}
+          />
+        ))}
       </div>
       {isFetchingNextPage && <Loader />}
+      {userProfile && (
+        <LeaderboardItem user={userProfile} className={styles.fixedItem} />
+      )}
     </Page>
   );
 };
