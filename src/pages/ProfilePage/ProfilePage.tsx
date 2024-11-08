@@ -6,8 +6,14 @@ import { toMilliseconds } from "@/helpers/toMilliseconds.ts";
 import { userQueryFn } from "@/queries/userQueryFn.ts";
 import { Profile } from "@/components/Profile/Profile.tsx";
 import styles from "./ProfilePage.module.css";
+import { Loader } from "@/components/Loader/Loader.tsx";
+import { Empty } from "@/components/Empty/Empty.tsx";
+import { getFormatText } from "@/helpers/getFormatText.ts";
+import { TEXTS } from "@/texts.tsx";
+import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 
 export const ProfilePage: FC = () => {
+  const { languageCode } = useLanguageContext();
   const {
     isPending,
     isError,
@@ -18,8 +24,18 @@ export const ProfilePage: FC = () => {
     staleTime: toMilliseconds({ minutes: 1 }),
   });
 
-  if (isPending) return <div>Загрузка</div>; // todo сделать спец экран для этого
-  if (isError) return <div>Ошибка</div>; // todo сделать спец экран для этого
+  if (isPending) return <Loader />;
+  if (isError)
+    return (
+      <Empty
+        title={getFormatText({ text: TEXTS.errorTitle[languageCode] })}
+        description={getFormatText({
+          text: TEXTS.errorDescription[languageCode],
+        })}
+        withBackground
+        withMargin
+      />
+    );
   return (
     <Page withMenu className={styles.container} back={false}>
       <Profile user={user} isOwnProfile />

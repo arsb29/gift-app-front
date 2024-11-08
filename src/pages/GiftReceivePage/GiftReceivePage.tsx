@@ -21,6 +21,8 @@ import { IconGift } from "@/components/IconGift/IconGift.tsx";
 import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 import { getFormatText } from "@/helpers/getFormatText.ts";
 import { TEXTS } from "@/texts.tsx";
+import { Loader } from "@/components/Loader/Loader.tsx";
+import { Empty } from "@/components/Empty/Empty.tsx";
 
 export function GiftReceivePage() {
   const { transactionId } = useParams();
@@ -80,8 +82,18 @@ export function GiftReceivePage() {
       unmountMainButton();
     };
   }, []);
-  if (isPending) return <div>Загрузка</div>; // todo сделать спец экран для этого
-  if (isError || !transaction) return <div>Ошибка</div>; // todo сделать спец экран для этого
+  if (isPending) return <Loader />;
+  if (isError)
+    return (
+      <Empty
+        title={getFormatText({ text: TEXTS.errorTitle[languageCode] })}
+        description={getFormatText({
+          text: TEXTS.errorDescription[languageCode],
+        })}
+        withBackground
+        withMargin
+      />
+    );
   return (
     <Page className={cc(styles.container)}>
       <div className={styles.image}>

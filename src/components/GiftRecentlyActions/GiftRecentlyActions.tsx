@@ -5,15 +5,31 @@ import { giftActionsQueryFn } from "@/queries/giftActionsQueryFn.ts";
 import { Action } from "@/types.ts";
 import { GiftRecentlyAction } from "@/components/GiftRecentlyAction/GiftRecentlyAction.tsx";
 import { useParams } from "react-router-dom";
+import { Loader } from "@/components/Loader/Loader.tsx";
+import { Empty } from "@/components/Empty/Empty.tsx";
+import { getFormatText } from "@/helpers/getFormatText.ts";
+import { TEXTS } from "@/texts.tsx";
+import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 
 export const GiftRecentlyActions: FC = () => {
   const { id = "" } = useParams();
+  const { languageCode } = useLanguageContext();
   const { isPending, list, isError, lastElementRef } = useInfinite<Action[]>({
     queryKey: [`GiftRecentlyActions-${id}`],
     queryFn: giftActionsQueryFn(id),
   });
-  if (isPending) return <div>Загрузка</div>; // todo сделать спец экран для этого
-  if (isError) return <div>Ошибка</div>; // todo сделать спец экран для этого
+  if (isPending) return <Loader />;
+  if (isError)
+    return (
+      <Empty
+        title={getFormatText({ text: TEXTS.errorTitle[languageCode] })}
+        description={getFormatText({
+          text: TEXTS.errorDescription[languageCode],
+        })}
+        withBackground
+        withMargin
+      />
+    );
   return (
     <div className={styles.list}>
       {list.map((action, index) => {

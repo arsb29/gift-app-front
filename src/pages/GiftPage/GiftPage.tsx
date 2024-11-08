@@ -25,6 +25,8 @@ import { useMenuContext } from "@/contexts/menu/MenuContext.tsx";
 import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 import { getFormatText } from "@/helpers/getFormatText.ts";
 import { TEXTS } from "@/texts.tsx";
+import { Loader } from "@/components/Loader/Loader.tsx";
+import { Empty } from "@/components/Empty/Empty.tsx";
 
 export const GiftPage: FC = () => {
   const { id } = useParams();
@@ -75,8 +77,18 @@ export const GiftPage: FC = () => {
     staleTime: toMilliseconds({ minutes: 1 }),
   });
   const gift = gifts?.find((g) => g._id === id);
-  if (isPending) return <div>Загрузка</div>; // todo сделать спец экран для этого
-  if (isError || !gift) return <div>Ошибка</div>; // todo сделать спец экран для этого
+  if (isPending) return <Loader />;
+  if (isError || !gift)
+    return (
+      <Empty
+        title={getFormatText({ text: TEXTS.errorTitle[languageCode] })}
+        description={getFormatText({
+          text: TEXTS.errorDescription[languageCode],
+        })}
+        withBackground
+        withMargin
+      />
+    );
   return (
     <Page className={cc(styles.container)} onBack={handleBack}>
       <div className={cc(styles.image, `background-${gift.giftId}`)}>

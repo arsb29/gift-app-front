@@ -7,6 +7,7 @@ import styles from "./UserReceiveActions.module.css";
 import { TEXTS } from "@/texts.tsx";
 import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 import { getFormatText } from "@/helpers/getFormatText.ts";
+import { Loader } from "@/components/Loader/Loader.tsx";
 
 type Props = {
   userId: string;
@@ -26,8 +27,18 @@ export function UserReceiveActions(props: Props) {
     queryFn: userReceiveActionsQueryFn(userId),
   });
 
-  if (isPending) return <div>Загрузка</div>; // todo сделать спец экран для этого
-  if (isError) return <div>Ошибка</div>; // todo сделать спец экран для этого
+  if (isPending) return <Loader />;
+  if (isError)
+    return (
+      <Empty
+        title={getFormatText({ text: TEXTS.errorTitle[languageCode] })}
+        description={getFormatText({
+          text: TEXTS.errorDescription[languageCode],
+        })}
+        withBackground
+        withMargin
+      />
+    );
   const isEmpty = actions.length === 0;
   const description = isOwnProfile
     ? getFormatText({

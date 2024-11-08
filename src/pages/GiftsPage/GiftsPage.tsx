@@ -10,6 +10,8 @@ import { Header } from "@/components/Header/Header.tsx";
 import { getFormatText } from "@/helpers/getFormatText.ts";
 import { TEXTS } from "@/texts.tsx";
 import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
+import { Loader } from "@/components/Loader/Loader.tsx";
+import { Empty } from "@/components/Empty/Empty.tsx";
 
 export const GiftsPage: FC = () => {
   const {
@@ -21,8 +23,18 @@ export const GiftsPage: FC = () => {
     queryFn: giftsQueryFn,
   });
   const { languageCode } = useLanguageContext();
-  if (isPending) return <div>Загрузка</div>; // todo сделать спец экран для этого
-  if (isError) return <div>Ошибка</div>; // todo сделать спец экран для этого
+  if (isPending) return <Loader />;
+  if (isError)
+    return (
+      <Empty
+        title={getFormatText({ text: TEXTS.errorTitle[languageCode] })}
+        description={getFormatText({
+          text: TEXTS.errorDescription[languageCode],
+        })}
+        withBackground
+        withMargin
+      />
+    );
   return (
     <Page back={false} withMenu className={styles.container}>
       <Header

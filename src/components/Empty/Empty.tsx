@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 
 type Props = {
   withBackground?: boolean;
+  withMargin?: boolean;
   title?: ReactNode;
   description: ReactNode;
   onClickText?: string;
@@ -15,11 +16,18 @@ export function Empty(props: Props) {
     description,
     title,
     withBackground = false,
+    withMargin = false,
     onClick,
     onClickText,
   } = props;
   return (
-    <div className={cc(styles.container, withBackground && styles.background)}>
+    <div
+      className={cc(
+        styles.container,
+        withBackground && styles.background,
+        withMargin && styles.margin,
+      )}
+    >
       <div>
         <img src="/src/assets/balloons.png" alt="balloons" />
       </div>

@@ -10,12 +10,18 @@ import { Input } from "@/components/Input/Input.tsx";
 import { useInfinite } from "@/hooks/useInfinite.ts";
 import { filterUsers } from "@/helpers/filterUsers.ts";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Loader } from "@/components/Loader/Loader.tsx";
+import { Empty } from "@/components/Empty/Empty.tsx";
+import { getFormatText } from "@/helpers/getFormatText.ts";
+import { TEXTS } from "@/texts.tsx";
+import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 
 const SEARCH_NAME = "searchFilter";
 
 export const Leaderboard: FC = () => {
   const { search } = useLocation();
   const navigate = useNavigate();
+  const { languageCode } = useLanguageContext();
   const searchParams = new URLSearchParams(search);
   const [searchValue, setSearchValue] = useState<string>(
     searchParams.get(SEARCH_NAME) || "",
@@ -41,8 +47,18 @@ export const Leaderboard: FC = () => {
     [users, searchValue],
   );
 
-  if (isPending) return <div>Загрузка</div>; // todo сделать спец экран для этого
-  if (isError) return <div>Ошибка</div>; // todo сделать спец экран для этого
+  if (isPending) return <Loader />;
+  if (isError)
+    return (
+      <Empty
+        title={getFormatText({ text: TEXTS.errorTitle[languageCode] })}
+        description={getFormatText({
+          text: TEXTS.errorDescription[languageCode],
+        })}
+        withBackground
+        withMargin
+      />
+    );
   return (
     <Page withMenu className={cc(styles.container)}>
       <Input

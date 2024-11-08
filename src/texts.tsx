@@ -206,4 +206,12 @@ export const TEXTS: Record<string, TitleWithLanguage> = {
     [LANGUAGE_CODE.en]: "Open Profile",
     [LANGUAGE_CODE.ru]: "Открыть профиль",
   },
+  errorTitle: {
+    [LANGUAGE_CODE.en]: "Error",
+    [LANGUAGE_CODE.ru]: "Ошибка",
+  },
+  errorDescription: {
+    [LANGUAGE_CODE.en]: "Failed to upload data",
+    [LANGUAGE_CODE.ru]: "Не удалось загрузить данные",
+  },
 };
