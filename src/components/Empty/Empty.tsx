@@ -1,4 +1,5 @@
 import { cc } from "@/helpers/classConcat.ts";
+import balloons from "@/assets/balloons.png";
 import styles from "./Empty.module.css";
 import { ReactNode } from "react";
 
@@ -29,7 +30,7 @@ export function Empty(props: Props) {
       )}
     >
       <div>
-        <img src="/src/assets/balloons.png" alt="balloons" />
+        <img src={balloons} alt="balloons" />
       </div>
       <div className={styles.info}>
         {title && <div className={styles.title}>{title}</div>}
