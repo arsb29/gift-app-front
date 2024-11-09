@@ -28,9 +28,7 @@ import { TEXTS } from "@/texts.tsx";
 import { Loader } from "@/components/Loader/Loader.tsx";
 import { Error } from "@/components/Error/Error.tsx";
 import { storeIdQueryFn } from "@/queries/storeIdQueryFn.ts";
-
-const onOpen = () =>
-  openTelegramLink("/CryptoTestnetBot/app?startapp=invoice-IVoDg3RN4cN");
+import { getAuthorizationHeader } from "@/helpers/getAthorizationHeader.ts";
 
 export const GiftPage: FC = () => {
   const { giftId } = useParams();
@@ -42,6 +40,26 @@ export const GiftPage: FC = () => {
     queryFn: createTransactionQueryFn(giftId),
     enabled: false,
   });
+
+  const handleMainButtonClick = useCallback(() => {
+    if (giftId) {
+      fetch(`${import.meta.env.VITE_ENDPOINT}/transaction/createInvoice`, {
+        method: "POST",
+        headers: {
+          authorization: getAuthorizationHeader(),
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ _id: giftId }),
+      })
+        .then((res) => {
+          if (!res.ok) return Promise.reject();
+          return res;
+        })
+        .then((res) => res.json())
+        .then((transaction) => openTelegramLink(transaction.miniAppPayUrl));
+    }
+  }, [giftId]);
+
   const handleBack = useCallback(() => {
     navigate(ROUTES_PATHS.store);
   }, [navigate]);
@@ -75,9 +93,9 @@ export const GiftPage: FC = () => {
         text: TEXTS.giftPageTelegramMainButton[languageCode],
       }) as string,
     });
-    onMainButtonClick(onOpen);
+    onMainButtonClick(handleMainButtonClick);
     return () => {
-      offMainButtonClick(onOpen);
+      offMainButtonClick(handleMainButtonClick);
       setMainButtonParams({ isVisible: false });
       unmountMainButton();
     };
