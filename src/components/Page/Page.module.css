@@ -1,5 +1,6 @@
 .container {
   animation: animationPage 0.3s ease-in;
+  overflow-y: auto;
 }
 
 @keyframes animationPage {

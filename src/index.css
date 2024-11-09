@@ -38,7 +38,7 @@
   --text17: normal normal 400 normal 17px/22px SFProRegular, sans-serif;
   --text17m: normal normal 500 normal 17px/22px SFProMedium, sans-serif;
   --text17b: normal normal 600 normal 17px/22px SFProSemibold, sans-serif;
-  --text24b: normal normal 600 normal 24px/32px SFProSemibold, sans-serif;
+  --text24b: normal normal 590 normal 24px/32px SFProSemibold, sans-serif;
 
   --text-color: var(--black);
   --bg-color: var(--white);
@@ -83,7 +83,6 @@ body {
   color: var(--text-color);
   background-color: var(--bg-color);
   overflow: hidden;
-  overflow-y: auto;
 }
 
 .background-deliciousCake {

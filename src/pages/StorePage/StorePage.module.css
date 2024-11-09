@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding-bottom: 68px;
+  padding-bottom: calc(var(--menu-height) + 8px);
 }
 
 .list {
