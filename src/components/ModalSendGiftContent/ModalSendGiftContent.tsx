@@ -31,7 +31,8 @@ export function ModalSendGiftContent(props: Props) {
   const { giftId } = gift;
   const { languageCode } = useLanguageContext();
   const handleSendGift = useCallback(() => {
-    if (switchInlineQuery.isSupported()) switchInlineQuery(giftId, ["users"]);
+    if (switchInlineQuery.isSupported() && giftId)
+      switchInlineQuery(giftId, ["users"]);
   }, [giftId]);
   useEffect(() => {
     mountMainButton();
