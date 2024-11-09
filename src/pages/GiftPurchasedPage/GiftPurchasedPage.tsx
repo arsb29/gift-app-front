@@ -47,8 +47,7 @@ export function GiftPurchasedPage() {
   const { onShowMenu, onHideMenu } = useMenuContext();
   const handleSendGift = useCallback(() => {
     if (transaction?.gift?.giftId) {
-      if (switchInlineQuery.isSupported())
-        switchInlineQuery(transaction?.gift?.giftId, ["users"]);
+      switchInlineQuery(transaction?.gift?.giftId, ["users"]);
     }
   }, [transaction?.gift?.giftId]);
   const handleSecondaryButtonClick = useCallback(() => {
