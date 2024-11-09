@@ -74,15 +74,6 @@
   letter-spacing: -0.43px;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-overflow-scrolling: touch;
-}
-
-html,
-body {
-  height: 100vh;
-  height: 100dvh;
 }
 
 body {
@@ -91,8 +82,7 @@ body {
   font: var(--text17);
   color: var(--text-color);
   background-color: var(--bg-color);
-  overflow: hidden;
-  overflow-y: scroll;
+  height: -webkit-fill-available;
 }
 
 .background-deliciousCake {
