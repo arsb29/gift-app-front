@@ -79,6 +79,12 @@
   -webkit-overflow-scrolling: touch;
 }
 
+html,
+body {
+  height: 100vh;
+  height: 100dvh;
+}
+
 body {
   padding: 0;
   margin: 0;
