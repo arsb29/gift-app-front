@@ -99,7 +99,7 @@ export const GiftPage: FC = () => {
       setMainButtonParams({ isVisible: false });
       unmountMainButton();
     };
-  }, [languageCode, gift]);
+  }, [languageCode, gift, handleMainButtonClick]);
 
   if (isPending) return <Loader />;
   if (isError || !gift) return <Error />;

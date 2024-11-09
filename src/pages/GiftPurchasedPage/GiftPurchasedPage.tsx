@@ -101,7 +101,7 @@ export function GiftPurchasedPage() {
       setSecondaryButtonParams({ isVisible: false });
       unmountSecondaryButton();
     };
-  }, []);
+  }, [handleSendGift, handleSecondaryButtonClick, languageCode]);
   if (isPending) return <Loader />;
   if (isError || !transaction) return <Error />;
   return (
