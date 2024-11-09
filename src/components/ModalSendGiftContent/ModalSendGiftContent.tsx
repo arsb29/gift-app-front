@@ -49,7 +49,7 @@ export function ModalSendGiftContent(props: Props) {
       });
       unmountMainButton();
     };
-  }, []);
+  }, [handleSendGift, languageCode]);
   return (
     <div className={styles.container}>
       <IconAnimation icon={ICON_ANIMATION[gift.giftId]} />
