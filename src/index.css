@@ -82,7 +82,8 @@ body {
   font: var(--text17);
   color: var(--text-color);
   background-color: var(--bg-color);
-  height: -webkit-fill-available;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 .background-deliciousCake {
