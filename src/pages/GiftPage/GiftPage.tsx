@@ -17,6 +17,7 @@ import {
   mountMainButton,
   unmountMainButton,
   offMainButtonClick,
+  openTelegramLink,
 } from "@telegram-apps/sdk-react";
 import { GiftRecentlyActions } from "@/components/GiftRecentlyActions/GiftRecentlyActions.tsx";
 import { ROUTES_PATHS } from "@/navigation/routes.tsx";
@@ -28,12 +29,15 @@ import { Loader } from "@/components/Loader/Loader.tsx";
 import { Error } from "@/components/Error/Error.tsx";
 import { storeIdQueryFn } from "@/queries/storeIdQueryFn.ts";
 
+const onOpen = () =>
+  openTelegramLink("/CryptoTestnetBot/app?startapp=invoice-IVoDg3RN4cN");
+
 export const GiftPage: FC = () => {
   const { giftId } = useParams();
   const navigate = useNavigate();
   const { onHideMenu, onShowMenu } = useMenuContext();
   const { languageCode } = useLanguageContext();
-  const { refetch } = useQuery({
+  useQuery({
     queryKey: [QUERY_KEYS.createTransactionQueryFn],
     queryFn: createTransactionQueryFn(giftId),
     enabled: false,
@@ -71,13 +75,13 @@ export const GiftPage: FC = () => {
         text: TEXTS.giftPageTelegramMainButton[languageCode],
       }) as string,
     });
-    onMainButtonClick(refetch);
+    onMainButtonClick(onOpen);
     return () => {
-      offMainButtonClick(refetch);
+      offMainButtonClick(onOpen);
       setMainButtonParams({ isVisible: false });
       unmountMainButton();
     };
-  }, [languageCode, gift, refetch]);
+  }, [languageCode, gift]);
 
   if (isPending) return <Loader />;
   if (isError || !gift) return <Error />;
