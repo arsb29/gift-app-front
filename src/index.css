@@ -74,6 +74,8 @@
   letter-spacing: -0.43px;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 body {
