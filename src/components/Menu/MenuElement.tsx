@@ -5,6 +5,7 @@ import { ValuesOf } from "@/types.ts";
 import { ReactNode, useCallback, useRef } from "react";
 import { useMatch, useNavigate } from "react-router-dom";
 import { cc } from "@/helpers/classConcat.ts";
+import { hapticFeedback } from "@telegram-apps/sdk-react";
 
 type Props = {
   icon: ValuesOf<typeof ICON_ANIMATION>;
@@ -19,6 +20,7 @@ export function MenuElement(props: Props) {
   const navigate = useNavigate();
   const player = useRef<any>(null);
   const handleClick = useCallback(() => {
+    hapticFeedback.impactOccurred("soft");
     player?.current?.setSeeker(0);
     player?.current?.play();
     navigate(route);

@@ -5,6 +5,7 @@ import styles from "./Input.module.css";
 import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 import { getFormatText } from "@/helpers/getFormatText.ts";
 import { TEXTS } from "@/texts.tsx";
+import { hapticFeedback } from "@telegram-apps/sdk-react";
 
 type Props = {
   value: string;
@@ -30,6 +31,7 @@ export function Input(props: Props) {
     setFocused(true);
   }, []);
   const handleClick = useCallback(() => {
+    hapticFeedback.impactOccurred("soft");
     if (ref.current) ref.current.focus();
   }, [ref.current]);
   return (

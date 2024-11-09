@@ -10,6 +10,7 @@ import { ProfileSettings } from "@/components/ProfileSettings/ProfileSettings.ts
 import { TEXTS } from "@/texts.tsx";
 import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 import { getFormatText } from "@/helpers/getFormatText.ts";
+import { hapticFeedback } from "@telegram-apps/sdk-react";
 
 type Props = {
   user: User;
@@ -21,6 +22,7 @@ export function Profile(props: Props) {
   const { languageCode } = useLanguageContext();
   const navigate = useNavigate();
   const handleClickRecentActions = useCallback(() => {
+    hapticFeedback.impactOccurred("soft");
     navigate(generatePath(ROUTES_PATHS.profileRecentActions, { id: user._id }));
   }, [navigate]);
   return (

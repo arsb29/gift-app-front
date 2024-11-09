@@ -10,6 +10,7 @@ import { getFormatText } from "@/helpers/getFormatText.ts";
 import { TEXTS } from "@/texts.tsx";
 import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 import { cc } from "@/helpers/classConcat.ts";
+import { hapticFeedback } from "@telegram-apps/sdk-react";
 
 type Props = {
   user: User;
@@ -24,6 +25,7 @@ export const LeaderboardItem = forwardRef(function (
   const { languageCode } = useLanguageContext();
   const navigate = useNavigate();
   const handleClick = useCallback(() => {
+    hapticFeedback.impactOccurred("soft");
     navigate(generatePath(ROUTES_PATHS.leaderboardId, { id: user._id }));
   }, [navigate, user._id]);
   return (

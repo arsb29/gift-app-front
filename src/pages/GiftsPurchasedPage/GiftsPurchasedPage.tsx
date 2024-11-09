@@ -15,6 +15,7 @@ import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { ROUTES_PATHS } from "@/navigation/routes.tsx";
 import { useInfinite } from "@/hooks/useInfinite.ts";
+import { hapticFeedback } from "@telegram-apps/sdk-react";
 
 export function GiftsPurchasedPage() {
   const {
@@ -31,6 +32,7 @@ export function GiftsPurchasedPage() {
   const navigate = useNavigate();
   const { languageCode } = useLanguageContext();
   const handleOpenStore = useCallback(() => {
+    hapticFeedback.impactOccurred("soft");
     navigate(ROUTES_PATHS.store);
   }, [navigate]);
   if (isPending) return <Loader />;

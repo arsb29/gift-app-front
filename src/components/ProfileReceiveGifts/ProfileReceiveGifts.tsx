@@ -12,6 +12,7 @@ import { Error } from "@/components/Error/Error.tsx";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { ROUTES_PATHS } from "@/navigation/routes.tsx";
+import { hapticFeedback } from "@telegram-apps/sdk-react";
 
 type Props = {
   userId: string;
@@ -34,6 +35,7 @@ export function ProfileReceiveGifts(props: Props) {
   });
   const navigate = useNavigate();
   const handleOpenStore = useCallback(() => {
+    hapticFeedback.impactOccurred("soft");
     navigate(ROUTES_PATHS.store);
   }, [navigate]);
   if (isPending) return <Loader />;

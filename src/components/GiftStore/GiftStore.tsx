@@ -11,6 +11,7 @@ import { generatePath, useNavigate } from "react-router-dom";
 import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 import { getFormatText } from "@/helpers/getFormatText.ts";
 import { TEXTS } from "@/texts.tsx";
+import { hapticFeedback } from "@telegram-apps/sdk-react";
 
 type Props = {
   gift: Gift;
@@ -23,6 +24,7 @@ export const GiftStore = forwardRef(
     const { gift } = props;
     const isSoldOut = gift.numberOfPurchased >= gift.totalNumberOf;
     const handleClick = useCallback(() => {
+      hapticFeedback.impactOccurred("soft");
       navigate(generatePath(ROUTES_PATHS.gift, { giftId: gift._id }));
     }, [navigate, gift._id]);
     return (

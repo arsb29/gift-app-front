@@ -8,6 +8,7 @@ import { ModalSendGiftContent } from "@/components/ModalSendGiftContent/ModalSen
 import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 import { getFormatText } from "@/helpers/getFormatText.ts";
 import { TEXTS } from "@/texts.tsx";
+import { hapticFeedback } from "@telegram-apps/sdk-react";
 
 type Props = {
   transaction: FullTransaction;
@@ -20,9 +21,11 @@ export const GiftPurchased = forwardRef(
     const { transaction } = props;
     const { gift, sender, serialNumberOfGift, updateTime } = transaction;
     const handleClickOpenModal = useCallback(() => {
+      hapticFeedback.impactOccurred("soft");
       setOpenModal(true);
     }, []);
     const handleClickCloseModal = useCallback(() => {
+      hapticFeedback.impactOccurred("soft");
       setOpenModal(false);
     }, []);
     return (
