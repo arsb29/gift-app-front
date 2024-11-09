@@ -82,16 +82,13 @@ body {
   font: var(--text17);
   color: var(--text-color);
   background-color: var(--bg-color);
+  overflow: hidden;
+  height: 100vh;
 }
 
-body {
-  min-height: 100vh;
-  /* mobile viewport bug fix */
-  min-height: -webkit-fill-available;
-}
-
-html {
-  height: -webkit-fill-available;
+#root {
+  overflow-y: scroll;
+  height: 100%;
 }
 
 .background-deliciousCake {
