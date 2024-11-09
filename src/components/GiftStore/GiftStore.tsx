@@ -23,8 +23,7 @@ export const GiftStore = forwardRef(
     const { gift } = props;
     const isSoldOut = gift.numberOfPurchased >= gift.totalNumberOf;
     const handleClick = useCallback(() => {
-      if (!isSoldOut)
-        navigate(generatePath(ROUTES_PATHS.gift, { giftId: gift._id }));
+      navigate(generatePath(ROUTES_PATHS.gift, { giftId: gift._id }));
     }, [navigate, gift._id]);
     return (
       <div

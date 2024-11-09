@@ -60,10 +60,13 @@ export const GiftPage: FC = () => {
   }, [onHideMenu, onShowMenu]);
 
   useEffect(() => {
+    const isSoldOut = gift
+      ? gift.numberOfPurchased >= gift.totalNumberOf
+      : false;
     mountMainButton();
     setMainButtonParams({
       hasShineEffect: true,
-      isVisible: Boolean(gift),
+      isVisible: Boolean(gift) && !isSoldOut,
       text: getFormatText({
         text: TEXTS.giftPageTelegramMainButton[languageCode],
       }) as string,
