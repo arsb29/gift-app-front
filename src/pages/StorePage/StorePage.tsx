@@ -34,6 +34,7 @@ export const StorePage: FC = () => {
         description={getFormatText({
           text: TEXTS.storeHeaderDescription[languageCode],
         })}
+        withIcon
       />
       <div className={styles.list}>
         {gifts.map((gift, index) => (

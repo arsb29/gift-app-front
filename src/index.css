@@ -29,7 +29,7 @@
   --accent-green: #35c759;
   --accent-cyan: #5ac8fa;
 
-  --menu-height: 55px;
+  --menu-height: 85px;
 
   --text12: normal normal 400 normal 12px/18px SFProRegular, sans-serif;
   --text13: normal normal 400 normal 13px/18px SFProRegular, sans-serif;
@@ -73,6 +73,7 @@
   box-sizing: border-box;
   letter-spacing: -0.43px;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -81,6 +82,8 @@ body {
   font: var(--text17);
   color: var(--text-color);
   background-color: var(--bg-color);
+  overflow: hidden;
+  overflow-y: auto;
 }
 
 .background-deliciousCake {
