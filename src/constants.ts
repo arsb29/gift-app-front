@@ -66,6 +66,12 @@ export const CRYPTO_PAY_INVOICE_STATUS = {
 } as const;
 
 export const TELEGRAM_UI_ELEMENT_BACKGROUND_COLOR = {
-  [THEME.dark]: "#1e1e1e",
-  [THEME.light]: "#F1F1F2",
+  body: {
+    [THEME.dark]: "#1e1e1e",
+    [THEME.light]: "#FFFFFF",
+  },
+  header: {
+    [THEME.dark]: "#1C1C1E",
+    [THEME.light]: "#F1F1F2",
+  },
 } as const;
