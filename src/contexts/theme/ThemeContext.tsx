@@ -8,8 +8,16 @@ import {
   useState,
 } from "react";
 import { Theme } from "@/types.ts";
-import { LOCAL_STORAGE_THEME_KEY, THEME } from "@/constants.ts";
+import {
+  LOCAL_STORAGE_THEME_KEY,
+  TELEGRAM_UI_ELEMENT_BACKGROUND_COLOR,
+  THEME,
+} from "@/constants.ts";
 import { localStorage } from "@/helpers/localStorage.ts";
+import {
+  setMiniAppBackgroundColor,
+  setMiniAppHeaderColor,
+} from "@telegram-apps/sdk-react";
 
 type ThemeContextType = {
   theme: Theme;
@@ -33,6 +41,8 @@ export function ThemeContextProvider(props: Props) {
   const [theme, setTheme] = useState<Theme>(DEFAULT_VALUE);
   const handleSetAttribute = useCallback((theme: Theme) => {
     document.documentElement.setAttribute("data-theme", theme);
+    setMiniAppBackgroundColor(TELEGRAM_UI_ELEMENT_BACKGROUND_COLOR[theme]);
+    setMiniAppHeaderColor(TELEGRAM_UI_ELEMENT_BACKGROUND_COLOR[theme]);
   }, []);
   useEffect(() => {
     handleSetAttribute(DEFAULT_VALUE);
