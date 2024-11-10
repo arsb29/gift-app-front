@@ -87,7 +87,7 @@ export const TEXTS: Record<string, TitleWithLanguage> = {
     ),
     [LANGUAGE_CODE.ru]: ({ sender, receiver }) => (
       <span>
-        <ClickableUserName user={sender} /> отправил подарок{" "}
+        <ClickableUserName user={sender} /> отправил подарок для{" "}
         {receiver ? <ClickableUserName user={receiver} /> : ""}
       </span>
     ),
@@ -257,7 +257,7 @@ export const TEXTS: Record<string, TitleWithLanguage> = {
     ),
     [LANGUAGE_CODE.ru]: ({ receiver }) => (
       <span>
-        <ClickableUserName user={receiver} />
+        для <ClickableUserName user={receiver} />
       </span>
     ),
   },
