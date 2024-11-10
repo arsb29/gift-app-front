@@ -37,7 +37,7 @@ export const ProfileRecentActions: FC = () => {
     lastElementRef,
     isFetchingNextPage,
   } = useInfinite<Action[]>({
-    queryKey: [`ProfileRecentActions-${id}`],
+    queryKey: [`profileRecentActions-${id}`],
     queryFn: userRecentActionsQueryFn(id),
   });
   const { languageCode } = useLanguageContext();

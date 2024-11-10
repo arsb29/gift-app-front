@@ -22,6 +22,7 @@ export const QUERY_KEYS = {
   leaderboard: "leaderboard",
   createTransactionQueryFn: "createTransactionQueryFn",
   giftPurchasedPage: "giftPurchasedPage",
+  profile: "profile",
 } as const;
 
 export const GIFT_ID = {

@@ -23,7 +23,7 @@ export const GiftRecentlyActions: FC = () => {
     isFetchingNextPage,
     isFetchNextPageError,
   } = useInfinite<Action[]>({
-    queryKey: [`GiftRecentlyActions-${giftId}`],
+    queryKey: [`giftRecentlyActions-${giftId}`],
     queryFn: giftActionsQueryFn(giftId),
   });
   if (isPending) return <Loader />;

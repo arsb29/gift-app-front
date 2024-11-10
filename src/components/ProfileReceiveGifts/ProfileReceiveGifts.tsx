@@ -30,7 +30,7 @@ export function ProfileReceiveGifts(props: Props) {
     isFetchingNextPage,
     isFetchNextPageError,
   } = useInfinite<FullTransaction[]>({
-    queryKey: [`ProfileReceiveGifts-${userId}`],
+    queryKey: [`profileReceiveGifts-${userId}`],
     queryFn: profileReceiveGiftsQueryFn(userId),
   });
   const navigate = useNavigate();

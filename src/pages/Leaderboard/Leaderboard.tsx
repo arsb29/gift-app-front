@@ -38,7 +38,7 @@ export const Leaderboard: FC = () => {
   });
 
   const { data: userProfile } = useQuery<User>({
-    queryKey: ["user"],
+    queryKey: [QUERY_KEYS.profile],
     queryFn: userQueryFn,
     staleTime: toMilliseconds({ minutes: 1 }),
   });
@@ -57,26 +57,28 @@ export const Leaderboard: FC = () => {
   if (isPending) return <Loader />;
   if (isError || isFetchNextPageError) return <Error />;
   return (
-    <Page withMenu className={cc(styles.container)} back={false}>
-      <Input
-        className={styles.input}
-        value={searchValue}
-        onChange={setSearchValue}
-      />
-      <div className={styles.separator} />
-      <div className={styles.leaderboard}>
-        {filteredUsers.map((user, index) => (
-          <LeaderboardItem
-            key={user._id}
-            user={user}
-            ref={filteredUsers.length === index + 1 ? lastElementRef : null}
-          />
-        ))}
-      </div>
-      {isFetchingNextPage && <Loader />}
+    <>
+      <Page withMenu className={cc(styles.container)} back={false}>
+        <Input
+          className={styles.input}
+          value={searchValue}
+          onChange={setSearchValue}
+        />
+        <div className={styles.separator} />
+        <div className={styles.leaderboard}>
+          {filteredUsers.map((user, index) => (
+            <LeaderboardItem
+              key={user._id}
+              user={user}
+              ref={filteredUsers.length === index + 1 ? lastElementRef : null}
+            />
+          ))}
+        </div>
+        {isFetchingNextPage && <Loader />}
+      </Page>
       {userProfile && (
         <LeaderboardItem user={userProfile} className={styles.fixedItem} />
       )}
-    </Page>
+    </>
   );
 };

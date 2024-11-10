@@ -8,6 +8,7 @@ import { Profile } from "@/components/Profile/Profile.tsx";
 import styles from "./ProfilePage.module.css";
 import { Loader } from "@/components/Loader/Loader.tsx";
 import { Error } from "@/components/Error/Error.tsx";
+import { QUERY_KEYS } from "@/constants.ts";
 
 export const ProfilePage: FC = () => {
   const {
@@ -15,7 +16,7 @@ export const ProfilePage: FC = () => {
     isError,
     data: user,
   } = useQuery<User>({
-    queryKey: ["user"],
+    queryKey: [QUERY_KEYS.profile],
     queryFn: userQueryFn,
     staleTime: toMilliseconds({ minutes: 1 }),
   });
