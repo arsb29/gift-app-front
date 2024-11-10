@@ -15,7 +15,6 @@ import {
 } from "@/constants.ts";
 import { localStorage } from "@/helpers/localStorage.ts";
 import {
-  setMiniAppBackgroundColor,
   setMiniAppHeaderColor,
   setMiniAppBottomBarColor,
 } from "@telegram-apps/sdk-react";
@@ -42,7 +41,6 @@ export function ThemeContextProvider(props: Props) {
   const [theme, setTheme] = useState<Theme>(DEFAULT_VALUE);
   const handleSetAttribute = useCallback((theme: Theme) => {
     document.documentElement.setAttribute("data-theme", theme);
-    setMiniAppBackgroundColor(TELEGRAM_UI_ELEMENT_BACKGROUND_COLOR.body[theme]);
     setMiniAppHeaderColor(TELEGRAM_UI_ELEMENT_BACKGROUND_COLOR.header[theme]);
     setMiniAppBottomBarColor(
       TELEGRAM_UI_ELEMENT_BACKGROUND_COLOR.bottom[theme],
