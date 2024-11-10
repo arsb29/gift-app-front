@@ -6,7 +6,7 @@
   padding: 9px 16px;
   gap: 12px;
   align-items: center;
-  animation: animationNotification var(--transition-standard-in);
+  animation: animationNotification 6s var(--transition-standard-easing);
 }
 
 .content {
@@ -42,8 +42,17 @@
     transform: translate(0, 30%);
     opacity: 0.7;
   }
-  to {
+  6% {
     transform: translate(0, 0);
     opacity: 1;
+  }
+  94% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  to {
+    transform: translate(0, 100%);
+    visibility: hidden;
+    opacity: 0;
   }
 }

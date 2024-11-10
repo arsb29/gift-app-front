@@ -35,7 +35,7 @@ export function NotificationsContextProvider(props: Props) {
     ]);
     setTimeout(() => {
       handleRemoveNotification(id);
-    }, 5000);
+    }, 6000);
   };
   const handleRemoveNotification = useCallback((id: number) => {
     setNotifications((prevNotifications) =>

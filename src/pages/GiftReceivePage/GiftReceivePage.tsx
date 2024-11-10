@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useLayoutEffect } from "react";
 import { Page } from "@/components/Page/Page.tsx";
 import styles from "./GiftReceivePage.module.css";
 import { cc } from "@/helpers/classConcat.ts";
@@ -63,7 +63,7 @@ export function GiftReceivePage() {
       });
     }
   }, [transaction?._id]);
-  useEffect(() => {
+  useLayoutEffect(() => {
     onHideMenu();
     return () => {
       onShowMenu();
