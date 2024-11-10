@@ -30,9 +30,9 @@
 
 .actionTypeIcon {
   position: absolute;
-  height: 16px;
-  width: 16px;
-  padding: 3px;
+  height: 18px;
+  width: 18px;
+  padding: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
