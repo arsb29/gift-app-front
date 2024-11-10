@@ -41,6 +41,7 @@ export const IconAnimation = forwardRef(
           ref={ref}
           src={ICON_ANIMATION_PATH[icon]}
           className={styles.animation}
+          keepLastFrame
           {...propsToPass}
         />
       </div>

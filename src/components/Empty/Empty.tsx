@@ -1,7 +1,8 @@
 import { cc } from "@/helpers/classConcat.ts";
-import balloons from "@/assets/balloons.png";
 import styles from "./Empty.module.css";
 import { ReactNode } from "react";
+import { IconAnimation } from "@/components/IconAnimation/IconAnimation.tsx";
+import { ICON_ANIMATION } from "@/constants.ts";
 
 type Props = {
   withBackground?: boolean;
@@ -30,7 +31,7 @@ export function Empty(props: Props) {
       )}
     >
       <div>
-        <img src={balloons} alt="balloons" />
+        <IconAnimation icon={ICON_ANIMATION.balloons} autoplay />
       </div>
       <div className={styles.info}>
         {title && <div className={styles.title}>{title}</div>}
