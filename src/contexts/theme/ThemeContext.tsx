@@ -17,6 +17,7 @@ import { localStorage } from "@/helpers/localStorage.ts";
 import {
   setMiniAppBackgroundColor,
   setMiniAppHeaderColor,
+  setMiniAppBottomBarColor,
 } from "@telegram-apps/sdk-react";
 
 type ThemeContextType = {
@@ -43,6 +44,9 @@ export function ThemeContextProvider(props: Props) {
     document.documentElement.setAttribute("data-theme", theme);
     setMiniAppBackgroundColor(TELEGRAM_UI_ELEMENT_BACKGROUND_COLOR.body[theme]);
     setMiniAppHeaderColor(TELEGRAM_UI_ELEMENT_BACKGROUND_COLOR.header[theme]);
+    setMiniAppBottomBarColor(
+      TELEGRAM_UI_ELEMENT_BACKGROUND_COLOR.bottom[theme],
+    );
   }, []);
   useEffect(() => {
     handleSetAttribute(DEFAULT_VALUE);
