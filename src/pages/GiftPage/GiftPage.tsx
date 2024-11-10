@@ -1,10 +1,13 @@
-import { FC, useCallback, useEffect } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Gift } from "@/types.ts";
+import { Gift, Transaction } from "@/types.ts";
 import { toMilliseconds } from "@/helpers/toMilliseconds.ts";
-import { useNavigate, useParams } from "react-router-dom";
-import { ICON_ANIMATION, QUERY_KEYS } from "@/constants.ts";
-import { createTransactionQueryFn } from "@/queries/createTransactionQueryFn.ts";
+import { generatePath, useNavigate, useParams } from "react-router-dom";
+import {
+  CRYPTO_PAY_INVOICE_STATUS,
+  ICON_ANIMATION,
+  QUERY_KEYS,
+} from "@/constants.ts";
 import { Page } from "@/components/Page/Page.tsx";
 import styles from "./GiftPage.module.css";
 import { formatNumber } from "@/helpers/formatNumber.ts";
@@ -35,11 +38,26 @@ export const GiftPage: FC = () => {
   const navigate = useNavigate();
   const { onHideMenu, onShowMenu } = useMenuContext();
   const { languageCode } = useLanguageContext();
-  useQuery({
-    queryKey: [QUERY_KEYS.createTransactionQueryFn],
-    queryFn: createTransactionQueryFn(giftId),
-    enabled: false,
-  });
+  const [transaction, setTransaction] = useState<Transaction | null>(null);
+
+  useEffect(() => {
+    let eventSource = null;
+    if (transaction) {
+      eventSource = new EventSource(
+        `${import.meta.env.VITE_ENDPOINT}/cryptoPay/check?invoiceId=${transaction.invoiceId}`,
+      );
+      eventSource.onmessage = (event) => {
+        if (event.data === CRYPTO_PAY_INVOICE_STATUS.paid) {
+          navigate(
+            generatePath(ROUTES_PATHS.giftPaid, { id: transaction._id }),
+          );
+        }
+      };
+    }
+    return () => {
+      if (eventSource) eventSource.close();
+    };
+  }, []);
 
   const handleMainButtonClick = useCallback(() => {
     if (giftId) {
@@ -56,7 +74,11 @@ export const GiftPage: FC = () => {
           return res;
         })
         .then((res) => res.json())
-        .then((transaction) => openTelegramLink(transaction.miniAppPayUrl));
+        .then((res) => {
+          setTransaction(res);
+          return res.miniAppPayUrl;
+        })
+        .then(openTelegramLink);
     }
   }, [giftId]);
 

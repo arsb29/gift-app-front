@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { Page } from "@/components/Page/Page.tsx";
 import { Gift } from "@/types.ts";
 import { QUERY_KEYS } from "@/constants.ts";
@@ -12,7 +11,8 @@ import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 import { Loader } from "@/components/Loader/Loader.tsx";
 import { Error } from "@/components/Error/Error.tsx";
 import { useInfinite } from "@/hooks/useInfinite.ts";
-export const StorePage: FC = () => {
+
+export function StorePage() {
   const {
     isPending,
     list: gifts,
@@ -48,4 +48,4 @@ export const StorePage: FC = () => {
       {isFetchingNextPage && <Loader />}
     </Page>
   );
-};
+}
