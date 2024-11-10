@@ -14,13 +14,16 @@
   color: var(--label-secondary);
   font: var(--text12);
   letter-spacing: -0.08px;
+  text-align: center;
 }
 
 .send {
-  padding: 6px 25px;
+  padding: 6px;
   background-color: var(--primary);
   border-radius: 100px;
   color: var(--white);
   font: var(--text13);
   cursor: pointer;
+  width: 100%;
+  text-align: center;
 }

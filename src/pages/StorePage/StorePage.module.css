@@ -2,13 +2,11 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding-bottom: calc(var(--menu-height) + 8px);
+  padding: 0 16px calc(var(--menu-height) + 8px);
 }
 
 .list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 12px;
-  padding-right: 16px;
-  padding-left: 16px;
 }
