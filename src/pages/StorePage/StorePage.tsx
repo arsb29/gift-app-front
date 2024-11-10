@@ -21,7 +21,7 @@ export const StorePage: FC = () => {
     isFetchingNextPage,
     isFetchNextPageError,
   } = useInfinite<Gift[]>({
-    queryKey: [QUERY_KEYS.gifts],
+    queryKey: [QUERY_KEYS.store],
     queryFn: storeQueryFn,
   });
   const { languageCode } = useLanguageContext();

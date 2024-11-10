@@ -17,10 +17,11 @@ export const CRYPTO_ASSET = {
 } as const;
 
 export const QUERY_KEYS = {
-  gifts: "gifts",
-  myGifts: "myGifts",
+  store: "store",
+  giftsPurchasedPage: "giftsPurchasedPage",
   leaderboard: "leaderboard",
   createTransactionQueryFn: "createTransactionQueryFn",
+  giftPurchasedPage: "giftPurchasedPage",
 } as const;
 
 export const GIFT_ID = {

@@ -26,7 +26,7 @@ export function GiftsPurchasedPage() {
     isFetchingNextPage,
     isFetchNextPageError,
   } = useInfinite<FullTransaction[]>({
-    queryKey: [QUERY_KEYS.myGifts],
+    queryKey: [QUERY_KEYS.giftsPurchasedPage],
     queryFn: checkTransactionQueryFn,
   });
   const navigate = useNavigate();

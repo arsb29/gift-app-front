@@ -40,7 +40,7 @@ export function GiftPurchasedPage() {
     isError,
     data: transaction,
   } = useQuery<FullTransaction>({
-    queryKey: [QUERY_KEYS.gifts],
+    queryKey: [QUERY_KEYS.giftPurchasedPage],
     queryFn: checkTransactionQueryFn(id),
   });
   const navigate = useNavigate();

@@ -69,7 +69,7 @@ export const GiftPage: FC = () => {
     isError,
     data: gift,
   } = useQuery<Gift>({
-    queryKey: [`${QUERY_KEYS.gifts}-${giftId}`],
+    queryKey: [`${QUERY_KEYS.store}-${giftId}`],
     queryFn: storeIdQueryFn(giftId),
     staleTime: toMilliseconds({ minutes: 1 }),
   });
