@@ -8,7 +8,11 @@ import { Menu } from "@/components/Menu/Menu.tsx";
 import { NotificationsContextProvider } from "@/contexts/notifications/NotificationsContext.tsx";
 import { Notifications } from "@/components/Notifications/Notifications.tsx";
 import { ThemeContextProvider } from "@/contexts/theme/ThemeContext.tsx";
-import { disableVerticalSwipes } from "@telegram-apps/sdk-react";
+import {
+  disableVerticalSwipes,
+  mountSwipeBehavior,
+  unmountSwipeBehavior,
+} from "@telegram-apps/sdk-react";
 import { useEffect } from "react";
 
 const queryClient = new QueryClient();
@@ -16,7 +20,11 @@ const queryClient = new QueryClient();
 export function App() {
   useStartParamNavigate();
   useEffect(() => {
+    mountSwipeBehavior();
     disableVerticalSwipes();
+    return () => {
+      unmountSwipeBehavior();
+    };
   }, []);
   return (
     <ThemeContextProvider>
