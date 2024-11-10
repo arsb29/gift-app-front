@@ -7,6 +7,6 @@ export function filterUsers(user: User, filterValue: string) {
       .filter(Boolean)
       .join("")
       .toLowerCase()
-      .indexOf(filterValue) !== -1
+      .indexOf(filterValue.toLowerCase()) !== -1
   );
 }
