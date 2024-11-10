@@ -8,6 +8,8 @@ import { getFormatText } from "@/helpers/getFormatText.ts";
 import { TEXTS } from "@/texts.tsx";
 import { cc } from "@/helpers/classConcat.ts";
 
+const LEADERBOARD_ADDITIONAL_MATCHING_ROUTES = [ROUTES_PATHS.leaderboardId];
+
 export function Menu() {
   const { value } = useMenuContext();
   const { languageCode } = useLanguageContext();
@@ -27,6 +29,7 @@ export function Menu() {
         route={ROUTES_PATHS.leaderboard}
         icon={ICON_ANIMATION.tabLeaderboard}
         label={getFormatText({ text: TEXTS.menuLeaderboard[languageCode] })}
+        additionalMatchingRoutes={LEADERBOARD_ADDITIONAL_MATCHING_ROUTES}
       />
       <MenuElement
         route={ROUTES_PATHS.profile}

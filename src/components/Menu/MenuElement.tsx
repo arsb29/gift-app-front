@@ -3,7 +3,12 @@ import { IconAnimation } from "@/components/IconAnimation/IconAnimation.tsx";
 import { ICON_ANIMATION } from "@/constants.ts";
 import { ValuesOf } from "@/types.ts";
 import { ReactNode, useCallback, useRef } from "react";
-import { useMatch, useNavigate } from "react-router-dom";
+import {
+  useMatch,
+  useNavigate,
+  matchPath,
+  useLocation,
+} from "react-router-dom";
 import { cc } from "@/helpers/classConcat.ts";
 import { hapticFeedback } from "@telegram-apps/sdk-react";
 
@@ -12,11 +17,16 @@ type Props = {
   label: ReactNode;
   isActive?: boolean;
   route: string;
+  additionalMatchingRoutes?: string[];
 };
 
 export function MenuElement(props: Props) {
-  const { icon, label, route } = props;
-  const isActive = Boolean(useMatch(route));
+  const { icon, label, route, additionalMatchingRoutes } = props;
+  const { pathname } = useLocation();
+  const isActive = Boolean(
+    useMatch(route) ||
+      additionalMatchingRoutes?.some((r) => matchPath(r, pathname)),
+  );
   const navigate = useNavigate();
   const player = useRef<any>(null);
   const handleClick = useCallback(() => {
