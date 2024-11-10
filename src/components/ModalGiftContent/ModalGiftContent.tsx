@@ -49,7 +49,7 @@ export function ModalGiftContent(props: Props) {
   }, []);
   return (
     <div className={styles.container}>
-      <IconAnimation icon={ICON_ANIMATION[giftId]} />
+      <IconAnimation icon={ICON_ANIMATION[giftId]} autoplay />
       <div className={styles.title}>{gift.title[languageCode]}</div>
       <Table>
         <TableRow

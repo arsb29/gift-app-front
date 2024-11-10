@@ -53,7 +53,7 @@ export function ModalSendGiftContent(props: Props) {
   }, [handleSendGift, languageCode]);
   return (
     <div className={styles.container}>
-      <IconAnimation icon={ICON_ANIMATION[gift.giftId]} />
+      <IconAnimation icon={ICON_ANIMATION[gift.giftId]} autoplay />
       <div className={styles.title}>
         {getFormatText({ text: TEXTS.giftModalTableTitle[languageCode] })}
       </div>
