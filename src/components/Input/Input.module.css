@@ -35,4 +35,5 @@
   outline: none;
   caret-color: var(--input-label-color);
   color: var(--text-color);
+  font: var(--text17);
 }
