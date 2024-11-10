@@ -53,6 +53,12 @@ export function GiftPurchasedPage() {
   const handleSecondaryButtonClick = useCallback(() => {
     navigate(ROUTES_PATHS.store);
   }, [navigate]);
+  useLayoutEffect(() => {
+    onHideMenu();
+    return () => {
+      onShowMenu();
+    };
+  }, []);
   useEffect(() => {
     if (transaction?._id) {
       onAddNotification({
@@ -70,12 +76,6 @@ export function GiftPurchasedPage() {
       });
     }
   }, [transaction, handleSendGift, languageCode]);
-  useLayoutEffect(() => {
-    onHideMenu();
-    return () => {
-      onShowMenu();
-    };
-  }, []);
   useEffect(() => {
     mountMainButton();
     setMainButtonParams({
