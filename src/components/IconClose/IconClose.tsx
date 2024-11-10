@@ -11,7 +11,7 @@ export function IconClose(props: Props) {
   const { className, onClick } = props;
   return (
     <div className={cc(styles.root, className)} onClick={onClick}>
-      <Close onClick={onClick} />
+      <Close />
     </div>
   );
 }
