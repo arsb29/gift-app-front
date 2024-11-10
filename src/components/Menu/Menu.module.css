@@ -11,4 +11,9 @@
   padding-bottom: 34px;
   border-top: 0.33px solid var(--separator);
   height: var(--menu-height);
+  transition: transform var(--transition-standard-in);
+}
+
+.hide {
+  transform: translate(0, 100%);
 }

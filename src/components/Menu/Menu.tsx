@@ -6,13 +6,13 @@ import styles from "./Menu.module.css";
 import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 import { getFormatText } from "@/helpers/getFormatText.ts";
 import { TEXTS } from "@/texts.tsx";
+import { cc } from "@/helpers/classConcat.ts";
 
 export function Menu() {
   const { value } = useMenuContext();
   const { languageCode } = useLanguageContext();
-  if (!value) return null;
   return (
-    <div className={styles.container}>
+    <div className={cc(styles.container, !value && styles.hide)}>
       <MenuElement
         route={ROUTES_PATHS.store}
         icon={ICON_ANIMATION.tabStore}
