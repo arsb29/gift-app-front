@@ -20,7 +20,7 @@ import {
   offMainButtonClick,
   offSecondaryButtonClick,
 } from "@telegram-apps/sdk-react";
-import { useCallback, useEffect, useLayoutEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { ROUTES_PATHS } from "@/navigation/routes.tsx";
 import { useMenuContext } from "@/contexts/menu/MenuContext.tsx";
 import { IconGift } from "@/components/IconGift/IconGift.tsx";
@@ -53,7 +53,7 @@ export function GiftPurchasedPage() {
   const handleSecondaryButtonClick = useCallback(() => {
     navigate(ROUTES_PATHS.store);
   }, [navigate]);
-  useLayoutEffect(() => {
+  useEffect(() => {
     onHideMenu();
     return () => {
       onShowMenu();

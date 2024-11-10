@@ -25,7 +25,7 @@ export const LeaderboardIdPage: FC = () => {
   if (isPending) return <Loader />;
   if (isError) return <Error />;
   return (
-    <Page withMenu className={styles.container} back={false}>
+    <Page withMenu className={styles.container}>
       <Profile user={user} />
     </Page>
   );
