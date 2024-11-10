@@ -53,7 +53,7 @@ export const TEXTS: Record<string, TitleWithLanguage> = {
   },
   giftPageRecentlyActionTypeBuy: {
     [LANGUAGE_CODE.en]: "Buy gift",
-    [LANGUAGE_CODE.ru]: "Покупка подарка",
+    [LANGUAGE_CODE.ru]: "Покупка",
   },
   giftPageRecentlyActionTypeBuyDescription: {
     [LANGUAGE_CODE.en]: ({ sender }) => (
@@ -69,7 +69,7 @@ export const TEXTS: Record<string, TitleWithLanguage> = {
   },
   giftPageRecentlyActionTypeSend: {
     [LANGUAGE_CODE.en]: "Send gift",
-    [LANGUAGE_CODE.ru]: "Отправка подарка",
+    [LANGUAGE_CODE.ru]: "Отправка",
   },
   giftPageRecentlyActionTypeSendDescription: {
     [LANGUAGE_CODE.en]: ({ sender, receiver }) => (
