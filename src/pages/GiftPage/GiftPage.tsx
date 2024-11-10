@@ -57,7 +57,7 @@ export const GiftPage: FC = () => {
     return () => {
       if (eventSource) eventSource.close();
     };
-  }, []);
+  }, [transaction]);
 
   const handleMainButtonClick = useCallback(() => {
     if (giftId) {
