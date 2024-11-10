@@ -6,7 +6,7 @@
   padding: 9px 16px;
   gap: 12px;
   align-items: center;
-  animation: animationNotification 0.3s ease-in;
+  animation: animationNotification var(--transition-standard-in);
 }
 
 .content {

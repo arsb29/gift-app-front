@@ -31,6 +31,11 @@
 
   --menu-height: 85px;
 
+  --transition-standard-easing: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-standard-in-time: 0.3s;
+  --transition-standard-in: var(--transition-standard-in-time)
+    var(--transition-standard-easing);
+
   --text12: normal normal 400 normal 12px/18px SFProRegular, sans-serif;
   --text13: normal normal 400 normal 13px/18px SFProRegular, sans-serif;
   --text14: normal normal 500 normal 14px/22px SFProRegular, sans-serif;

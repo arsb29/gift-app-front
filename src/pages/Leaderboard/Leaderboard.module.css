@@ -25,7 +25,7 @@
   padding: 0 10px;
   border-top: 0.33px solid var(--separator);
   background-color: var(--bg-color);
-  animation: animationFixedItem 0.3s ease-in;
+  animation: animationFixedItem var(--transition-standard-in);
 }
 
 @keyframes animationFixedItem {

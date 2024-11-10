@@ -1,5 +1,5 @@
 .container {
-  animation: animationPage 0.3s ease-in;
+  animation: animationPage var(--transition-standard-in);
 }
 
 @keyframes animationPage {
