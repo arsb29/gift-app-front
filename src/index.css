@@ -72,6 +72,7 @@
   --input-label-color: var(--label-secondary);
   --input-bg-color: #00000080;
   --bg-notification: #000000cc;
+  --separator: #ffffff33;
 }
 
 * {
