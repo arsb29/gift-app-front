@@ -39,10 +39,7 @@ export const GiftRecentlyAction = forwardRef(
     return (
       <div ref={ref} className={styles.container}>
         <div className={styles.image}>
-          <Avatar
-            user={type === ACTION_TYPE.buy ? sender : receiver}
-            size={40}
-          />
+          <Avatar user={sender} size={40} />
           <IconSmallActionType
             actionTypeIcon={
               type === ACTION_TYPE.buy
