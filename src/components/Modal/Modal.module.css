@@ -23,7 +23,7 @@
 
 @keyframes modalAnimation {
   from {
-    transform: translate(0, 30%);
+    transform: translate(0, 100%);
     opacity: 0;
   }
   to {
