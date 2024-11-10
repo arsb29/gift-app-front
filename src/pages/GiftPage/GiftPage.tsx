@@ -7,6 +7,7 @@ import {
   CRYPTO_PAY_INVOICE_STATUS,
   ICON_ANIMATION,
   QUERY_KEYS,
+  TELEGRAM_UI_ELEMENT_BACKGROUND_COLOR,
 } from "@/constants.ts";
 import { Page } from "@/components/Page/Page.tsx";
 import styles from "./GiftPage.module.css";
@@ -32,12 +33,14 @@ import { Loader } from "@/components/Loader/Loader.tsx";
 import { Error } from "@/components/Error/Error.tsx";
 import { storeIdQueryFn } from "@/queries/storeIdQueryFn.ts";
 import { getAuthorizationHeader } from "@/helpers/getAthorizationHeader.ts";
+import { useThemeContext } from "@/contexts/theme/ThemeContext.tsx";
 
 export const GiftPage: FC = () => {
   const { giftId } = useParams();
   const navigate = useNavigate();
   const { onHideMenu, onShowMenu } = useMenuContext();
   const { languageCode } = useLanguageContext();
+  const { theme } = useThemeContext();
   const [transaction, setTransaction] = useState<Transaction | null>(null);
 
   useEffect(() => {
@@ -114,6 +117,7 @@ export const GiftPage: FC = () => {
       text: getFormatText({
         text: TEXTS.giftPageTelegramMainButton[languageCode],
       }) as string,
+      backgroundColor: TELEGRAM_UI_ELEMENT_BACKGROUND_COLOR[theme],
     });
     onMainButtonClick(handleMainButtonClick);
     return () => {
@@ -121,7 +125,7 @@ export const GiftPage: FC = () => {
       setMainButtonParams({ isVisible: false });
       unmountMainButton();
     };
-  }, [languageCode, gift, handleMainButtonClick]);
+  }, [languageCode, gift, handleMainButtonClick, theme]);
 
   if (isPending) return <Loader />;
   if (isError || !gift) return <Error />;

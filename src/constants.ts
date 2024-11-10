@@ -64,3 +64,8 @@ export const LOCAL_STORAGE_THEME_KEY = "telegram_gift_app_theme_code";
 export const CRYPTO_PAY_INVOICE_STATUS = {
   paid: "paid",
 } as const;
+
+export const TELEGRAM_UI_ELEMENT_BACKGROUND_COLOR = {
+  [THEME.dark]: "#1e1e1e",
+  [THEME.light]: "#F1F1F2",
+} as const;
