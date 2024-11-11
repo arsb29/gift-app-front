@@ -71,7 +71,7 @@ export const TELEGRAM_UI_ELEMENT_BACKGROUND_COLOR = {
     [THEME.light]: "#FFFFFF",
   },
   bottom: {
-    [THEME.dark]: "#1E1E1EBF",
-    [THEME.light]: "#F1F1F2BF",
+    [THEME.dark]: "#1E1E1E",
+    [THEME.light]: "#F1F1F2",
   },
 } as const;
