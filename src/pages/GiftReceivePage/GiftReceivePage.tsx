@@ -13,6 +13,7 @@ import {
   unmountMainButton,
   onMainButtonClick,
   offMainButtonClick,
+  hapticFeedback,
 } from "@telegram-apps/sdk-react";
 import { ROUTES_PATHS } from "@/navigation/routes.tsx";
 import { receiveGiftTransactionQueryFn } from "@/queries/receiveGiftTransactionQueryFn.ts";
@@ -40,6 +41,7 @@ export function GiftReceivePage() {
   const navigate = useNavigate();
   const { onShowMenu, onHideMenu } = useMenuContext();
   const handleNotificationClick = useCallback(() => {
+    hapticFeedback.impactOccurred("soft");
     navigate(ROUTES_PATHS.profile);
   }, [navigate]);
   useEffect(() => {

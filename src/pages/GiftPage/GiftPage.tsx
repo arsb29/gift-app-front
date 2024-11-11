@@ -21,6 +21,7 @@ import {
   unmountMainButton,
   offMainButtonClick,
   openTelegramLink,
+  hapticFeedback,
 } from "@telegram-apps/sdk-react";
 import { GiftRecentlyActions } from "@/components/GiftRecentlyActions/GiftRecentlyActions.tsx";
 import { ROUTES_PATHS } from "@/navigation/routes.tsx";
@@ -62,6 +63,7 @@ export const GiftPage: FC = () => {
 
   const handleMainButtonClick = useCallback(() => {
     if (giftId) {
+      hapticFeedback.impactOccurred("soft");
       setLoading(true);
       fetch(`${import.meta.env.VITE_ENDPOINT}/transaction/createInvoice`, {
         method: "POST",

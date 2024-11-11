@@ -14,6 +14,7 @@ import {
   onMainButtonClick,
   switchInlineQuery,
   offMainButtonClick,
+  hapticFeedback,
 } from "@telegram-apps/sdk-react";
 import { getFormatText } from "@/helpers/getFormatText.ts";
 import { TEXTS } from "@/texts.tsx";
@@ -32,6 +33,7 @@ export function ModalSendGiftContent(props: Props) {
   const { giftId } = gift;
   const { languageCode } = useLanguageContext();
   const handleSendGift = useCallback(() => {
+    hapticFeedback.impactOccurred("soft");
     if (switchInlineQuery.isSupported() && giftId)
       switchInlineQuery(giftId, ["users"]);
   }, [giftId]);

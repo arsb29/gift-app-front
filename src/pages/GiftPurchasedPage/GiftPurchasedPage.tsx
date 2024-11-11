@@ -19,6 +19,7 @@ import {
   switchInlineQuery,
   offMainButtonClick,
   offSecondaryButtonClick,
+  hapticFeedback,
 } from "@telegram-apps/sdk-react";
 import { useCallback, useEffect } from "react";
 import { ROUTES_PATHS } from "@/navigation/routes.tsx";
@@ -47,6 +48,7 @@ export function GiftPurchasedPage() {
   const { onShowMenu, onHideMenu } = useMenuContext();
   const handleSendGift = useCallback(() => {
     if (transaction?.gift?.giftId) {
+      hapticFeedback.impactOccurred("soft");
       switchInlineQuery(transaction?.gift?.giftId, ["users"]);
     }
   }, [transaction?.gift?.giftId]);
