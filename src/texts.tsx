@@ -13,6 +13,10 @@ export const TEXTS: Record<string, TitleWithLanguage> = {
     [LANGUAGE_CODE.en]: "Failed to upload data",
     [LANGUAGE_CODE.ru]: "Не удалось загрузить данные",
   },
+  leaderboardItemMyProfile: {
+    [LANGUAGE_CODE.en]: "You",
+    [LANGUAGE_CODE.ru]: "Ты",
+  },
   errorTitle: {
     [LANGUAGE_CODE.en]: "Error",
     [LANGUAGE_CODE.ru]: "Ошибка",

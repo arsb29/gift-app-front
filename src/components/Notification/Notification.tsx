@@ -19,7 +19,7 @@ export function Notification(props: Props) {
       <div className={styles.icon}>{icon}</div>
       <div className={styles.content}>
         <div className={styles.info}>
-          <div>{title}</div>
+          <div className={styles.title}>{title}</div>
           <div>{description}</div>
         </div>
         <div className={styles.button} onClick={handleClick}>

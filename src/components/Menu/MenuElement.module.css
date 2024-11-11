@@ -7,9 +7,8 @@
 }
 
 .title {
-  font-size: 10px;
+  font: var(--text10);
   letter-spacing: 0.1px;
-  line-height: 11.93px;
   color: var(--tab-bar-label);
 }
 

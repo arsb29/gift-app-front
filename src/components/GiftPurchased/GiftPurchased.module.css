@@ -13,7 +13,7 @@
 .title {
   color: var(--label-secondary);
   font: var(--text12);
-  letter-spacing: -0.08px;
+  letter-spacing: var(--letter-spacing-small);
   text-align: center;
 }
 

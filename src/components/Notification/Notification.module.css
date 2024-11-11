@@ -30,11 +30,18 @@
   color: var(--white);
   flex: 1;
   letter-spacing: -0.15px;
+  font: var(--text14);
+  line-height: 18px;
+}
+
+.title {
+  font-weight: 590;
 }
 
 .button {
   color: var(--accent-cyan);
   cursor: pointer;
+  font: var(--text17);
 }
 
 @keyframes animationNotification {

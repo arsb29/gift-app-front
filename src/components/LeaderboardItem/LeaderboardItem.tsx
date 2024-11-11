@@ -11,17 +11,21 @@ import { TEXTS } from "@/texts.tsx";
 import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 import { cc } from "@/helpers/classConcat.ts";
 import { hapticFeedback } from "@telegram-apps/sdk-react";
+import { formatName } from "@/helpers/formatName.ts";
 
 type Props = {
   user: User;
   className?: string;
+  isMyProfile: boolean;
 };
+
+const FIRST_THREE_PLACES = [1, 2, 3];
 
 export const LeaderboardItem = forwardRef(function (
   props: Props,
   ref: LegacyRef<HTMLDivElement>,
 ) {
-  const { user, className } = props;
+  const { user, className, isMyProfile } = props;
   const { languageCode } = useLanguageContext();
   const navigate = useNavigate();
   const handleClick = useCallback(() => {
@@ -37,7 +41,16 @@ export const LeaderboardItem = forwardRef(function (
       <Avatar user={user} size={40} className={styles.photo} />
       <div className={styles.content}>
         <div className={styles.info}>
-          <div>{user.firstName}</div>
+          <div className={styles.name}>
+            <span>{formatName(user)}</span>
+            {isMyProfile && (
+              <span className={styles.myProfile}>
+                {getFormatText({
+                  text: TEXTS.leaderboardItemMyProfile[languageCode],
+                })}
+              </span>
+            )}
+          </div>
           <div className={styles.gifts}>
             <IconGift className={styles.icon} />
             <div className={styles.giftsReceived}>
@@ -50,7 +63,11 @@ export const LeaderboardItem = forwardRef(function (
             </div>
           </div>
         </div>
-        <div>{formatRank(user.rank)}</div>
+        <div
+          className={cc(FIRST_THREE_PLACES.includes(user.rank) && styles.rank)}
+        >
+          {formatRank(user.rank)}
+        </div>
       </div>
     </div>
   );

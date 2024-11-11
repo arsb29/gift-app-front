@@ -27,9 +27,11 @@
   opacity: 50%;
   align-self: flex-end;
   font: var(--text13);
+  letter-spacing: var(--letter-spacing-small);
 }
 
 .title {
+  font: var(--text17b);
   margin-top: 4px;
 }
 
@@ -50,4 +52,5 @@
 
 .amount {
   font: var(--text13);
+  letter-spacing: var(--letter-spacing-small);
 }

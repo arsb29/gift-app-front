@@ -29,6 +29,8 @@
   --accent-green: #35c759;
   --accent-cyan: #5ac8fa;
 
+  --letter-spacing: -0.43px;
+  --letter-spacing-small: -0.08px;
   --menu-height: 85px;
 
   --transition-standard-easing: cubic-bezier(0.4, 0, 0.2, 1);
@@ -36,13 +38,16 @@
   --transition-standard-in: var(--transition-standard-in-time)
     var(--transition-standard-easing);
 
+  --text10: normal normal 500 normal 10px/11.93px SFProRegular, sans-serif;
   --text12: normal normal 400 normal 12px/18px SFProRegular, sans-serif;
+  --text11: normal normal 500 normal 11px/14px SFProRegular, sans-serif;
   --text13: normal normal 400 normal 13px/18px SFProRegular, sans-serif;
   --text14: normal normal 500 normal 14px/22px SFProRegular, sans-serif;
   --text15: normal normal 400 normal 15px/22px SFProRegular, sans-serif;
   --text17: normal normal 400 normal 17px/22px SFProRegular, sans-serif;
   --text17m: normal normal 500 normal 17px/22px SFProMedium, sans-serif;
   --text17b: normal normal 600 normal 17px/22px SFProSemibold, sans-serif;
+  --text22: normal normal 500 normal 22px/22px SFProRegular, sans-serif;
   --text24b: normal normal 590 normal 24px/32px SFProSemibold, sans-serif;
 
   --text-color: var(--black);
@@ -77,7 +82,6 @@
 
 * {
   box-sizing: border-box;
-  letter-spacing: -0.43px;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
@@ -90,6 +94,7 @@ body {
   background-color: var(--bg-color);
   overflow: hidden;
   height: 100vh;
+  letter-spacing: var(--letter-spacing);
 }
 
 #root {

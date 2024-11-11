@@ -22,6 +22,22 @@
   flex: 1 0;
 }
 
+.name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.myProfile {
+  background-color: #8e8e9333;
+  color: var(--label-secondary);
+  backdrop-filter: blur(50px);
+  padding: 0 4px;
+  border-radius: 4px;
+  font: var(--text11);
+  letter-spacing: -0.1px;
+}
+
 .icon {
   height: 12px;
   width: 11px;
@@ -36,4 +52,9 @@
 .giftsReceived {
   font: var(--text13);
   color: var(--primary);
+  letter-spacing: -0.1px;
+}
+
+.rank {
+  font: var(--text22);
 }

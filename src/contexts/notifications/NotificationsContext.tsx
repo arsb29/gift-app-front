@@ -27,22 +27,24 @@ type Props = {
 export function NotificationsContextProvider(props: Props) {
   const { children } = props;
   const [notifications, setNotifications] = useState<NotificationType[]>([]);
-  const handleAddNotification = (options: Omit<NotificationType, "id">) => {
-    const id = Date.now();
-    setNotifications((prevNotifications) => [
-      ...prevNotifications,
-      { id, ...options },
-    ]);
-    setTimeout(() => {
-      handleRemoveNotification(id);
-    }, 6000);
-  };
   const handleRemoveNotification = useCallback((id: number) => {
     setNotifications((prevNotifications) =>
       prevNotifications.filter((n) => n.id !== id),
     );
   }, []);
-
+  const handleAddNotification = useCallback(
+    (options: Omit<NotificationType, "id">) => {
+      const id = Date.now();
+      setNotifications((prevNotifications) => [
+        ...prevNotifications,
+        { id, ...options },
+      ]);
+      setTimeout(() => {
+        handleRemoveNotification(id);
+      }, 6000);
+    },
+    [handleRemoveNotification],
+  );
   const contextValue = useMemo(
     () => ({
       onAddNotification: handleAddNotification,

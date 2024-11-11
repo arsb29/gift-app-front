@@ -48,6 +48,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  letter-spacing: -0.1px;
 }
 
 .description {
@@ -70,5 +71,5 @@
   text-transform: uppercase;
   color: var(--label-date);
   font: var(--text13);
-  letter-spacing: -0.08px;
+  letter-spacing: var(--letter-spacing-small);
 }

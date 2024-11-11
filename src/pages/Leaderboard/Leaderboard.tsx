@@ -69,6 +69,7 @@ export const Leaderboard: FC = () => {
           {filteredUsers.map((user, index) => (
             <LeaderboardItem
               key={user._id}
+              isMyProfile={userProfile?._id === user._id}
               user={user}
               ref={filteredUsers.length === index + 1 ? lastElementRef : null}
             />
@@ -77,7 +78,11 @@ export const Leaderboard: FC = () => {
         {isFetchingNextPage && <Loader />}
       </Page>
       {userProfile && (
-        <LeaderboardItem user={userProfile} className={styles.fixedItem} />
+        <LeaderboardItem
+          user={userProfile}
+          className={styles.fixedItem}
+          isMyProfile
+        />
       )}
     </>
   );
