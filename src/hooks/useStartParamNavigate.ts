@@ -16,6 +16,9 @@ export function useStartParamNavigate() {
         case "giftReceive":
           navigate(generatePath(ROUTES_PATHS.giftReceive, { transactionId }));
           break;
+        case "giftsPurchased":
+          navigate(generatePath(ROUTES_PATHS.giftsPurchased));
+          break;
         default:
           break;
       }
