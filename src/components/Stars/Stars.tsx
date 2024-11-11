@@ -1,7 +1,7 @@
 import Star from "@/assets/star.svg?react";
-import "./Star.css";
 import { randomInteger } from "@/helpers/randomInteger.ts";
 import { pointsOnCircle } from "@/helpers/pointsOnCircle.ts";
+import styles from "./Star.module.css";
 
 const COLORS: Record<number, string> = {
   1: "#FF9044",
@@ -17,10 +17,10 @@ const stars = Array.from({ length: 400 }).map((_, index) => {
   const iconSize = randomInteger(6, 10);
   return (
     <Star
-      className="star"
+      className={styles.star}
       key={index}
       style={{
-        animation: `star 4s easy-in infinite ${index * 0.01}s`,
+        animationDelay: `${index * 0.01}s`,
         transform: `translate(${x}px, ${y}px)`,
         color: COLORS[randomInteger(1, 3)],
         height: `${iconSize}px`,
