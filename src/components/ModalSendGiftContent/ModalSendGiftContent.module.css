@@ -4,6 +4,11 @@
   align-items: center;
 }
 
+.animation {
+  position: relative;
+  z-index: -1;
+}
+
 .title {
   margin: 12px 0 24px;
   font: var(--text24b);

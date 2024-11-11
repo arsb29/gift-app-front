@@ -1,0 +1,19 @@
+.stars {
+  position: relative;
+}
+
+.star {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  height: 100px;
+  width: 100px;
+}
+
+@keyframes star {
+  from {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}

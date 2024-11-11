@@ -18,6 +18,7 @@ import {
 import { getFormatText } from "@/helpers/getFormatText.ts";
 import { TEXTS } from "@/texts.tsx";
 import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
+import { Stars } from "@/components/Stars/Stars.tsx";
 
 type Props = {
   sender: User;
@@ -53,7 +54,10 @@ export function ModalSendGiftContent(props: Props) {
   }, [handleSendGift, languageCode]);
   return (
     <div className={styles.container}>
-      <IconAnimation icon={ICON_ANIMATION[gift.giftId]} autoplay />
+      <div className={styles.animation}>
+        <Stars />
+        <IconAnimation icon={ICON_ANIMATION[gift.giftId]} autoplay />
+      </div>
       <div className={styles.title}>
         {getFormatText({ text: TEXTS.giftModalTableTitle[languageCode] })}
       </div>

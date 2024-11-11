@@ -19,6 +19,7 @@ import { ClickableUserName } from "@/components/ClickableUserName/ClickableUserN
 import { useLanguageContext } from "@/contexts/language/LanguageContext.tsx";
 import { getFormatText } from "@/helpers/getFormatText.ts";
 import { TEXTS } from "@/texts.tsx";
+import { Stars } from "@/components/Stars/Stars.tsx";
 
 type Props = {
   sender: User;
@@ -49,7 +50,10 @@ export function ModalGiftContent(props: Props) {
   }, []);
   return (
     <div className={styles.container}>
-      <IconAnimation icon={ICON_ANIMATION[giftId]} autoplay />
+      <div className={styles.animation}>
+        <Stars />
+        <IconAnimation icon={ICON_ANIMATION[giftId]} autoplay />
+      </div>
       <div className={styles.title}>{gift.title[languageCode]}</div>
       <Table>
         <TableRow
