@@ -83,6 +83,9 @@ export const GiftPage: FC = () => {
           return res.miniAppPayUrl;
         })
         .then(openTelegramLink)
+        .catch(() => {
+          hapticFeedback.notificationOccurred("error");
+        })
         .finally(() => {
           setLoading(false);
         });
