@@ -120,7 +120,7 @@ export const GiftPage: FC = () => {
         text: TEXTS.giftPageTelegramMainButton[languageCode],
       }) as string,
       isLoaderVisible: loading,
-      isEnabled: loading,
+      isEnabled: !loading,
     });
     onMainButtonClick(handleMainButtonClick);
     return () => {
