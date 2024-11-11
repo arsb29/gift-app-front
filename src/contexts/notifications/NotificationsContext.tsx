@@ -41,7 +41,7 @@ export function NotificationsContextProvider(props: Props) {
       ]);
       setTimeout(() => {
         handleRemoveNotification(id);
-      }, 6000);
+      }, 5000);
     },
     [handleRemoveNotification],
   );

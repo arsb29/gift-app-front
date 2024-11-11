@@ -38,6 +38,7 @@ export const GiftPage: FC = () => {
   const navigate = useNavigate();
   const { onHideMenu, onShowMenu } = useMenuContext();
   const { languageCode } = useLanguageContext();
+  const [loading, setLoading] = useState<boolean>(false);
   const [transaction, setTransaction] = useState<Transaction | null>(null);
 
   useEffect(() => {
@@ -61,6 +62,7 @@ export const GiftPage: FC = () => {
 
   const handleMainButtonClick = useCallback(() => {
     if (giftId) {
+      setLoading(true);
       fetch(`${import.meta.env.VITE_ENDPOINT}/transaction/createInvoice`, {
         method: "POST",
         headers: {
@@ -78,7 +80,10 @@ export const GiftPage: FC = () => {
           setTransaction(res);
           return res.miniAppPayUrl;
         })
-        .then(openTelegramLink);
+        .then(openTelegramLink)
+        .finally(() => {
+          setLoading(false);
+        });
     }
   }, [giftId]);
 
@@ -114,6 +119,7 @@ export const GiftPage: FC = () => {
       text: getFormatText({
         text: TEXTS.giftPageTelegramMainButton[languageCode],
       }) as string,
+      isLoaderVisible: loading,
     });
     onMainButtonClick(handleMainButtonClick);
     return () => {
@@ -121,7 +127,7 @@ export const GiftPage: FC = () => {
       setMainButtonParams({ isVisible: false });
       unmountMainButton();
     };
-  }, [languageCode, gift, handleMainButtonClick]);
+  }, [languageCode, gift, handleMainButtonClick, loading]);
 
   if (isPending) return <Loader />;
   if (isError || !gift) return <Error />;
