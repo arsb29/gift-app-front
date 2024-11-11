@@ -24,9 +24,13 @@ export const GiftStore = forwardRef(
     const { gift } = props;
     const isSoldOut = gift.numberOfPurchased >= gift.totalNumberOf;
     const handleClick = useCallback(() => {
-      hapticFeedback.impactOccurred("soft");
-      navigate(generatePath(ROUTES_PATHS.gift, { giftId: gift._id }));
-    }, [navigate, gift._id]);
+      if (isSoldOut) {
+        hapticFeedback.notificationOccurred("error");
+      } else {
+        hapticFeedback.impactOccurred("soft");
+        navigate(generatePath(ROUTES_PATHS.gift, { giftId: gift._id }));
+      }
+    }, [navigate, gift._id, isSoldOut]);
     return (
       <div
         className={cc(styles.container, `background-${gift.giftId}`)}
