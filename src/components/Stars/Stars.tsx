@@ -34,7 +34,9 @@ const stars = Array.from({ length: 400 }).map((_, index) => {
 export function Stars() {
   const [rendered, setRendered] = useState(false);
   useEffect(() => {
-    setRendered(true);
+    setTimeout(() => {
+      setRendered(true);
+    }, 400);
   }, []);
   if (!rendered) return null;
   return stars;
