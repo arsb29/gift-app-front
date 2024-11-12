@@ -2,6 +2,7 @@ import Star from "@/assets/star.svg?react";
 import { randomInteger } from "@/helpers/randomInteger.ts";
 import { pointsOnCircle } from "@/helpers/pointsOnCircle.ts";
 import styles from "./Star.module.css";
+import { useEffect, useState } from "react";
 
 const COLORS: Record<number, string> = {
   1: "#FF9044",
@@ -31,5 +32,10 @@ const stars = Array.from({ length: 400 }).map((_, index) => {
 });
 
 export function Stars() {
+  const [rendered, setRendered] = useState(false);
+  useEffect(() => {
+    setRendered(true);
+  }, []);
+  if (!rendered) return null;
   return stars;
 }

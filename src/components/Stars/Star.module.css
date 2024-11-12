@@ -8,7 +8,7 @@
   animation-name: star;
   animation-duration: 5s;
   animation-iteration-count: infinite;
-  animation-timing-function: ease-in;
+  animation-timing-function: ease-out;
 }
 
 @keyframes star {
