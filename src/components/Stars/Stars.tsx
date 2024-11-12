@@ -36,7 +36,7 @@ export function Stars() {
   useEffect(() => {
     setTimeout(() => {
       setRendered(true);
-    }, 400);
+    }, 500);
   }, []);
   if (!rendered) return null;
   return stars;
