@@ -2,6 +2,7 @@ import { ChangeEvent, useCallback } from "react";
 import { cc } from "@/helpers/classConcat.ts";
 import styles from "./Toggle.module.css";
 import { ToggleValue } from "@/types.ts";
+import { hapticFeedback } from "@telegram-apps/sdk-react";
 
 type Props = {
   onChange: (value: any) => void;
@@ -14,6 +15,7 @@ export function Toggle(props: Props) {
   const { onChange, value, values, name } = props;
   const handleChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
+      hapticFeedback.impactOccurred("soft");
       onChange(!event.target.checked ? values[0].value : values[1].value);
     },
     [onChange, values],
