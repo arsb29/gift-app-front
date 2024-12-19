@@ -1,3 +1,4 @@
 .container {
   padding: 0 16px calc(var(--menu-height) + 8px);
+  overflow-x: hidden;
 }
